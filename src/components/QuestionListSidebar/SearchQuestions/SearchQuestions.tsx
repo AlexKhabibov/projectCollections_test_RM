@@ -1,6 +1,11 @@
 
 import styles from "./SearchQuestions.module.css";
 
+interface SearchQuestionsProps {
+    search: string;
+    setSearch: (value: string) => void;
+}
+
 function SearchQuestions({ search, setSearch }: SearchQuestionsProps) {
     return (
         <input

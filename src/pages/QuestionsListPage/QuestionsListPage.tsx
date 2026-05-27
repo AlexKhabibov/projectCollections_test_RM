@@ -4,9 +4,18 @@ import QuestionsList from '../../components/QuestionsList/QuestionsList';
 import Pagination from '../../components/Pagination/Pagination';
 import { useQuestionsFilters } from '../../hooks/useQuestionsFilter';
 import QuestionListSidebar from '../../components/QuestionListSidebar/QuestionListSidebar';
+import type { Question, Skill, Specialization } from '../../types/apiTypes';
+
+interface QuestionsListLoaderData {
+  questions: Question[];
+  total: number;
+  skills: Skill[];
+  specializations: Specialization[];
+}
 
 export default function QuestionsListPage() {
-  const { questions, total, skills, specializations } = useLoaderData()
+  const { questions, total, skills, specializations } =
+    useLoaderData() as QuestionsListLoaderData;
   const navigation = useNavigation();
   const isLoading = navigation.state === 'loading';
 
@@ -31,9 +40,8 @@ export default function QuestionsListPage() {
 
   return (
     <div className={styles.layout}>
-
       <QuestionsList questionsList={questions} />
-      
+
       <QuestionListSidebar
         search={search}
         setSearch={setSearch}
@@ -44,6 +52,7 @@ export default function QuestionsListPage() {
         selectedSpecializations={selectedSpecializations}
         setSelectedSpecializations={setSelectedSpecializations}
       />
+
       <Pagination
         page={page}
         setPage={setPage}

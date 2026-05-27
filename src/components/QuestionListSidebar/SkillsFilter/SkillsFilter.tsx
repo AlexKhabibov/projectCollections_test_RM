@@ -1,17 +1,26 @@
 import { useState } from "react";
 import styles from "./SkillsFilter.module.css";
+import type { Skill } from "../../../types/apiTypes";
 
+interface SkillsFilterProps {
+    skills: Skill[];
+    selectedSkills: number[];
+    setSelectedSkills: React.Dispatch<React.SetStateAction<number[]>>;
+}
 
 function SkillsFilter({
     skills,
     selectedSkills,
     setSelectedSkills
-}: SkillSFilterProps) {
-
-    const [showAll, setShowAll] = useState(false);
+}: SkillsFilterProps) {
+    const [showAll, setShowAll] = useState<boolean>(false);
 
     const toggleSkill = (id: number) => {
-        setSelectedSkills(id);
+        setSelectedSkills(prev =>
+            prev.includes(id)
+                ? prev.filter(skillId => skillId !== id)
+                : [...prev, id]
+        );
     };
 
     const visibleSkills = showAll
@@ -20,11 +29,7 @@ function SkillsFilter({
 
     return (
         <div className={styles.section}>
-
-            <h3 className={styles.title}>
-                Навыки
-            </h3>
-
+            <h3 className={styles.title}>Навыки</h3>
             <div className={styles.tags}>
                 {visibleSkills.map(skill => (
                     <button
@@ -41,7 +46,6 @@ function SkillsFilter({
                     </button>
                 ))}
             </div>
-
             {skills.length > 8 && (
                 <button
                     type="button"
@@ -51,7 +55,6 @@ function SkillsFilter({
                     {showAll ? "Скрыть" : "Показать еще"}
                 </button>
             )}
-
         </div>
     );
 }

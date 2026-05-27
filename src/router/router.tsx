@@ -21,7 +21,7 @@ export const router = createBrowserRouter([
                 loader: getCollectionsList
             },
             {
-                path: 'questions/', 
+                path: 'questions', 
                 element: <QuestionsListPage />,
                 loader: getQuestionsList
             },
