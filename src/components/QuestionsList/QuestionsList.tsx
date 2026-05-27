@@ -1,12 +1,16 @@
+import QuestionCard from '../QuestionCard/QuestionCard';
+import styles from './QuestionsList.module.css';
+import type { Question } from '../../types/apiTypes';
 
-import type { QuestionCardListProps } from "../../types/type";
-import QuestionCard from "../QuestionCard/QuestionCard";
-import styles from "./QuestionsList.module.css";
+function QuestionsList({ questionsList }: { questionsList: Question[] }) {
+    
+    if (!questionsList?.length) {
+        return <div className={styles.empty}>Вопросы не найдены</div>;
+    }
 
-function QuestionsList({ questions }: QuestionCardListProps) {
     return (
         <div className={styles.list}>
-            {questions.map(q => (
+            {questionsList.map(q => (
                 <QuestionCard
                     key={q.id}
                     question={q}

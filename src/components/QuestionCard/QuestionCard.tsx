@@ -1,9 +1,8 @@
 import { useState } from "react";
-import DOMPurify from "dompurify";
 import styles from "./QuestionCard.module.css";
-import type { QuestionCardProps } from "../../types/type";
+import type { Question } from "../../types/apiTypes";
 
-function QuestionCard({ question }: QuestionCardProps) {
+function QuestionCard({ question }: { question: Question }) {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
@@ -45,9 +44,7 @@ function QuestionCard({ question }: QuestionCardProps) {
 
                     <div
                         className={styles.content}
-                        dangerouslySetInnerHTML={{
-                            __html: DOMPurify.sanitize(question.longAnswer)
-                        }}
+                        dangerouslySetInnerHTML={{ __html: question.longAnswer }}
                     />
 
                 </div>
