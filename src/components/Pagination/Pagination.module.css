@@ -1,0 +1,62 @@
+.pagination {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 24px;
+    flex-wrap: wrap;
+}
+
+/* кнопки страниц */
+.pageButton {
+    min-width: 36px;
+    height: 36px;
+    padding: 0 10px;
+
+    border: 1px solid #e5e7eb;
+    background: #fff;
+    color: #111827;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    transition: all 0.15s ease;
+}
+
+/* hover */
+.pageButton:hover {
+    border-color: #7b61ff;;
+    transform: translateY(-1px);
+}
+
+/* активная страница */
+.active {
+    background: #7b61ff;;
+    color: #fff;
+    border-color: #7b61ff;;
+}
+
+/* disabled */
+.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* стрелки */
+.arrow {
+    font-weight: bold;
+}
+
+/* ... */
+.dots {
+    min-width: 36px;
+    height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #9ca3af;
+}

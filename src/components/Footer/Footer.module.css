@@ -1,0 +1,92 @@
+.footer {
+    background: #17003d;
+    color: white;
+    border-radius: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 32px 48px;
+}
+
+.top {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.title {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.description {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.5;
+    max-width: 1000px;
+}
+
+.divider {
+    width: 100%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 24px 0;
+}
+
+.bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.links {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    font-size: 14px;
+}
+
+.links a {
+    color: white;
+    text-decoration: none;
+}
+
+.socials {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 14px;
+}
+
+.icons {
+    display: flex;
+    gap: 10px;
+}
+
+.icons a {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: white;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 18px;
+    transition: 0.2s;
+}
+
+.icons a:hover {
+    transform: scale(1.05);
+}

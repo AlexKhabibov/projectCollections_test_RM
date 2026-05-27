@@ -1,0 +1,39 @@
+.section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.title {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 600;
+    color: #111827;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tags button {
+    padding: 8px 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: 999px;
+    background: #fff;
+    font-size: 13px;
+    color: #111827;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.tags button:hover {
+    border-color: #7b61ff;
+    color: #7b61ff;
+    background: rgba(123, 97, 255, 0.05);
+}
+
+.tags button:active {
+    transform: scale(0.97);
+}
