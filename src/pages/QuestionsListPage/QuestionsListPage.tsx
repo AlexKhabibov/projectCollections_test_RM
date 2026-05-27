@@ -1,9 +1,9 @@
 import { useLoaderData, useNavigation } from 'react-router-dom';
 import styles from './QuestionsListPage.module.css';
 import QuestionsList from '../../components/QuestionsList/QuestionsList';
-import Sidebar from '../../components/Sidebar/Sidebar';
 import Pagination from '../../components/Pagination/Pagination';
 import { useQuestionsFilters } from '../../hooks/useQuestionsFilter';
+import QuestionListSidebar from '../../components/QuestionListSidebar/QuestionListSidebar';
 
 export default function QuestionsListPage() {
   const { questions, total, skills, specializations } = useLoaderData()
@@ -31,8 +31,10 @@ export default function QuestionsListPage() {
 
   return (
     <div className={styles.layout}>
+
       <QuestionsList questionsList={questions} />
-      <Sidebar
+      
+      <QuestionListSidebar
         search={search}
         setSearch={setSearch}
         skills={skills}

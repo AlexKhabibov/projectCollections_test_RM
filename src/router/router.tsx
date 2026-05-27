@@ -21,12 +21,12 @@ export const router = createBrowserRouter([
                 loader: getCollectionsList
             },
             {
-                path: 'questions/public-questions', 
+                path: 'questions/', 
                 element: <QuestionsListPage />,
                 loader: getQuestionsList
             },
             {
-                path: 'questions/public-questions/:id', 
+                path: 'questions/:id', 
                 element: <QuestionDetailsPage />,
                 loader: getQuestionDetails
             }

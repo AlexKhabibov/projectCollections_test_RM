@@ -1,4 +1,4 @@
-import type { SearchQuestionsProps } from "../../../../types/type";
+
 import styles from "./SearchQuestions.module.css";
 
 function SearchQuestions({ search, setSearch }: SearchQuestionsProps) {

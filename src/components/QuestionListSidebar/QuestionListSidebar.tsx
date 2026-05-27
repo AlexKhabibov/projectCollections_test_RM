@@ -2,10 +2,8 @@ import styles from "./Sidebar.module.css";
 import SearchQuestions from "./SearchQuestions/SearchQuestions";
 import SpecializationFilter from "./SpecializationFilter/SpecializationFilter";
 import SkillsFilter from "./SkillsFilter/SkillsFilter";
-import type { SidebarProps } from "../../types/type";
 
-
-function Sidebar({
+function QuestionListSidebar({
     search,
     setSearch,
     skills,
@@ -40,4 +38,4 @@ function Sidebar({
     );
 }
 
-export default Sidebar;
+export default QuestionListSidebar;

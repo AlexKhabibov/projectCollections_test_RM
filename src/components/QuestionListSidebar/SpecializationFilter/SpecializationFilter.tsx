@@ -1,48 +1,49 @@
 import { useState } from "react";
-import styles from "./SkillsFilter.module.css";
-import type { SkillSFilterProps } from "../../../types/type";
+import styles from "./SpecializationFilter.module.css";
 
-function SkillsFilter({
-    skills,
-    selectedSkills,
-    setSelectedSkills
-}: SkillSFilterProps) {
+function SpecializationFilter({
+    specializations,
+    selectedSpecializations,
+    setSelectedSpecializations
+}: SpecializationFilterProps) {
 
     const [showAll, setShowAll] = useState(false);
 
-    const toggleSkill = (id: number) => {
-        setSelectedSkills(id);
+    const toggleSpecialization = (id: number) => {
+        setSelectedSpecializations(id);
     };
 
-    const visibleSkills = showAll
-        ? skills
-        : skills.slice(0, 8);
+    const visibleSpecializations = showAll
+        ? specializations
+        : specializations.slice(0, 6);
 
     return (
         <div className={styles.section}>
 
             <h3 className={styles.title}>
-                Навыки
+                Специализация
             </h3>
 
             <div className={styles.tags}>
-                {visibleSkills.map(skill => (
+
+                {visibleSpecializations.map(spec => (
                     <button
-                        key={skill.id}
+                        key={spec.id}
                         type="button"
-                        onClick={() => toggleSkill(skill.id)}
+                        onClick={() => toggleSpecialization(spec.id)}
                         className={
-                            selectedSkills.includes(skill.id)
+                            selectedSpecializations.includes(spec.id)
                                 ? styles.active
                                 : ""
                         }
                     >
-                        {skill.title}
+                        {spec.title}
                     </button>
                 ))}
+
             </div>
 
-            {skills.length > 8 && (
+            {specializations.length > 6 && (
                 <button
                     type="button"
                     className={styles.moreBtn}
@@ -56,4 +57,4 @@ function SkillsFilter({
     );
 }
 
-export default SkillsFilter;
+export default SpecializationFilter;
