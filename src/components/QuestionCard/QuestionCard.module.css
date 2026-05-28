@@ -26,8 +26,9 @@
 }
 
 .title {
-    font-size: 18px;
-    font-weight: 600;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 120%;
     margin: 0;
     flex: 1;
     min-width: 0;
@@ -38,7 +39,23 @@
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
     line-clamp: 2;
-    line-height: 1.3;
+}
+
+.linkReset {
+    text-decoration: none;
+    color: inherit;
+}
+
+.linkReset:hover,
+.linkReset:focus,
+.linkReset:active {
+    text-decoration: none;
+    color: inherit;
+}
+
+.titleContainer {
+    display: flex;
+    justify-content: space-between;
 }
 
 .meta {
@@ -53,16 +70,6 @@
 .short {
     font-size: 14px;
     color: #444;
-}
-
-.button {
-    align-self: flex-start;
-    padding: 6px 12px;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
-    background: #7b2ff7;
-    color: white;
 }
 
 .answer {
@@ -102,4 +109,10 @@
     border-radius: 999px;
     font-size: 12px;
     font-weight: 600;
+}
+
+.accordeonAarrow {
+    border: none;
+    background: transparent;
+    cursor: pointer;
 }

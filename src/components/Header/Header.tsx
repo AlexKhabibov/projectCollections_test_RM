@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styles from './Header.module.css';
 
 function Header() {
@@ -6,7 +7,7 @@ function Header() {
             <div className={`${styles.header__inner}`}>
                 <nav className={styles.header__nav}>
                     <a className={styles.header__logo}>Yeahub</a>
-                    <a className={styles.header__link}>База вопросов</a>
+                    <Link to='collections' className={styles.header__link}>База вопросов</Link>
                     <a className={styles.header__link}>Тренажер</a>
                     <a className={styles.header__link}>Материалы</a>
                     <a className={styles.header__link}>Навыки (hh)</a>

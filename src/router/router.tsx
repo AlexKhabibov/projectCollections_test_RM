@@ -16,17 +16,17 @@ export const router = createBrowserRouter([
         errorElement: <ErrorPage />,
         children: [
             {
-                path: 'collections',
+                index: true,
                 element: <CollectionsPage />,
                 loader: getCollectionsList
             },
             {
-                path: 'questions', 
+                path: 'questions',
                 element: <QuestionsListPage />,
                 loader: getQuestionsList
             },
             {
-                path: 'questions/:id', 
+                path: 'questions/:id',
                 element: <QuestionDetailsPage />,
                 loader: getQuestionDetails
             }

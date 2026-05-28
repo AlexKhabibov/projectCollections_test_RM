@@ -1,6 +1,7 @@
-import QuestionCard from '../QuestionCard/QuestionCard';
+
 import styles from './QuestionsList.module.css';
 import type { Question } from '../../types/apiTypes';
+import QuestionCard from '../QuestionCard/QuestionCard';
 
 function QuestionsList({ questionsList }: { questionsList: Question[] }) {
     
@@ -17,6 +18,7 @@ function QuestionsList({ questionsList }: { questionsList: Question[] }) {
                 />
             ))}
         </div>
+
     );
 }
 

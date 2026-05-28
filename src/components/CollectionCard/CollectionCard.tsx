@@ -1,38 +1,40 @@
 import type { Collection } from '../../types/apiTypes';
+import styles from './CollectionCard.module.css'
 
 const CollectionCard = ({ collection }: { collection: Collection }) => {
-  
+
   const imageUrl = collection.imageSrc || '/default-image.jpg';
   const tags = collection.keywords || [];
   const roles = collection.specializations?.map(s => s.title) || [];
 
   return (
-    <div className="collection-card">
-      <div className="card-content">
-        <div className="card-image">
+    <div className={styles.collectionCard}>
+      <div className={styles.cardContent}>
+        <div className={styles.cardImage}>
           <img src={imageUrl} alt={collection.title} />
         </div>
-        <div className="card-info">
-          <div className="tags">
+        <div className={styles.cardInfo}>
+          <div className={styles.tags}>
             {tags.map((tag, index) => (
-              <span key={index} className="tag">
+              <span key={index} className={styles.tag}>
                 {tag}
               </span>
             ))}
           </div>
-          <h3 className="title">{collection.title}</h3>
-          <div className="meta">
-            <span className="badge">{collection.isFree ? 'Бесплатно' : 'Платно'}</span>
-            <span className="badge">{collection.questionsCount} вопросов</span>
+          <h3 className={styles.title}>{collection.title}</h3>
+          <div className={styles.meta}>
+            <span className={styles.badge}>{collection.isFree ? 'Бесплатно' : 'Платно'}</span>
+            <span className={styles.badge}>{collection.questionsCount} вопросов</span>
           </div>
-          <div className="roles">
+          <div className={styles.roles}>
             {roles.map((role, index) => (
-              <span key={index}>{role}</span>
+              <span key={index} className={styles.role}>{role}</span>
             ))}
           </div>
         </div>
       </div>
     </div>
+
   );
 };
 

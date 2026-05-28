@@ -1,5 +1,6 @@
 import type { Collection } from '../../types/apiTypes';
 import CollectionCard from '../CollectionCard/CollectionCard';
+import styles from './CollectionCardList.module.css'
 
 function CollectionCardList({ collections }: { collections: Collection[] }) {
     if (!collections || collections.length === 0) {
@@ -8,9 +9,9 @@ function CollectionCardList({ collections }: { collections: Collection[] }) {
 
     return (
         <>
-            <div className="collectionsCardList">
+            <div className={styles.collectionsCardList}>
                 <h1>Коллекции</h1>
-                <div className="card-grid">
+                <div className={styles.cardGrid}>
                     {collections.map((collection) => (
                         <CollectionCard key={collection.id} collection={collection} />
                     ))}

@@ -1,7 +1,13 @@
+import styles from './NotFoundPage.module.css'
+
 function NotFoundPage() {
+
     return (
-        <h1>Страница не найдена</h1>
+        <div className={styles.notFound}>
+            <h1>404 — Страница не найдена</h1>
+            <p>Запрошенный маршрут не существует.</p>
+        </div>
     );
 }
 
-export default NotFoundPage;
+export default NotFoundPage

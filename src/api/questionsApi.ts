@@ -8,5 +8,7 @@ export const getQuestionsList = async (): Promise<GetQuestionsListResponse> => {
         throw new Error(`HTTP ошибка! Код: ${response.status}`);
     }
 
-    return response.json();
+    const result = await response.json();
+
+    return result;
 };
