@@ -1,14 +1,12 @@
-import type { GetQuestionsListResponse, Question } from "../types/apiTypes";
+import type { GetQuestionsListResponse } from "../types/apiTypes";
 import { BASE_URL } from "./baseApi";
 
-export const getQuestionsList = async (): Promise<Question[]> => {
+export const getQuestionsList = async (): Promise<GetQuestionsListResponse> => {
     const response = await fetch(`${BASE_URL}/questions/public-questions`);
 
     if (!response.ok) {
         throw new Error(`HTTP ошибка! Код: ${response.status}`);
     }
 
-    const result: GetQuestionsListResponse = await response.json();
-
-    return result.data;
+    return response.json();
 };

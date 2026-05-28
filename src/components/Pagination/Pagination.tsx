@@ -1,5 +1,11 @@
-import type { PaginationProps } from "../../../types/type";
 import styles from "./Pagination.module.css";
+
+interface PaginationProps {
+    page: number;
+    setPage: (value: number) => void;
+    total: number;
+    limit: number;
+}
 
 function Pagination({ page, setPage, total, limit }: PaginationProps) {
     const totalPages = Math.ceil(total / limit);
@@ -46,9 +52,8 @@ function Pagination({ page, setPage, total, limit }: PaginationProps) {
                     <button
                         key={i}
                         onClick={() => setPage(p)}
-                        className={`${styles.pageButton} ${
-                            page === p ? styles.active : ""
-                        }`}
+                        className={`${styles.pageButton} ${page === p ? styles.active : ""
+                            }`}
                     >
                         {p}
                     </button>

@@ -5,7 +5,7 @@ import type { Skill } from "../../../types/apiTypes";
 interface SkillsFilterProps {
     skills: Skill[];
     selectedSkills: number[];
-    setSelectedSkills: React.Dispatch<React.SetStateAction<number[]>>;
+    setSelectedSkills: (value: number[]) => void;
 }
 
 function SkillsFilter({
@@ -16,11 +16,11 @@ function SkillsFilter({
     const [showAll, setShowAll] = useState<boolean>(false);
 
     const toggleSkill = (id: number) => {
-        setSelectedSkills(prev =>
-            prev.includes(id)
-                ? prev.filter(skillId => skillId !== id)
-                : [...prev, id]
-        );
+        const newSkills = selectedSkills.includes(id)
+            ? selectedSkills.filter(skillId => skillId !== id)
+            : [...selectedSkills, id];
+
+        setSelectedSkills(newSkills);
     };
 
     const visibleSkills = showAll

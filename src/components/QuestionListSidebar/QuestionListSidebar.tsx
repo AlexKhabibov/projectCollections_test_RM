@@ -4,27 +4,27 @@ import SpecializationFilter from "./SpecializationFilter/SpecializationFilter";
 import SkillsFilter from "./SkillsFilter/SkillsFilter";
 import type { Skill, Specialization } from "../../types/apiTypes";
 
-export type SidebarProps = {
+export type QuestionListSidebarProps = {
     search: string;
     setSearch: (value: string) => void;
     skills: Skill[];
     selectedSkills: number[];
-    setSelectedSkills: React.Dispatch<React.SetStateAction<number[]>>;
+    setSelectedSkills: (value: number[]) => void;
     specializations: Specialization[];
     selectedSpecializations: number[];
-    setSelectedSpecializations: React.Dispatch<React.SetStateAction<number[]>>;
+    setSelectedSpecializations: (value: number[]) => void;
 };
 
 function QuestionListSidebar({
     search,
     setSearch,
-    skills,
+    skills = [],
     selectedSkills,
     setSelectedSkills,
-    specializations,
+    specializations = [],
     selectedSpecializations,
     setSelectedSpecializations
-}: SidebarProps) {
+}: QuestionListSidebarProps) {
     return (
         <aside className={styles.sidebar}>
             <SearchQuestions
