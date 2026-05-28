@@ -1,10 +1,10 @@
 export interface User {
-    id: string
+    id: string | number
     username: string
 }
 
 export interface Collection {
-    id: number
+    id: string | number
     title: string
     slug?: string
     description: string
@@ -28,7 +28,7 @@ export interface GetCollectionsListResponse {
 }
 
 export interface Specialization {
-    id: number;
+    id: string | number
     title: string;
     slug: string;
     description: string;
@@ -53,7 +53,7 @@ export interface GetSkillsListResponse {
 }
 
 export interface Skill {
-    id: number;
+    id: string | number;
     title: string;
     description: string;
     imageSrc: string | null;
@@ -75,7 +75,7 @@ export interface GetQuestionDetailsResponse {
 }
 
 export interface Question {
-    id: number;
+    id: string | number;
     title: string;
     slug: string;
     description: string;
@@ -99,7 +99,7 @@ export interface Question {
 }
 
 export interface Topic {
-    id: number;
+    id: string | number;
     title: string;
     description: string;
     imageSrc: string | null;
@@ -110,7 +110,7 @@ export interface Topic {
 export type QuestionStatus = "public" | "private" | "draft";
 
 export interface Company {
-    id: string
+    id: string | number
     title: string
     legalName: string
     description: string

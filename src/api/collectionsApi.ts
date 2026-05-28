@@ -10,5 +10,7 @@ export const getCollectionsList = async (): Promise<Collection[]> => {
 
     const result: GetCollectionsListResponse = await response.json();
 
+
+    console.log(result.data);
     return result.data;
 };
