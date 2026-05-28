@@ -7,7 +7,7 @@ export default function CollectionsPage() {
     const collections = useLoaderData() as Collection[];
 
     return (
-        <div className="collections-page">
+        <div>
             <h1>Коллекции вопросов</h1>
             <CollectionCardList collections={collections} />
         </div>
