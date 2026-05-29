@@ -3,7 +3,7 @@ import CollectionCardList from "../../components/CollectionCardList/CollectionCa
 import Pagination from "../../components/Pagination/Pagination";
 import type { GetCollectionsListResponse } from "../../types/apiTypes";
 
-export default function CollectionsPage() {
+function CollectionsListPage() {
     const data = useLoaderData() as GetCollectionsListResponse;
 
     const navigate = useNavigate();
@@ -31,3 +31,5 @@ export default function CollectionsPage() {
         </div>
     );
 }
+
+export default CollectionsListPage;

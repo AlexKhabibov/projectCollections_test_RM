@@ -2,12 +2,14 @@ import { createBrowserRouter } from "react-router-dom";
 import Layout from "../components/Layout";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import NotFoundPage from "../pages/NotFoundPage/NotFoundPage";
+import CollectionsListPage from "../pages/CollectionsListPage/CollectionsListPage";
+import CollectionDetailsPage from "../pages/CollectionDetailsPage/CollectionDetailsPage";
 import QuestionsListPage from "../pages/QuestionsListPage/QuestionsListPage";
 import QuestionDetailsPage from "../pages/QuestionDetailsPage/QuestionDetailsPage";
-import CollectionsPage from "../pages/CollectionsPage/CollectionsPage";
 import { getCollectionsList } from "../api/collectionsApi";
 import { getQuestionsList } from "../api/questionsApi";
 import { getQuestionDetails } from "../api/questionDetailsApi";
+import { getCollectionDetails } from "../api/collectionDetailsApi";
 
 export const router = createBrowserRouter([
     {
@@ -17,14 +19,22 @@ export const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                element: <CollectionsPage />,
+                element: <CollectionsListPage />,
                 loader: getCollectionsList
             },
+
+            {
+                path: 'collections/:id',
+                element: <CollectionDetailsPage />,
+                loader: getCollectionDetails
+            },
+
             {
                 path: 'questions',
                 element: <QuestionsListPage />,
                 loader: getQuestionsList
             },
+
             {
                 path: 'questions/:id',
                 element: <QuestionDetailsPage />,
