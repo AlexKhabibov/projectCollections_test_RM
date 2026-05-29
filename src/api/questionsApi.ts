@@ -10,17 +10,29 @@ export const getQuestionsList = async ({
 
     const page = url.searchParams.get("page") || "1";
     const limit = url.searchParams.get("limit") || "10";
+    const search = url.searchParams.get("search") || "";
+    const collectionId = url.searchParams.get("collectionId") || "";
+
+    const params = new URLSearchParams({
+        page,
+        limit,
+    });
+
+    if (search) {
+        params.set("title", search);
+    }
+
+    if (collectionId) {
+        params.set("collectionId", collectionId);
+    }
 
     const response = await fetch(
-        `${BASE_URL}/questions/public-questions?page=${page}&limit=${limit}`
+        `${BASE_URL}/questions/public-questions?${params.toString()}`
     );
 
     if (!response.ok) {
         throw new Error(`HTTP ошибка! Код: ${response.status}`);
     }
 
-    const result: GetQuestionsListResponse =
-        await response.json();
-
-    return result;
+    return await response.json();
 };

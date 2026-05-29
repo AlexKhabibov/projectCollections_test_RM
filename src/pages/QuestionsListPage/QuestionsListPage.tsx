@@ -1,65 +1,50 @@
-import { useLoaderData, useNavigation } from "react-router-dom";
+import { useLoaderData, useNavigate, useLocation } from "react-router-dom";
 import type { GetQuestionsListResponse } from "../../types/apiTypes";
 import QuestionsList from "../../components/QuestionsList/QuestionsList";
 import QuestionListSidebar from "../../components/QuestionListSidebar/QuestionListSidebar";
 import Pagination from "../../components/Pagination/Pagination";
-import { useQuestionsFilters } from "../../hooks/useQuestionsFilter";
-import { usePagination } from "../../hooks/usePagination";
 import styles from "./QuestionsListPage.module.css";
 
 export default function QuestionsListPage() {
-
     const data = useLoaderData() as GetQuestionsListResponse;
-    const navigation = useNavigation();
-    const isLoading = navigation.state === "loading";
 
-    const {
-        search,
-        setSearch,
-        selectedSkills,
-        setSelectedSkills,
-        selectedSpecializations,
-        setSelectedSpecializations
-    } = useQuestionsFilters();
+    const navigate = useNavigate();
+    const location = useLocation();
 
-    const { changePage } = usePagination();
+    const params = new URLSearchParams(location.search);
 
-    if (isLoading) {
-        return (
-            <div className={styles.loader}>
-                <div className={styles.spinner}></div>
-            </div>
-        );
-    }
+    const handlePageChange = (page: number) => {
+        params.set("page", String(page));
+        navigate(`${location.pathname}?${params.toString()}`);
+    };
 
     return (
         <div className={styles.layout}>
 
-            <QuestionsList
-                questionsList={data.data}
-            />
+            <QuestionsList questionsList={data.data} />
 
             <QuestionListSidebar
-                search={search}
-                setSearch={setSearch}
+                search={params.get("search") || ""}
+                setSearch={(value) => {
+                    params.set("search", value);
+                    params.set("page", "1");
+                    navigate(`${location.pathname}?${params.toString()}`);
+                }}
                 skills={[]}
-                selectedSkills={selectedSkills}
-                setSelectedSkills={setSelectedSkills}
+                selectedSkills={[]}
+                setSelectedSkills={() => {}}
                 specializations={[]}
-                selectedSpecializations={
-                    selectedSpecializations
-                }
-                setSelectedSpecializations={
-                    setSelectedSpecializations
-                }
+                selectedSpecializations={[]}
+                setSelectedSpecializations={() => {}}
             />
 
             <Pagination
                 page={data.page}
                 total={data.total}
                 limit={data.limit}
-                onPageChange={changePage}
+                onPageChange={handlePageChange}
             />
+
         </div>
     );
 }
