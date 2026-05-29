@@ -1,9 +1,10 @@
+import { getImageSrc } from "../../hooks/imageDefault";
 import type { Collection } from "../../types/apiTypes";
 import styles from "./CollectionHeaderCard.module.css";
 
 function CollectionHeaderCard({ collection }: { collection: Collection }) {
 
-    const imageUrl = collection.imageSrc || "/default-image.jpg";
+    const imageUrl = getImageSrc(collection.imageSrc);
     const roles = collection.specializations?.map(s => s.title) || [];
 
     return (

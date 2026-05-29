@@ -34,5 +34,9 @@ export const getQuestionsList = async ({
         throw new Error(`HTTP ошибка! Код: ${response.status}`);
     }
 
-    return await response.json();
+    const result = await response.json();
+
+    console.log("API RESULT:", result);
+
+    return result;
 };

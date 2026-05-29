@@ -1,6 +1,7 @@
+import type { Question } from '../../types/apiTypes';
 import styles from './QuestionDetailsCard.module.css'
 
-function QuestionDetailsCard() {
+function QuestionDetailsCard({ question }: { question: Question }) {
     return (
         <>
             <div className={styles.card}>
@@ -14,13 +15,11 @@ function QuestionDetailsCard() {
 
                 <div className={styles.content}>
                     <h2 className={styles.title}>
-                        Что такое Virtual DOM,
-                        <br />
-                        и как он работает?
+                        {question.title}
                     </h2>
 
                     <p className={styles.description}>
-                        Вопрос проверяет знание React под капотом
+                       {question.description}
                     </p>
                 </div>
             </div>

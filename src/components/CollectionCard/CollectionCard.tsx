@@ -1,3 +1,4 @@
+import { getImageSrc } from '../../hooks/imageDefault';
 import type { Collection } from '../../types/apiTypes';
 import styles from './CollectionCard.module.css';
 import { useNavigate } from 'react-router-dom';
@@ -6,7 +7,9 @@ const CollectionCard = ({ collection }: { collection: Collection }) => {
 
   const navigate = useNavigate();
 
-  const imageUrl = collection.imageSrc || '/default-image.jpg';
+  
+
+  const imageUrl = getImageSrc(collection.imageSrc);
   const tags = collection.keywords || [];
   const roles = collection.specializations?.map(s => s.title) || [];
 

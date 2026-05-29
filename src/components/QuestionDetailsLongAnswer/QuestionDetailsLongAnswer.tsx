@@ -1,12 +1,13 @@
+import type { Question } from '../../types/apiTypes';
 import styles from './QuestionDetailsLongAnswer.module.css';
 
-function QuestionDetailsLongAnswer() {
+function QuestionDetailsLongAnswer({ question }: { question: Question }) {
     return (
         <>
 
             <div className={styles.container}>
                 <h2 className={styles.title}>
-                    Развёрнутый ответ
+                    {question.longAnswer}
                 </h2>
 
                 <div className={styles.content}>

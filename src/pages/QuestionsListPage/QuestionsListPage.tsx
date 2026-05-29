@@ -32,10 +32,10 @@ export default function QuestionsListPage() {
                 }}
                 skills={[]}
                 selectedSkills={[]}
-                setSelectedSkills={() => {}}
+                setSelectedSkills={() => { }}
                 specializations={[]}
                 selectedSpecializations={[]}
-                setSelectedSpecializations={() => {}}
+                setSelectedSpecializations={() => { }}
             />
 
             <Pagination

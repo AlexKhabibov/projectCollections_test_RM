@@ -18,7 +18,12 @@ export const getQuestionDetails = async ({ params }: LoaderFunctionArgs) => {
         }
 
         const result: GetQuestionDetailsResponse = await response.json();
-        return result.data;
+
+        console.log("DETAIL RESPONSE FULL:", result);
+
+        console.log("DETAIL RESPONSE DATA:", result.data);
+
+        return result;
     } catch (error) {
         console.error('Ошибка загрузки вопроса:', error);
         throw error;

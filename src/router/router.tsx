@@ -36,7 +36,7 @@ export const router = createBrowserRouter([
             },
 
             {
-                path: 'questions/:id',
+                path: "questions/:id",
                 element: <QuestionDetailsPage />,
                 loader: getQuestionDetails
             }
