@@ -2,9 +2,10 @@ import { useLoaderData, useNavigation } from "react-router-dom";
 import type { GetQuestionsListResponse } from "../../types/apiTypes";
 // import { useQuestionsFilters } from "../../hooks/useQuestionsFilter";
 import QuestionsList from "../../components/QuestionsList/QuestionsList";
-// import QuestionListSidebar from "../../components/QuestionListSidebar/QuestionListSidebar";
-// import Pagination from "../../components/Pagination/Pagination";
+import QuestionListSidebar from "../../components/QuestionListSidebar/QuestionListSidebar";
+import Pagination from "../../components/Pagination/Pagination";
 import styles from './QuestionsListPage.module.css'
+import { useQuestionsFilters } from "../../hooks/useQuestionsFilter";
 
 export default function QuestionsListPage() {
     const data = useLoaderData() as GetQuestionsListResponse;
@@ -14,16 +15,16 @@ console.log("QuestionsListPage render", data);
     const navigation = useNavigation();
     const isLoading = navigation.state === "loading";
 
-    // const {
-    //     search,
-    //     setSearch,
-    //     selectedSkills,
-    //     setSelectedSkills,
-    //     selectedSpecializations,
-    //     setSelectedSpecializations,
-    //     page,
-    //     setPage
-    // } = useQuestionsFilters();
+    const {
+        search,
+        setSearch,
+        selectedSkills,
+        setSelectedSkills,
+        selectedSpecializations,
+        setSelectedSpecializations,
+        page,
+        setPage
+    } = useQuestionsFilters();
 
     if (isLoading) {
         return (
@@ -37,7 +38,7 @@ console.log("QuestionsListPage render", data);
         <div className={styles.layout}>
             <QuestionsList questionsList={data.data} />
 
-            {/* <QuestionListSidebar
+            <QuestionListSidebar
                 search={search}
                 setSearch={setSearch}
                 skills={[]}
@@ -46,14 +47,14 @@ console.log("QuestionsListPage render", data);
                 specializations={[]}
                 selectedSpecializations={selectedSpecializations}
                 setSelectedSpecializations={setSelectedSpecializations}
-            /> */}
+            />
 
-            {/* <Pagination
+            <Pagination
                 page={page}
                 setPage={setPage}
                 total={data.total}
                 limit={data.limit}
-            /> */}
+            />
         </div>
     );
 }
