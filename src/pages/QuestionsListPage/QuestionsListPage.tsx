@@ -1,17 +1,15 @@
 import { useLoaderData, useNavigation } from "react-router-dom";
 import type { GetQuestionsListResponse } from "../../types/apiTypes";
-// import { useQuestionsFilters } from "../../hooks/useQuestionsFilter";
 import QuestionsList from "../../components/QuestionsList/QuestionsList";
 import QuestionListSidebar from "../../components/QuestionListSidebar/QuestionListSidebar";
 import Pagination from "../../components/Pagination/Pagination";
-import styles from './QuestionsListPage.module.css'
 import { useQuestionsFilters } from "../../hooks/useQuestionsFilter";
+import { usePagination } from "../../hooks/usePagination";
+import styles from "./QuestionsListPage.module.css";
 
 export default function QuestionsListPage() {
+
     const data = useLoaderData() as GetQuestionsListResponse;
-
-console.log("QuestionsListPage render", data);
-
     const navigation = useNavigation();
     const isLoading = navigation.state === "loading";
 
@@ -21,10 +19,10 @@ console.log("QuestionsListPage render", data);
         selectedSkills,
         setSelectedSkills,
         selectedSpecializations,
-        setSelectedSpecializations,
-        page,
-        setPage
+        setSelectedSpecializations
     } = useQuestionsFilters();
+
+    const { changePage } = usePagination();
 
     if (isLoading) {
         return (
@@ -36,7 +34,10 @@ console.log("QuestionsListPage render", data);
 
     return (
         <div className={styles.layout}>
-            <QuestionsList questionsList={data.data} />
+
+            <QuestionsList
+                questionsList={data.data}
+            />
 
             <QuestionListSidebar
                 search={search}
@@ -45,15 +46,19 @@ console.log("QuestionsListPage render", data);
                 selectedSkills={selectedSkills}
                 setSelectedSkills={setSelectedSkills}
                 specializations={[]}
-                selectedSpecializations={selectedSpecializations}
-                setSelectedSpecializations={setSelectedSpecializations}
+                selectedSpecializations={
+                    selectedSpecializations
+                }
+                setSelectedSpecializations={
+                    setSelectedSpecializations
+                }
             />
 
             <Pagination
-                page={page}
-                setPage={setPage}
+                page={data.page}
                 total={data.total}
                 limit={data.limit}
+                onPageChange={changePage}
             />
         </div>
     );

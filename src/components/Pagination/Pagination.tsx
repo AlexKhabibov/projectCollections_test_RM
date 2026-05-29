@@ -2,12 +2,18 @@ import styles from "./Pagination.module.css";
 
 interface PaginationProps {
     page: number;
-    setPage: (value: number) => void;
     total: number;
     limit: number;
+    onPageChange: (page: number) => void;
 }
 
-function Pagination({ page, setPage, total, limit }: PaginationProps) {
+function Pagination({
+    page,
+    total,
+    limit,
+    onPageChange
+}: PaginationProps) {
+
     const totalPages = Math.ceil(total / limit);
 
     const getPageNumbers = () => {
@@ -19,15 +25,21 @@ function Pagination({ page, setPage, total, limit }: PaginationProps) {
 
         range.push(1);
 
-        if (left > 2) range.push("...");
+        if (left > 2) {
+            range.push("...");
+        }
 
         for (let i = left; i <= right; i++) {
             range.push(i);
         }
 
-        if (right < totalPages - 1) range.push("...");
+        if (right < totalPages - 1) {
+            range.push("...");
+        }
 
-        if (totalPages > 1) range.push(totalPages);
+        if (totalPages > 1) {
+            range.push(totalPages);
+        }
 
         return range;
     };
@@ -37,7 +49,7 @@ function Pagination({ page, setPage, total, limit }: PaginationProps) {
 
             <button
                 className={`${styles.pageButton} ${styles.arrow}`}
-                onClick={() => setPage(Math.max(page - 1, 1))}
+                onClick={() => onPageChange(Math.max(page - 1, 1))}
                 disabled={page === 1}
             >
                 ←
@@ -45,13 +57,16 @@ function Pagination({ page, setPage, total, limit }: PaginationProps) {
 
             {getPageNumbers().map((p, i) =>
                 p === "..." ? (
-                    <div key={i} className={styles.dots}>
+                    <div
+                        key={i}
+                        className={styles.dots}
+                    >
                         ...
                     </div>
                 ) : (
                     <button
                         key={i}
-                        onClick={() => setPage(p)}
+                        onClick={() => onPageChange(p)}
                         className={`${styles.pageButton} ${page === p ? styles.active : ""
                             }`}
                     >
@@ -63,7 +78,9 @@ function Pagination({ page, setPage, total, limit }: PaginationProps) {
             <button
                 className={`${styles.pageButton} ${styles.arrow}`}
                 onClick={() =>
-                    setPage(Math.min(page + 1, totalPages))
+                    onPageChange(
+                        Math.min(page + 1, totalPages)
+                    )
                 }
                 disabled={page === totalPages}
             >
