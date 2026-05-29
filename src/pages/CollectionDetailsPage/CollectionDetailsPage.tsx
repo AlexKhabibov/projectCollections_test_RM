@@ -1,6 +1,7 @@
 import { useLoaderData, useNavigate, useLocation } from "react-router-dom";
 import QuestionsList from "../../components/QuestionsList/QuestionsList";
 import Pagination from "../../components/Pagination/Pagination";
+import CollectionHeaderCard from "../../components/CollectionHeaderCard/CollectionHeaderCard";
 
 export default function CollectionDetailsPage() {
 
@@ -19,12 +20,9 @@ export default function CollectionDetailsPage() {
     return (
         <div>
 
-            <h1>{data.collection.title}</h1>
-            <p>{data.collection.description}</p>
+            <CollectionHeaderCard collection={data.collection} />
 
-            <QuestionsList
-                questionsList={data.questions.data}
-            />
+            <QuestionsList questionsList={data.questions.data} />
 
             <Pagination
                 page={data.questions.page}

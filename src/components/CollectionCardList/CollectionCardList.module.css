@@ -1,6 +1,7 @@
 .collectionsCardList {
   max-width: 1200px; /* Ограничение ширины, как на десктопе */
   margin: 0 auto; /* Центрируем */
+  margin-top: 40px;
   padding: 40px 20px; /* Отступы по краям */
   background-color: #fff; /* Белый фон */
   border-radius: 16px; /* Закругление углов блока */

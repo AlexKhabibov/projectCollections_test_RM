@@ -1,0 +1,63 @@
+.header {
+    display: flex;
+    gap: 16px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+    align-items: flex-start;
+}
+
+.image {
+    width: 120px;
+    height: 120px;
+    border-radius: 12px;
+    object-fit: cover;
+    flex-shrink: 0;
+    background: #f3f4f6;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+}
+
+.info h1 {
+    font-size: 20px;
+    margin: 0;
+    font-weight: 600;
+}
+
+.info p {
+    margin: 0;
+    font-size: 14px;
+    color: #4b5563;
+    line-height: 1.4;
+}
+
+.meta {
+    display: flex;
+    gap: 10px;
+    font-size: 13px;
+    color: #374151;
+    opacity: 0.9;
+}
+
+.roles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 4px;
+}
+
+.roles span {
+    padding: 4px 10px;
+    font-size: 12px;
+    background: #f3f4f6;
+    border-radius: 999px;
+    border: 1px solid #e5e7eb;
+    color: #111827;
+}

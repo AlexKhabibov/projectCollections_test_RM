@@ -18,7 +18,6 @@ function CollectionsListPage() {
 
     return (
         <div>
-            <h1>Коллекции вопросов</h1>
 
             <CollectionCardList collections={data.data} />
 
