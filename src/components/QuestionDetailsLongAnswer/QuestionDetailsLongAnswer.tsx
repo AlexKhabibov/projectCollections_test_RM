@@ -1,30 +1,43 @@
+import { useState } from 'react';
+import DOMPurify from 'dompurify';
+
 import type { Question } from '../../types/apiTypes';
+
 import styles from './QuestionDetailsLongAnswer.module.css';
 
-function QuestionDetailsLongAnswer({ question }: { question: Question }) {
+function QuestionDetailsLongAnswer({
+    question
+}: {
+    question: Question
+}) {
+
+    const [expanded, setExpanded] = useState(false);
+
     return (
-        <>
+        <div className={styles.card}>
 
-            <div className={styles.container}>
-                <h2 className={styles.title}>
-                    {question.longAnswer}
-                </h2>
+            <h2 className={styles.heading}>
+                Развёрнутый ответ
+            </h2>
 
-                <div className={styles.content}>
-                    <p className={styles.text}>
-                        ...
-                    </p>
-                </div>
+            <div
+                className={`${styles.content} ${expanded ? styles.expanded : ''
+                    }`}
+                dangerouslySetInnerHTML={{
+                    __html: DOMPurify.sanitize(
+                        question.longAnswer || ''
+                    )
+                }}
+            />
 
-                <button className={styles.toggle}>
-                    <span>Развернуть</span>
+            <button
+                className={styles.toggle}
+                onClick={() => setExpanded(prev => !prev)}
+            >
+                {expanded ? 'Свернуть' : 'Развернуть'}
+            </button>
 
-                    <span className={styles.toggleIcon}>
-                        ↓
-                    </span>
-                </button>
-            </div>
-        </>
+        </div>
     );
 }
 

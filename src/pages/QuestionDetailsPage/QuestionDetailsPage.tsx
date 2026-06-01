@@ -1,21 +1,21 @@
 import { useLoaderData } from "react-router-dom";
-import QuestionDetailsCard from "../../components/QuestionDetailsCard/QuestionDetailsCard";
-import QuestionDetailsLongAnswer from "../../components/QuestionDetailsLongAnswer/QuestionDetailsLongAnswer";
-import QuestionDetailsShortAnswer from "../../components/QuestionDetailsShortAnswer/QuestionDetailsShortAnswer";
 import type { Question } from "../../types/apiTypes";
+
+import ButtonBackwardToQuestionsList from "../../components/Buttons/ButtonBackwardToQuestionsList/ButtonBackwardToQuestionsList";
+import QuestionDetailsCard from "../../components/QuestionDetailsCard/QuestionDetailsCard";
+
+import styles from "./QuestionDetailsPage.module.css";
 
 function QuestionDetailsPage() {
     const question = useLoaderData() as Question;
 
-    console.log("QUESTION IN PAGE:", question);
-
     return (
-        <>
+        <div className={styles.page}>
+            <ButtonBackwardToQuestionsList />
+
             <QuestionDetailsCard question={question} />
-            <QuestionDetailsShortAnswer question={question} />
-            <QuestionDetailsLongAnswer question={question} />
-        </>
+        </div>
     );
 }
 
-export default QuestionDetailsPage;
+export default QuestionDetailsPage
