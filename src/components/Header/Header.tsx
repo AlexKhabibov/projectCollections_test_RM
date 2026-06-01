@@ -6,8 +6,8 @@ function Header() {
         <header className={styles.header}>
             <div className={`${styles.header__inner}`}>
                 <nav className={styles.header__nav}>
-                    <Link to='/' className={styles.header__logo}>Yeahub</Link>
-                    <Link to='questions' className={styles.header__link}>База вопросов</Link>
+                    <a className={styles.header__logo}>Yeahub</a>
+                    <Link to='/' className={styles.header__link}>База вопросов</Link>
                     <a className={styles.header__link}>Тренажер</a>
                     <a className={styles.header__link}>Материалы</a>
                     <a className={styles.header__link}>Навыки (hh)</a>

@@ -1,5 +1,4 @@
 import { createBrowserRouter } from "react-router-dom";
-import Layout from "../components/Layout";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import NotFoundPage from "../pages/NotFoundPage/NotFoundPage";
 import CollectionsListPage from "../pages/CollectionsListPage/CollectionsListPage";
@@ -10,6 +9,7 @@ import { getCollectionsList } from "../api/collectionsApi";
 import { getQuestionsList } from "../api/questionsApi";
 import { getQuestionDetails } from "../api/questionDetailsApi";
 import { getCollectionDetails } from "../api/collectionDetailsApi";
+import Layout from "../components/Layout/Layout";
 
 export const router = createBrowserRouter([
     {
