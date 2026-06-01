@@ -18,7 +18,7 @@ function QuestionDetailsCard({
 
             <QuestionDetailsHeaderCard question={question} />
 
-            <ForwardRewQuestionDetailsButton />
+            <ForwardRewQuestionDetailsButton question={question} />
 
             <QuestionDetailsShortAnswer question={question} />
 

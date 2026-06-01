@@ -1,18 +1,22 @@
 import { useState } from "react";
 import DOMPurify from "dompurify";
 import styles from "./QuestionCard.module.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import type { Question } from "../../types/apiTypes";
 
 function QuestionCard({ question }: { question: Question }) {
     const [isOpen, setIsOpen] = useState(false);
+    const location = useLocation();
 
     return (
         <div className={styles.card}>
 
 
             <div className={styles.titleContainer}>
-                <Link to={`/questions/${question.id}`} className={styles.linkReset}>
+                <Link
+                    to={`/questions/${question.id}${location.search}`}
+                    className={styles.linkReset}
+                >
                     <h3 className={styles.title}>
                         {question.title}
                     </h3>
