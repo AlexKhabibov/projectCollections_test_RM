@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import NotFoundPage from "../pages/NotFoundPage/NotFoundPage";
-import CollectionsListPage from "../pages/CollectionsListPage/CollectionsListPage";
+import CollectionsListPage from "../pages/CollectionListPage/CollectionListPage";
 import CollectionDetailsPage from "../pages/CollectionDetailsPage/CollectionDetailsPage";
 import QuestionsListPage from "../pages/QuestionsListPage/QuestionsListPage";
 import QuestionDetailsPage from "../pages/QuestionDetailsPage/QuestionDetailsPage";

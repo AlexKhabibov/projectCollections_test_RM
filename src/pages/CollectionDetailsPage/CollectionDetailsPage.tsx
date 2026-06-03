@@ -2,6 +2,7 @@ import { useLoaderData, useNavigate, useLocation } from "react-router-dom";
 import QuestionsList from "../../components/QuestionsList/QuestionsList";
 import Pagination from "../../components/Pagination/Pagination";
 import CollectionHeaderCard from "../../components/CollectionHeaderCard/CollectionHeaderCard";
+// import CollectionDetailsSidebar from "../../components/CollectionDetailsSidebar/CollectionDetailsSidebar";
 
 export default function CollectionDetailsPage() {
 
@@ -30,6 +31,8 @@ export default function CollectionDetailsPage() {
                 limit={data.questions.limit}
                 onPageChange={handlePageChange}
             />
+
+            {/* <CollectionDetailsSidebar/> */}
 
         </div>
     );

@@ -1,14 +1,13 @@
 import { useLoaderData, useNavigate, useLocation } from "react-router-dom";
-import type { GetQuestionsListResponse } from "../../types/apiTypes";
-import QuestionsList from "../../components/QuestionsList/QuestionsList";
+import CollectionCardList from "../../components/CollectionCardList/CollectionCardList";
 import Pagination from "../../components/Pagination/Pagination";
-import styles from "./QuestionsListPage.module.css";
+import type { GetCollectionsListResponse } from "../../types/apiTypes";
+import CollectionListSidebar from "../../components/CollectionListSidebar/CollectionListSidebar";
 
-export default function QuestionsListPage() {
+import styles from "./CollectionListPage.module.css";
 
-    alert('render');
-
-    const data = useLoaderData() as GetQuestionsListResponse;
+function CollectionListPage() {
+    const data = useLoaderData() as GetCollectionsListResponse;
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -23,7 +22,7 @@ export default function QuestionsListPage() {
     return (
         <div className={styles.content}>
             <main className={styles.main}>
-                <QuestionsList questionsList={data.data} />
+                <CollectionCardList collections={data.data} />
 
                 <Pagination
                     page={data.page}
@@ -32,6 +31,12 @@ export default function QuestionsListPage() {
                     onPageChange={handlePageChange}
                 />
             </main>
+
+            <aside className={styles.sidebar}>
+                <CollectionListSidebar specializations={data.specializations} />
+            </aside>
         </div>
     );
 }
+
+export default CollectionListPage;

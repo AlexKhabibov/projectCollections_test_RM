@@ -5,6 +5,7 @@ import ButtonBackwardToQuestionsList from "../../components/Buttons/ButtonBackwa
 import QuestionDetailsCard from "../../components/QuestionDetailsCard/QuestionDetailsCard";
 
 import styles from "./QuestionDetailsPage.module.css";
+// import QuestionDetailsSidebar from "../../components/QuestionDetailsSidebar/QuestionDetailsSidebar";
 
 function QuestionDetailsPage() {
     const question = useLoaderData() as Question;
@@ -14,8 +15,10 @@ function QuestionDetailsPage() {
             <ButtonBackwardToQuestionsList />
 
             <QuestionDetailsCard question={question} />
+
+            {/* <QuestionDetailsSidebar/> */}
         </div>
     );
 }
 
-export default QuestionDetailsPage
+export default QuestionDetailsPage;

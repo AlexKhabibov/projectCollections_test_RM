@@ -1,17 +1,20 @@
+import { BASE_URL } from "./baseApi";
 import type { LoaderFunctionArgs } from "react-router-dom";
 import type { GetQuestionsListResponse } from "../types/apiTypes";
-import { BASE_URL } from "./baseApi";
 
-export const getQuestionsList = async ({
-    request,
-}: LoaderFunctionArgs): Promise<GetQuestionsListResponse> => {
+interface FetchQuestionsParams {
+    page?: string;
+    limit?: string;
+    search?: string;
+    collectionId?: string;
+}
 
-    const url = new URL(request.url);
-
-    const page = url.searchParams.get("page") || "1";
-    const limit = url.searchParams.get("limit") || "10";
-    const search = url.searchParams.get("search") || "";
-    const collectionId = url.searchParams.get("collectionId") || "";
+export const fetchQuestions = async ({
+    page = "1",
+    limit = "10",
+    search = "",
+    collectionId = "",
+}: FetchQuestionsParams): Promise<GetQuestionsListResponse> => {
 
     const params = new URLSearchParams({
         page,
@@ -31,12 +34,33 @@ export const getQuestionsList = async ({
     );
 
     if (!response.ok) {
-        throw new Error(`HTTP ошибка! Код: ${response.status}`);
+        throw new Error(
+            `HTTP ошибка! Код: ${response.status}`
+        );
     }
 
-    const result = await response.json();
+    return response.json();
+};
 
-    console.log("API RESULT:", result);
 
-    return result;
+
+export const getQuestionsList = async ({
+    request,
+}: LoaderFunctionArgs) => {
+
+    const url = new URL(request.url);
+
+    return fetchQuestions({
+        page:
+            url.searchParams.get("page") || "1",
+
+        limit:
+            url.searchParams.get("limit") || "10",
+
+        search:
+            url.searchParams.get("search") || "",
+
+        collectionId:
+            url.searchParams.get("collectionId") || "",
+    });
 };

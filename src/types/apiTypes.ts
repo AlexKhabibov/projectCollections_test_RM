@@ -21,14 +21,21 @@ export interface Collection {
 }
 
 export interface GetCollectionsListResponse {
-    total: number
-    page: number
-    limit: number
-    data: Collection[]
+
+    data: Collection[];
+
+    page: number;
+
+    total: number;
+
+    limit: number;
+
+    specializations: Specialization[];
+
 }
 
 export interface Specialization {
-    id: string | number
+    id: string;
     title: string;
     slug: string;
     description: string;
@@ -121,3 +128,8 @@ export interface Company {
     updatedAt: string
     createdBy: User
 }
+
+
+export type AccessType =
+    | 'members'
+    | 'public';
