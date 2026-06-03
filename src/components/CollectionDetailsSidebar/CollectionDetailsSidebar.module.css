@@ -1,0 +1,79 @@
+.stats {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.statItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 12px 14px;
+
+    background: #f8fafc;
+
+    border: 1px solid #eef2f7;
+    border-radius: 14px;
+}
+
+.statLabel {
+    font-size: 14px;
+    color: #6b7280;
+}
+
+.statValue {
+    font-size: 15px;
+    font-weight: 600;
+    color: #111827;
+}
+
+.keywords {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.keyword {
+    padding: 8px 12px;
+
+    background: #f3f4f6;
+
+    border-radius: 12px;
+
+    font-size: 13px;
+    font-weight: 500;
+
+    color: #374151;
+}
+
+.companyCard {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    padding: 16px;
+
+    background: #f8fafc;
+
+    border: 1px solid #eef2f7;
+    border-radius: 18px;
+}
+
+.companyTitle {
+    margin: 0;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    color: #111827;
+}
+
+.companyDescription {
+    margin: 0;
+
+    font-size: 14px;
+    line-height: 1.5;
+
+    color: #6b7280;
+}

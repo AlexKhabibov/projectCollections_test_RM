@@ -1,12 +1,7 @@
-import SidebarWrapper
-    from '../Sidebar/SidebarWrapper/SidebarWrapper';
-
-import SidebarSection
-    from '../Sidebar/SidebarSection/SidebarSection';
-
-import type {
-    Collection,
-} from '../../types/apiTypes';
+import SidebarWrapper from '../Sidebar/SidebarWrapper/SidebarWrapper';
+import SidebarSection from '../Sidebar/SidebarSection/SidebarSection';
+import type { Collection } from '../../types/apiTypes';
+import styles from './CollectionDetailsSidebar.module.css';
 
 interface CollectionDetailsSidebarProps {
     collection: Collection;
@@ -21,17 +16,33 @@ function CollectionDetailsSidebar({
 
             <SidebarSection title="Информация">
 
-                <p>
-                    Вопросов:
-                    {' '}
-                    {collection.questionsCount}
-                </p>
+                <div className={styles.stats}>
 
-                <p>
-                    Задач:
-                    {' '}
-                    {collection.tasksCount}
-                </p>
+                    <div className={styles.statItem}>
+
+                        <span className={styles.statLabel}>
+                            Вопросов
+                        </span>
+
+                        <span className={styles.statValue}>
+                            {collection.questionsCount}
+                        </span>
+
+                    </div>
+
+                    <div className={styles.statItem}>
+
+                        <span className={styles.statLabel}>
+                            Задач
+                        </span>
+
+                        <span className={styles.statValue}>
+                            {collection.tasksCount}
+                        </span>
+
+                    </div>
+
+                </div>
 
             </SidebarSection>
 
@@ -39,8 +50,21 @@ function CollectionDetailsSidebar({
 
                 <SidebarSection title="Ключевые слова">
 
-                    <div>
-                        {collection.keywords.join(', ')}
+                    <div className={styles.keywords}>
+
+                        {collection.keywords.map(
+                            (keyword) => (
+
+                                <div
+                                    key={keyword}
+                                    className={styles.keyword}
+                                >
+                                    {keyword}
+                                </div>
+
+                            )
+                        )}
+
                     </div>
 
                 </SidebarSection>
@@ -51,9 +75,24 @@ function CollectionDetailsSidebar({
 
                 <SidebarSection title="Компания">
 
-                    <p>
-                        {collection.company.title}
-                    </p>
+                    <div className={styles.companyCard}>
+
+                        <h4 className={styles.companyTitle}>
+                            {collection.company.title}
+                        </h4>
+
+                        <p
+                            className={
+                                styles.companyDescription
+                            }
+                        >
+                            {
+                                collection.company
+                                    .description
+                            }
+                        </p>
+
+                    </div>
 
                 </SidebarSection>
 

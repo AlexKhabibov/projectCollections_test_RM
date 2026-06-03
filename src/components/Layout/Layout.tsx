@@ -1,6 +1,7 @@
 import { Outlet, useNavigation } from "react-router-dom";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
+import PageLoader from "../PageLoader/PageLoader";
 
 
 function Layout() {
@@ -11,7 +12,7 @@ function Layout() {
     return (
         <>
             <Header />
-            {isLoading && <p>Загрузка...</p>}
+            {isLoading && (<PageLoader />)}
             <Outlet />
             <Footer />
         </>

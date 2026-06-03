@@ -76,3 +76,18 @@
 
     color: #6b7280;
 }
+
+.empty {
+    margin-top: 12px;
+
+    padding: 14px 16px;
+
+    background: #f8fafc;
+
+    border: 1px solid #eef2f7;
+    border-radius: 14px;
+
+    font-size: 14px;
+
+    color: #6b7280;
+}

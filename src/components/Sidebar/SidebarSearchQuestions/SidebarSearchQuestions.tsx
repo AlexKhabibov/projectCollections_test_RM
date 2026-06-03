@@ -1,22 +1,48 @@
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { fetchQuestions } from '../../../api/questionsApi';
-import styles from './SidebarSearchQuestions.module.css';
-import type { Question } from '../../../types/apiTypes';
+import {
+    useEffect,
+    useState,
+} from 'react';
+
+import { useNavigate }
+from 'react-router-dom';
+
+import {
+    fetchQuestions,
+} from '../../../api/questionsApi';
+
+import type {
+    Question,
+} from '../../../types/apiTypes';
+
+import styles
+from './SidebarSearchQuestions.module.css';
 
 function SidebarSearchQuestions() {
 
     const navigate = useNavigate();
-    const [query, setQuery] = useState('');
-    const [results, setResults] = useState<Question[]>([]);
-    const [isLoading, setIsLoading] = useState(false);
+
+    const [query, setQuery] =
+        useState('');
+
+    const [results, setResults] =
+        useState<Question[]>([]);
+
+    const [isLoading, setIsLoading] =
+        useState(false);
+
+    const [hasSearched, setHasSearched] =
+        useState(false);
 
     useEffect(() => {
 
         const timeout = setTimeout(async () => {
 
             if (!query.trim()) {
+
                 setResults([]);
+
+                setHasSearched(false);
+
                 return;
             }
 
@@ -32,6 +58,8 @@ function SidebarSearchQuestions() {
 
                 setResults(response.data);
 
+                setHasSearched(true);
+
             } catch (error) {
 
                 console.error(
@@ -45,9 +73,10 @@ function SidebarSearchQuestions() {
 
             }
 
-        }, 300);
+        }, 500);
 
-        return () => clearTimeout(timeout);
+        return () =>
+            clearTimeout(timeout);
 
     }, [query]);
 
@@ -65,6 +94,7 @@ function SidebarSearchQuestions() {
             />
 
             {!!results.length && (
+
                 <div className={styles.dropdown}>
 
                     {results.map((question) => (
@@ -85,12 +115,25 @@ function SidebarSearchQuestions() {
                     ))}
 
                 </div>
+
+            )}
+
+            {hasSearched &&
+                !isLoading &&
+                !results.length && (
+
+                <div className={styles.empty}>
+                    Ничего не найдено
+                </div>
+
             )}
 
             {isLoading && (
+
                 <div className={styles.loading}>
                     Поиск...
                 </div>
+
             )}
 
         </div>
