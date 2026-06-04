@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import styles from './Header.module.css';
+import { motion } from 'framer-motion';
 
 function Header() {
     return (
@@ -13,8 +14,20 @@ function Header() {
                     <a className={styles.header__link}>Навыки (hh)</a>
                 </nav>
                 <div className={styles.header__actions}>
-                    <button className={`${styles.btn} ${styles['btn--ghost']}`}>Вход</button>
-                    <button className={`${styles.btn} ${styles['btn--primary']}`}>Регистрация</button>
+                    <motion.button
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.95 }}
+                        className={`${styles.btn} ${styles['btn--ghost']}`}
+                    >
+                        Вход
+                    </motion.button>
+                    <motion.button
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.95 }}
+                        className={`${styles.btn} ${styles['btn--primary']}`}
+                    >
+                        Регистрация
+                    </motion.button>
                 </div>
             </div>
         </header>
