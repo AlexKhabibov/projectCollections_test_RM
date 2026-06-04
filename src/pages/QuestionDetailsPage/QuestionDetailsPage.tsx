@@ -50,7 +50,7 @@ function QuestionDetailsPage() {
                 }
             >
 
-                <aside className={styles.sidebar}>
+                <aside className={styles.sidebarLayout}>
 
                     <QuestionDetailsSidebar
                         question={question}

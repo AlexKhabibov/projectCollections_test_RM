@@ -12,7 +12,7 @@
     min-width: 0;
 }
 
-.sidebar {
+.sidebarLayout {
     width: 320px;
     margin-top: 45px;
     flex-shrink: 0;

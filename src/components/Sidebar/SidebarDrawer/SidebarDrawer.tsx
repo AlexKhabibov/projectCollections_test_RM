@@ -14,7 +14,6 @@ function SidebarDrawer({
 
     return (
         <>
-
             <aside
                 className={`
                     ${styles.sidebar}
@@ -24,7 +23,6 @@ function SidebarDrawer({
                     }
                 `}
             >
-
                 <button
                     className={styles.closeButton}
                     onClick={onClose}
