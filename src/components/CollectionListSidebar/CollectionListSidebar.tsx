@@ -1,9 +1,23 @@
 import { useState } from 'react';
+
+import {
+    useLocation,
+    useNavigate,
+} from 'react-router-dom';
+
 import SidebarWrapper from '../Sidebar/SidebarWrapper/SidebarWrapper';
+
 import SidebarSection from '../Sidebar/SidebarSection/SidebarSection';
+
 import SidebarChipsGroup from '../Sidebar/SidebarChipsGroup/SidebarChipsGroup';
+
 import SidebarChip from '../Sidebar/SidebarChip/SidebarChip';
-import type { AccessType, Specialization } from '../../types/apiTypes';
+
+import type {
+    AccessType,
+    Specialization,
+} from '../../types/apiTypes';
+
 import SidebarSearchQuestions from '../Sidebar/SidebarSearchQuestions/SidebarSearchQuestions';
 
 interface CollectionListSidebarProps {
@@ -14,13 +28,49 @@ function CollectionListSidebar({
     specializations,
 }: CollectionListSidebarProps) {
 
+    const navigate =
+        useNavigate();
+
+    const location =
+        useLocation();
+
     const [
         selectedSpecialization,
         setSelectedSpecialization,
-    ] = useState<string | null>(null);
+    ] = useState<string | null>(
+        null
+    );
 
-    const [selectedAccess, setSelectedAccess] =
-        useState<AccessType>('members');
+    const [
+        selectedAccess,
+        setSelectedAccess,
+    ] = useState<AccessType>(
+        'members'
+    );
+
+    const updateAccess = (
+        access: AccessType
+    ) => {
+
+        const params =
+            new URLSearchParams(
+                location.search
+            );
+
+        params.set(
+            'access',
+            access
+        );
+
+        params.set(
+            'page',
+            '1'
+        );
+
+        navigate(
+            `${location.pathname}?${params.toString()}`
+        );
+    };
 
     return (
         <SidebarWrapper>
@@ -63,11 +113,17 @@ function CollectionListSidebar({
                             selectedAccess ===
                             'members'
                         }
-                        onClick={() =>
+                        onClick={() => {
+
                             setSelectedAccess(
                                 'members'
-                            )
-                        }
+                            );
+
+                            updateAccess(
+                                'members'
+                            );
+
+                        }}
                     >
                         Для участников
                     </SidebarChip>
@@ -77,11 +133,17 @@ function CollectionListSidebar({
                             selectedAccess ===
                             'public'
                         }
-                        onClick={() =>
+                        onClick={() => {
+
                             setSelectedAccess(
                                 'public'
-                            )
-                        }
+                            );
+
+                            updateAccess(
+                                'public'
+                            );
+
+                        }}
                     >
                         Для всех
                     </SidebarChip>

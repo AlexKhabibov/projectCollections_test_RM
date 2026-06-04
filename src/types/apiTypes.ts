@@ -131,5 +131,4 @@ export interface Company {
 
 
 export type AccessType =
-    | 'members'
-    | 'public';
+    'members' | 'public';
