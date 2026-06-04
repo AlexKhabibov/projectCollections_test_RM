@@ -20,6 +20,16 @@
 
     .content {
         flex-direction: column;
+        align-items: center;
+    }
+
+    .main {
+        width: 100%;
+        max-width: 720px;
+    }
+
+    .sidebar {
+        display: none;
     }
 
     .mobileSidebarButton {
