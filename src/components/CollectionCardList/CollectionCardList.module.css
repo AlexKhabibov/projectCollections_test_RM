@@ -1,14 +1,14 @@
 .collectionsCardList {
-  max-width: 1200px; /* Ограничение ширины, как на десктопе */
-  margin: 0 auto; /* Центрируем */
-  padding: 40px 20px; /* Отступы по краям */
-  background-color: #fff; /* Белый фон */
-  border-radius: 16px; /* Закругление углов блока */
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* Лёгкая тень */
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
 .cardGrid {
-  display: flex; /* Можно оставить flex, но direction: column */
+  display: flex;
   flex-direction: column;
-  gap: 24px; /* Расстояние между карточками — ключевой момент! */
+  gap: 24px;
 }

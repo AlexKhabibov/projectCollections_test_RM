@@ -1,37 +1,16 @@
-import {
-    useEffect,
-    useState,
-} from 'react';
-
-import { useNavigate }
-from 'react-router-dom';
-
-import {
-    fetchQuestions,
-} from '../../../api/questionsApi';
-
-import type {
-    Question,
-} from '../../../types/apiTypes';
-
-import styles
-from './SidebarSearchQuestions.module.css';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { fetchQuestions } from '../../../api/questionsApi';
+import type { Question } from '../../../types/apiTypes';
+import styles from './SidebarSearchQuestions.module.css';
 
 function SidebarSearchQuestions() {
 
     const navigate = useNavigate();
-
-    const [query, setQuery] =
-        useState('');
-
-    const [results, setResults] =
-        useState<Question[]>([]);
-
-    const [isLoading, setIsLoading] =
-        useState(false);
-
-    const [hasSearched, setHasSearched] =
-        useState(false);
+    const [query, setQuery] = useState('');
+    const [results, setResults] = useState<Question[]>([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [hasSearched, setHasSearched] = useState(false);
 
     useEffect(() => {
 
@@ -122,11 +101,11 @@ function SidebarSearchQuestions() {
                 !isLoading &&
                 !results.length && (
 
-                <div className={styles.empty}>
-                    Ничего не найдено
-                </div>
+                    <div className={styles.empty}>
+                        Ничего не найдено
+                    </div>
 
-            )}
+                )}
 
             {isLoading && (
 

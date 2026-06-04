@@ -1,20 +1,14 @@
 .content {
     display: flex;
-
     align-items: flex-start;
-
     gap: 32px;
-
     max-width: 1280px;
-
     margin: 0 auto;
-
     padding: 32px 24px;
 }
 
 .main {
     flex: 1;
-
     min-width: 0;
 }
 

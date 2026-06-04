@@ -11,7 +11,6 @@ function QuestionCard({ question }: { question: Question }) {
     return (
         <div className={styles.card}>
 
-
             <div className={styles.titleContainer}>
                 <Link
                     to={`/questions/${question.id}${location.search}`}

@@ -1,13 +1,6 @@
-import type {
-    LoaderFunctionArgs,
-} from "react-router-dom";
-
-import { BASE_URL }
-    from "./baseApi";
-
-import {
-    getSpecializations,
-} from "./specializationsApi";
+import type { LoaderFunctionArgs } from "react-router-dom";
+import { BASE_URL } from "./baseApi";
+import { getSpecializations } from "./specializationsApi";
 
 export const getCollectionsList =
     async ({

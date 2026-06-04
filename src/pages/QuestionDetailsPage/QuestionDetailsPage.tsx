@@ -1,21 +1,9 @@
-import { useLoaderData }
-    from "react-router-dom";
-
-import type {
-    Question,
-} from "../../types/apiTypes";
-
-import ButtonBackwardToQuestionsList
-    from "../../components/Buttons/ButtonBackwardToQuestionsList/ButtonBackwardToQuestionsList";
-
-import QuestionDetailsCard
-    from "../../components/QuestionDetailsCard/QuestionDetailsCard";
-
-import QuestionDetailsSidebar
-    from "../../components/QuestionDetailsSidebar/QuestionDetailsSidebar";
-
-import styles
-    from "./QuestionDetailsPage.module.css";
+import { useLoaderData } from "react-router-dom";
+import type { Question } from "../../types/apiTypes";
+import ButtonBackwardToQuestionsList from "../../components/Buttons/ButtonBackwardToQuestionsList/ButtonBackwardToQuestionsList";
+import QuestionDetailsCard from "../../components/QuestionDetailsCard/QuestionDetailsCard";
+import QuestionDetailsSidebar from "../../components/QuestionDetailsSidebar/QuestionDetailsSidebar";
+import styles from "./QuestionDetailsPage.module.css";
 
 function QuestionDetailsPage() {
 

@@ -12,7 +12,7 @@ function CollectionCardList({ collections }: { collections: Collection[] }) {
             <div className={styles.collectionsCardList}>
 
                 <p>Коллекции</p>
-                
+
                 <div className={styles.cardGrid}>
                     {collections.map((collection) => (
                         <CollectionCard key={collection.id} collection={collection} />

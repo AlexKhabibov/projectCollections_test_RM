@@ -1,36 +1,16 @@
-import {
-    useLoaderData,
-    useNavigate,
-    useLocation,
-} from "react-router-dom";
-
-import QuestionsList
-from "../../components/QuestionsList/QuestionsList";
-
-import Pagination
-from "../../components/Pagination/Pagination";
-
-import CollectionHeaderCard
-from "../../components/CollectionHeaderCard/CollectionHeaderCard";
-
-import CollectionDetailsSidebar
-from "../../components/CollectionDetailsSidebar/CollectionDetailsSidebar";
-
-import styles
-from "./CollectionDetailsPage.module.css";
+import { useLoaderData, useNavigate, useLocation } from "react-router-dom";
+import QuestionsList from "../../components/QuestionsList/QuestionsList";
+import Pagination from "../../components/Pagination/Pagination";
+import CollectionHeaderCard from "../../components/CollectionHeaderCard/CollectionHeaderCard";
+import CollectionDetailsSidebar from "../../components/CollectionDetailsSidebar/CollectionDetailsSidebar";
+import styles from "./CollectionDetailsPage.module.css";
 
 export default function CollectionDetailsPage() {
 
     const data = useLoaderData();
-
     const navigate = useNavigate();
-
     const location = useLocation();
-
-    const params =
-        new URLSearchParams(
-            location.search
-        );
+    const params = new URLSearchParams(location.search);
 
     const handlePageChange = (
         page: number

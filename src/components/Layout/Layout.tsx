@@ -3,7 +3,6 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import PageLoader from "../PageLoader/PageLoader";
 
-
 function Layout() {
 
     const navigation = useNavigation()

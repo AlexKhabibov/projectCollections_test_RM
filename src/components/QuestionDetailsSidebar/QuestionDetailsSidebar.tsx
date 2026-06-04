@@ -1,15 +1,7 @@
-import SidebarWrapper
-    from '../Sidebar/SidebarWrapper/SidebarWrapper';
-
-import SidebarSection
-    from '../Sidebar/SidebarSection/SidebarSection';
-
-import type {
-    Question,
-} from '../../types/apiTypes';
-
-import styles
-    from './QuestionDetailsSidebar.module.css';
+import SidebarWrapper from '../Sidebar/SidebarWrapper/SidebarWrapper';
+import SidebarSection from '../Sidebar/SidebarSection/SidebarSection';
+import type { Question } from '../../types/apiTypes';
+import styles from './QuestionDetailsSidebar.module.css';
 
 interface QuestionDetailsSidebarProps {
     question: Question;

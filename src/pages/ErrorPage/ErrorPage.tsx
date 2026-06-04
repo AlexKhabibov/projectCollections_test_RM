@@ -1,9 +1,7 @@
-import {
-    isRouteErrorResponse,
-    useRouteError,
-} from "react-router-dom";
+import { isRouteErrorResponse, useRouteError } from "react-router-dom";
 
 function ErrorPage() {
+    
     const error = useRouteError();
 
     let message = "Что-то пошло не так";

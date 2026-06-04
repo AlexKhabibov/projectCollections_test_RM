@@ -1,13 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-
 import { BASE_URL } from "../../../api/baseApi";
-
-import type {
-    GetQuestionsListResponse,
-    Question
-} from "../../../types/apiTypes";
-
+import type { GetQuestionsListResponse, Question } from "../../../types/apiTypes";
 import styles from "./ForwardRewQuestionDetailsButton.module.css";
 
 function ForwardRewQuestionDetailsButton({

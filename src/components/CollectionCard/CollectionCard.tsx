@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 const CollectionCard = ({ collection }: { collection: Collection }) => {
 
   const navigate = useNavigate();
-
   const imageUrl = getImageSrc(collection.imageSrc);
   const tags = collection.keywords || [];
   const roles = collection.specializations?.map(s => s.title) || [];

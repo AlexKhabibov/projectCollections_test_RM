@@ -6,13 +6,9 @@ import styles from "./QuestionsListPage.module.css";
 
 export default function QuestionsListPage() {
 
-    alert('render');
-
     const data = useLoaderData() as GetQuestionsListResponse;
-
     const navigate = useNavigate();
     const location = useLocation();
-
     const params = new URLSearchParams(location.search);
 
     const handlePageChange = (page: number) => {
@@ -23,6 +19,7 @@ export default function QuestionsListPage() {
     return (
         <div className={styles.content}>
             <main className={styles.main}>
+
                 <QuestionsList questionsList={data.data} />
 
                 <Pagination

@@ -1,5 +1,4 @@
 import type { Question } from '../../types/apiTypes';
-
 import styles from './QuestionDetailsShortAnswer.module.css';
 
 function QuestionDetailsShortAnswer({

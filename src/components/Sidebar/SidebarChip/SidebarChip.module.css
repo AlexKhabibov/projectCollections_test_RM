@@ -2,22 +2,15 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-
     min-height: 40px;
-
     padding: 10px 14px;
-
     border: 1px solid #d6d6db;
     border-radius: 14px;
-
     background: #ffffff;
-
     font-size: 14px;
     font-weight: 500;
     color: #374151;
-
     cursor: pointer;
-
     transition:
         border-color 0.2s,
         background 0.2s,

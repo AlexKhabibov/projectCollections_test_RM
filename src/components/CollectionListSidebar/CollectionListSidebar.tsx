@@ -1,24 +1,12 @@
 import { useState } from 'react';
-
-import {
-    useLocation,
-    useNavigate,
-} from 'react-router-dom';
-
+import { useLocation, useNavigate } from 'react-router-dom';
 import SidebarWrapper from '../Sidebar/SidebarWrapper/SidebarWrapper';
-
 import SidebarSection from '../Sidebar/SidebarSection/SidebarSection';
-
 import SidebarChipsGroup from '../Sidebar/SidebarChipsGroup/SidebarChipsGroup';
-
 import SidebarChip from '../Sidebar/SidebarChip/SidebarChip';
-
-import type {
-    AccessType,
-    Specialization,
-} from '../../types/apiTypes';
-
+import type { AccessType, Specialization } from '../../types/apiTypes';
 import SidebarSearchQuestions from '../Sidebar/SidebarSearchQuestions/SidebarSearchQuestions';
+import styles from './CollectionListSidebar.module.css';
 
 interface CollectionListSidebarProps {
     specializations: Specialization[];
@@ -47,6 +35,16 @@ function CollectionListSidebar({
     ] = useState<AccessType>(
         'members'
     );
+
+    const [
+        isExpanded,
+        setIsExpanded,
+    ] = useState(false);
+
+    const visibleSpecializations =
+        isExpanded
+            ? specializations
+            : specializations.slice(0, 3);
 
     const updateAccess = (
         access: AccessType
@@ -81,26 +79,45 @@ function CollectionListSidebar({
 
                 <SidebarChipsGroup>
 
-                    {specializations.map((spec) => (
+                    {visibleSpecializations.map(
+                        (spec) => (
 
-                        <SidebarChip
-                            key={spec.id}
-                            active={
-                                selectedSpecialization ===
-                                spec.id
-                            }
-                            onClick={() =>
-                                setSelectedSpecialization(
+                            <SidebarChip
+                                key={spec.id}
+                                active={
+                                    selectedSpecialization ===
                                     spec.id
-                                )
-                            }
-                        >
-                            {spec.title}
-                        </SidebarChip>
+                                }
+                                onClick={() =>
+                                    setSelectedSpecialization(
+                                        spec.id
+                                    )
+                                }
+                            >
+                                {spec.title}
+                            </SidebarChip>
 
-                    ))}
+                        ))}
 
                 </SidebarChipsGroup>
+
+                {specializations.length > 3 && (
+
+                    <button
+                        type="button"
+                        className={styles.showMore}
+                        onClick={() =>
+                            setIsExpanded(
+                                !isExpanded
+                            )
+                        }
+                    >
+                        {isExpanded
+                            ? 'Скрыть'
+                            : 'Посмотреть все'}
+                    </button>
+
+                )}
 
             </SidebarSection>
 

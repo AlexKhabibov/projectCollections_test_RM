@@ -8,10 +8,8 @@ import styles from "./CollectionListPage.module.css";
 
 function CollectionListPage() {
     const data = useLoaderData() as GetCollectionsListResponse;
-
     const navigate = useNavigate();
     const location = useLocation();
-
     const params = new URLSearchParams(location.search);
 
     const handlePageChange = (page: number) => {
