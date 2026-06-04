@@ -1,0 +1,54 @@
+.sidebar {
+    width: 320px;
+    flex-shrink: 0;
+}
+
+.closeButton {
+    display: none;
+}
+
+.overlay {
+    display: none;
+}
+
+@media (max-width: 1024px) {
+
+    .sidebar {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 320px;
+        max-width: 90vw;
+        height: 100vh;
+        overflow-y: auto;
+        background: #fff;
+        z-index: 1000;
+        transition: right 0.3s ease;
+    }
+
+    .sidebarOpen {
+        right: 0;
+    }
+
+    .closeButton {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        margin: 16px;
+        border: none;
+        border-radius: 10px;
+        background: #f3f4f6;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+    .overlay {
+        display: block;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.45);
+        z-index: 999;
+    }
+}

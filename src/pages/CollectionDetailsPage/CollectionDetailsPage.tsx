@@ -1,16 +1,27 @@
+import { useState } from "react";
 import { useLoaderData, useNavigate, useLocation } from "react-router-dom";
 import QuestionsList from "../../components/QuestionsList/QuestionsList";
 import Pagination from "../../components/Pagination/Pagination";
 import CollectionHeaderCard from "../../components/CollectionHeaderCard/CollectionHeaderCard";
 import CollectionDetailsSidebar from "../../components/CollectionDetailsSidebar/CollectionDetailsSidebar";
+import SidebarDrawer from "../../components/Sidebar/SidebarDrawer/SidebarDrawer";
 import styles from "./CollectionDetailsPage.module.css";
 
 export default function CollectionDetailsPage() {
 
     const data = useLoaderData();
+
     const navigate = useNavigate();
+
     const location = useLocation();
-    const params = new URLSearchParams(location.search);
+
+    const params =
+        new URLSearchParams(location.search);
+
+    const [
+        isSidebarOpen,
+        setIsSidebarOpen,
+    ] = useState(false);
 
     const handlePageChange = (
         page: number
@@ -30,6 +41,17 @@ export default function CollectionDetailsPage() {
         <div className={styles.content}>
 
             <main className={styles.main}>
+
+                <button
+                    className={
+                        styles.mobileSidebarButton
+                    }
+                    onClick={() =>
+                        setIsSidebarOpen(true)
+                    }
+                >
+                    Информация
+                </button>
 
                 <CollectionHeaderCard
                     collection={data.collection}
@@ -52,13 +74,18 @@ export default function CollectionDetailsPage() {
 
             </main>
 
-            <aside className={styles.sidebar}>
+            <SidebarDrawer
+                isOpen={isSidebarOpen}
+                onClose={() =>
+                    setIsSidebarOpen(false)
+                }
+            >
 
                 <CollectionDetailsSidebar
                     collection={data.collection}
                 />
 
-            </aside>
+            </SidebarDrawer>
 
         </div>
     );
