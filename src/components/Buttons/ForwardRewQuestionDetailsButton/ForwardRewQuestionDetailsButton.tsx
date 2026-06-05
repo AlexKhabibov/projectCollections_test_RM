@@ -3,7 +3,6 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { BASE_URL } from "../../../api/baseApi";
 import type { GetQuestionsListResponse, Question } from "../../../types/apiTypes";
 import styles from "./ForwardRewQuestionDetailsButton.module.css";
-import { motion } from 'framer-motion';
 
 function ForwardRewQuestionDetailsButton({
     question
@@ -47,7 +46,7 @@ function ForwardRewQuestionDetailsButton({
 
     return (
         <div className={styles.container}>
-            <motion.button
+            <button
                 className={styles.button}
                 disabled={!prevQuestion}
                 onClick={() => {
@@ -56,28 +55,11 @@ function ForwardRewQuestionDetailsButton({
                         `/questions/${prevQuestion.id}?${searchParams.toString()}`
                     );
                 }}
-                whileHover={!prevQuestion ? {} : {
-                    scale: 1.05,
-                    backgroundColor: '#e9ecef',
-                    transition: { duration: 0.2 }
-                }}
-                whileTap={!prevQuestion ? {} : {
-                    scale: 0.95,
-                    transition: { duration: 0.1 }
-                }}
-                whileFocus={!prevQuestion ? {} : {
-                    scale: 1.02,
-                    boxShadow: '0 0 0 3px rgba(0, 123, 255, 0.25)'
-                }}
-                style={{
-                    opacity: prevQuestion ? 1 : 0.6,
-                    cursor: prevQuestion ? 'pointer' : 'not-allowed'
-                }}
             >
                 ← Предыдущий
-            </motion.button>
+            </button>
 
-            <motion.button
+            <button
                 className={styles.button}
                 disabled={!nextQuestion}
                 onClick={() => {
@@ -86,26 +68,9 @@ function ForwardRewQuestionDetailsButton({
                         `/questions/${nextQuestion.id}?${searchParams.toString()}`
                     );
                 }}
-                whileHover={!nextQuestion ? {} : {
-                    scale: 1.05,
-                    backgroundColor: '#e9ecef',
-                    transition: { duration: 0.2 }
-                }}
-                whileTap={!nextQuestion ? {} : {
-                    scale: 0.95,
-                    transition: { duration: 0.1 }
-                }}
-                whileFocus={!nextQuestion ? {} : {
-                    scale: 1.02,
-                    boxShadow: '0 0 0 3px rgba(0, 123, 255, 0.25)'
-                }}
-                style={{
-                    opacity: nextQuestion ? 1 : 0.6,
-                    cursor: nextQuestion ? 'pointer' : 'not-allowed'
-                }}
             >
                 Следующий →
-            </motion.button>
+            </button>
         </div>
     );
 }
