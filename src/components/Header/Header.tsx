@@ -9,7 +9,7 @@ function Header() {
                 <nav className={styles.header__nav}>
                     <a className={styles.header__logo}>Yeahub</a>
                     <Link to='/' className={styles.header__link}>База вопросов</Link>
-                    <a className={styles.header__link}>Тренажер</a>
+                    <Link to='/simulator' className={styles.header__link}>Тренажер</Link>
                     <a className={styles.header__link}>Материалы</a>
                     <a className={styles.header__link}>Навыки (hh)</a>
                 </nav>

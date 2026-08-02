@@ -10,13 +10,9 @@ import styles from "./CollectionDetailsPage.module.css";
 export default function CollectionDetailsPage() {
 
     const data = useLoaderData();
-
     const navigate = useNavigate();
-
     const location = useLocation();
-
-    const params =
-        new URLSearchParams(location.search);
+    const params = new URLSearchParams(location.search);
 
     const [
         isSidebarOpen,
