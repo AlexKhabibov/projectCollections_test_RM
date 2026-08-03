@@ -7,7 +7,6 @@ import QuestionsListPage from "../pages/QuestionsListPage/QuestionsListPage";
 import QuestionDetailsPage from "../pages/QuestionDetailsPage/QuestionDetailsPage";
 import { getCollectionsList } from "../api/collectionsApi";
 import { getQuestionsList } from "../api/questionsApi";
-import { getQuestionDetails } from "../api/questionDetailsApi";
 import { getCollectionDetails } from "../api/collectionDetailsApi";
 import Layout from "../components/Layout/Layout";
 import SimulatorPage from "../pages/SimulatorPage/SimulatorPage";
@@ -39,7 +38,6 @@ export const router = createBrowserRouter([
             {
                 path: "questions/:id",
                 element: <QuestionDetailsPage />,
-                loader: getQuestionDetails
             },
             {
                 path: "simulator",

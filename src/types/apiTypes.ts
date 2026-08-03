@@ -21,17 +21,11 @@ export interface Collection {
 }
 
 export interface GetCollectionsListResponse {
-
     data: Collection[];
-
     page: number;
-
     total: number;
-
     limit: number;
-
     specializations: Specialization[];
-
 }
 
 export interface Specialization {
