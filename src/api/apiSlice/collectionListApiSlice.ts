@@ -56,7 +56,11 @@ export const collectionsApiSlice = apiSlice.injectEndpoints({
                 };
             },
 
+
+            providesTags: ["Collections"],
         }),
+
+
 
         getSpecializations: builder.query<
             Specialization[],
@@ -76,7 +80,6 @@ export const collectionsApiSlice = apiSlice.injectEndpoints({
     }),
 
 });
-
 
 export const {
     useGetCollectionsQuery,

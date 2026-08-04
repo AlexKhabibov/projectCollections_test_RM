@@ -1,6 +1,7 @@
 import { apiSlice } from "./apiSlice";
 import type { GetQuestionsListResponse } from "../../types/apiTypes";
 
+
 interface GetQuestionsQueryParams {
     page?: number;
     limit?: number;
@@ -8,9 +9,16 @@ interface GetQuestionsQueryParams {
     collectionId?: string;
 }
 
+
 export const questionsListApi = apiSlice.injectEndpoints({
+
     endpoints: (builder) => ({
-        getQuestions: builder.query<GetQuestionsListResponse, GetQuestionsQueryParams>({
+
+        getQuestions: builder.query<
+            GetQuestionsListResponse,
+            GetQuestionsQueryParams
+        >({
+
             query: ({
                 page = 1,
                 limit = 10,
@@ -18,6 +26,7 @@ export const questionsListApi = apiSlice.injectEndpoints({
                 collectionId = "",
             }) => ({
                 url: "/questions/public-questions",
+
                 params: {
                     page,
                     limit,
@@ -25,9 +34,16 @@ export const questionsListApi = apiSlice.injectEndpoints({
                     collectionId: collectionId || undefined,
                 },
             }),
+
+
+            providesTags: ["Questions"],
+
         }),
+
     }),
+
 });
+
 
 export const {
     useGetQuestionsQuery,

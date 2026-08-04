@@ -1,15 +1,37 @@
-import type { GetQuestionDetailsResponse, Question } from "../../types/apiTypes";
+import type {
+    GetQuestionDetailsResponse,
+    Question
+} from "../../types/apiTypes";
+
 import { apiSlice } from "./apiSlice";
 
+
 export const questionDetailsApiSlice = apiSlice.injectEndpoints({
+
     endpoints: (builder) => ({
-        getQuestionDetails: builder.query<Question, string>({
-            query: (id) => `/questions/public-questions/${id}`,
+
+        getQuestionDetails: builder.query<
+            Question,
+            string
+        >({
+
+            query: (id) =>
+                `/questions/public-questions/${id}`,
+
             transformResponse: (
                 response: GetQuestionDetailsResponse
             ) => response.data,
-        })
-    })
+
+
+            providesTags: ["Questions"],
+
+        }),
+
+    }),
+
 });
 
-export const { useGetQuestionDetailsQuery } = questionDetailsApiSlice;
+
+export const {
+    useGetQuestionDetailsQuery,
+} = questionDetailsApiSlice;
