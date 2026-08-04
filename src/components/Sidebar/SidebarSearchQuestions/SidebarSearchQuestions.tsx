@@ -2,12 +2,9 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { skipToken } from '@reduxjs/toolkit/query';
 import { motion, AnimatePresence } from 'framer-motion';
-
 import { useDebounce } from '../../../hooks/useDebounce';
 import { useGetQuestionsQuery } from '../../../api/apiSlice/questionsListApiSlice';
-
 import styles from './SidebarSearchQuestions.module.css';
-
 
 function SidebarSearchQuestions() {
 
