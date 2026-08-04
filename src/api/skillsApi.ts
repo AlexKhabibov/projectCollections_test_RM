@@ -1,5 +1,5 @@
 import type { GetSkillsListResponse, Skill } from "../types/apiTypes";
-import { BASE_URL } from "./baseApi";
+import { BASE_URL } from "./apiSlice/baseApi";
 
 export const getSkills = async (): Promise<Skill[]> => {
     const response = await fetch(`${BASE_URL}/skills`);
