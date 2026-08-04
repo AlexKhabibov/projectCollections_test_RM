@@ -5,7 +5,6 @@ import CollectionsListPage from "../pages/CollectionListPage/CollectionListPage"
 import CollectionDetailsPage from "../pages/CollectionDetailsPage/CollectionDetailsPage";
 import QuestionsListPage from "../pages/QuestionsListPage/QuestionsListPage";
 import QuestionDetailsPage from "../pages/QuestionDetailsPage/QuestionDetailsPage";
-import { getCollectionsList } from "../api/collectionsApi";
 import Layout from "../components/Layout/Layout";
 import SimulatorPage from "../pages/SimulatorPage/SimulatorPage";
 
@@ -18,7 +17,6 @@ export const router = createBrowserRouter([
             {
                 index: true,
                 element: <CollectionsListPage />,
-                loader: getCollectionsList
             },
 
             {

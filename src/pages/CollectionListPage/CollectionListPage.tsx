@@ -1,19 +1,44 @@
 import { useState } from "react";
-import { useLoaderData, useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, } from "react-router-dom";
 import CollectionCardList from "../../components/CollectionCardList/CollectionCardList";
 import Pagination from "../../components/Pagination/Pagination";
 import CollectionListSidebar from "../../components/CollectionListSidebar/CollectionListSidebar";
 import SidebarDrawer from "../../components/Sidebar/SidebarDrawer/SidebarDrawer";
-import type { GetCollectionsListResponse } from "../../types/apiTypes";
 import styles from "./CollectionListPage.module.css";
+import { useGetCollectionsQuery, useGetSpecializationsQuery } from "../../api/apiSlice/collectionListApiSlice";
 
 function CollectionListPage() {
 
-    const data = useLoaderData() as GetCollectionsListResponse;
     const navigate = useNavigate();
     const location = useLocation();
     const params = new URLSearchParams(location.search);
-    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+    const page = Number(params.get("page") ?? 1);
+    const limit = Number(params.get("limit") ?? 10);
+
+    const access = params.get("access") ?? "";
+
+    const {
+        data: collections,
+        isLoading: isCollectionsLoading,
+        error: collectionsError,
+
+    } = useGetCollectionsQuery({
+        page,
+        limit,
+        access,
+    });
+
+    const {
+        data: specializations,
+        isLoading: isSpecializationsLoading,
+
+    } = useGetSpecializationsQuery();
+
+    const [
+        isSidebarOpen,
+        setIsSidebarOpen,
+    ] = useState(false);
 
     const handlePageChange = (
         page: number
@@ -28,6 +53,32 @@ function CollectionListPage() {
             `${location.pathname}?${params.toString()}`
         );
     };
+
+    if (
+        isCollectionsLoading ||
+        isSpecializationsLoading
+    ) {
+        return <div>Загрузка...</div>;
+    }
+
+    if (collectionsError) {
+        return (
+            <div>
+                Ошибка загрузки коллекций
+            </div>
+        );
+    }
+
+    if (
+        !collections ||
+        !specializations
+    ) {
+        return (
+            <div>
+                Данные не найдены
+            </div>
+        );
+    }
 
     return (
         <div className={styles.content}>
@@ -46,15 +97,26 @@ function CollectionListPage() {
                 </button>
 
                 <CollectionCardList
-                    collections={data.data}
+                    collections={
+                        collections.data
+                    }
                 />
 
                 <Pagination
-                    page={data.page}
-                    total={data.total}
-                    limit={data.limit}
-                    onPageChange={handlePageChange}
+                    page={
+                        collections.page
+                    }
+                    total={
+                        collections.total
+                    }
+                    limit={
+                        collections.limit
+                    }
+                    onPageChange={
+                        handlePageChange
+                    }
                 />
+
 
             </main>
 
@@ -67,7 +129,7 @@ function CollectionListPage() {
 
                 <CollectionListSidebar
                     specializations={
-                        data.specializations
+                        specializations
                     }
                 />
 
@@ -76,5 +138,6 @@ function CollectionListPage() {
         </div>
     );
 }
+
 
 export default CollectionListPage;
