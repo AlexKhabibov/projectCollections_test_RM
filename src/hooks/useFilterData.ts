@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import type { Skill, Specialization } from '../types/apiTypes';
+import type { Skill, Specialization } from '../types/types';
 import { getSkills } from '../api/skillsApi';
 import { getSpecializations } from '../api/specializationsApi';
 

@@ -1,4 +1,4 @@
-import type { Question } from "../../types/apiTypes";
+import type { Question } from "../../types/types";
 import { apiSlice } from "./apiSlice";
 
 export const questionDetailsApiSlice = apiSlice.injectEndpoints({

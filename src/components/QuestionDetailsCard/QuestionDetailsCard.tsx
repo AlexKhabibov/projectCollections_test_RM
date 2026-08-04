@@ -1,4 +1,4 @@
-import type { Question } from '../../types/apiTypes';
+import type { Question } from '../../types/types';
 import ForwardRewQuestionDetailsButton from '../Buttons/ForwardRewQuestionDetailsButton/ForwardRewQuestionDetailsButton';
 import QuestionDetailsHeaderCard from '../QuestionDetailsHeaderCard/QuestionDetailsHeaderCard';
 import QuestionDetailsLongAnswer from '../QuestionDetailsLongAnswer/QuestionDetailsLongAnswer';

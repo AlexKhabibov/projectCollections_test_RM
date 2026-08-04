@@ -1,5 +1,5 @@
 import { getImageSrc } from '../../hooks/imageDefault';
-import type { Collection } from '../../types/apiTypes';
+import type { Collection } from '../../types/types';
 import styles from './CollectionCard.module.css';
 import { useNavigate } from 'react-router-dom';
 

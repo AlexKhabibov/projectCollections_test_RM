@@ -1,5 +1,5 @@
 import { getImageSrc } from "../../hooks/imageDefault";
-import type { Collection } from "../../types/apiTypes";
+import type { Collection } from "../../types/types";
 import styles from "./CollectionHeaderCard.module.css";
 
 function CollectionHeaderCard({ collection }: { collection: Collection }) {

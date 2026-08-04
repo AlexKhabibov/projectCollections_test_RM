@@ -123,6 +123,38 @@ export interface Company {
     createdBy: User
 }
 
-
 export type AccessType =
     'members' | 'public';
+
+
+
+
+export type SimulatorDifficulty =
+
+    | "beginner"
+    | "elementary"
+    | "intermediate"
+    | "advanced";
+
+export const simulatorDifficulties = [
+
+    {
+        value: "beginner",
+        label: "1–3",
+    },
+
+    {
+        value: "elementary",
+        label: "4–6",
+    },
+
+    {
+        value: "intermediate",
+        label: "7–8",
+    },
+
+    {
+        value: "advanced",
+        label: "9–10",
+    },
+] as const;

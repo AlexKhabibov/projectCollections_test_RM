@@ -1,6 +1,6 @@
 
 import styles from './QuestionsList.module.css';
-import type { Question } from '../../types/apiTypes';
+import type { Question } from '../../types/types';
 import QuestionCard from '../QuestionCard/QuestionCard';
 
 function QuestionsList({ questionsList }: { questionsList: Question[] }) {

@@ -8,5 +8,7 @@ export const apiSlice = createApi({
     tagTypes: [
         "Collections",
         "Questions",
+        "Skills",
+        "Specializations"
     ]
 });

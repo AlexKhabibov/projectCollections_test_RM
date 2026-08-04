@@ -4,7 +4,7 @@ import SidebarWrapper from '../Sidebar/SidebarWrapper/SidebarWrapper';
 import SidebarSection from '../Sidebar/SidebarSection/SidebarSection';
 import SidebarChipsGroup from '../Sidebar/SidebarChipsGroup/SidebarChipsGroup';
 import SidebarChip from '../Sidebar/SidebarChip/SidebarChip';
-import type { AccessType, Specialization } from '../../types/apiTypes';
+import type { AccessType, Specialization } from '../../types/types';
 import SidebarSearchQuestions from '../Sidebar/SidebarSearchQuestions/SidebarSearchQuestions';
 import styles from './CollectionListSidebar.module.css';
 import AnimatedSidebarItem from '../Animation/AnimatedCollectionSidebar/AnimatedSidebarItem';

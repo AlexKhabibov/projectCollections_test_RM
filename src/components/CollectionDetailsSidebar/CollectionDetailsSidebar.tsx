@@ -1,6 +1,6 @@
 import SidebarWrapper from '../Sidebar/SidebarWrapper/SidebarWrapper';
 import SidebarSection from '../Sidebar/SidebarSection/SidebarSection';
-import type { Collection } from '../../types/apiTypes';
+import type { Collection } from '../../types/types';
 import styles from './CollectionDetailsSidebar.module.css';
 
 interface CollectionDetailsSidebarProps {

@@ -1,4 +1,4 @@
-import type { Collection } from "../../types/apiTypes";
+import type { Collection } from "../../types/types";
 import { apiSlice } from "./apiSlice";
 
 export const collectionDetailsApiSlice = apiSlice.injectEndpoints({

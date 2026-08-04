@@ -1,5 +1,5 @@
 import { apiSlice } from "./apiSlice";
-import type { GetQuestionsListResponse } from "../../types/apiTypes";
+import type { GetQuestionsListResponse } from "../../types/types";
 
 
 interface GetQuestionsQueryParams {

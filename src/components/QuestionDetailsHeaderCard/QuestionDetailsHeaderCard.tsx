@@ -1,4 +1,4 @@
-import type { Question } from "../../types/apiTypes";
+import type { Question } from "../../types/types";
 import styles from './QuestionDetailsHeaderCard.module.css';
 
 function QuestionDetailsHeaderCard({

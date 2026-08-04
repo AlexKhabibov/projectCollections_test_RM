@@ -1,17 +1,11 @@
 import { apiSlice } from "./apiSlice";
-import type {
-    GetCollectionsListResponse,
-    GetSpecializationsListResponse,
-    Specialization,
-} from "../../types/apiTypes";
-
+import type { GetCollectionsListResponse } from "../../types/types";
 
 interface GetCollectionsQueryParams {
     page?: number;
     limit?: number;
     access?: string;
 }
-
 
 export const collectionsApiSlice = apiSlice.injectEndpoints({
 
@@ -33,14 +27,12 @@ export const collectionsApiSlice = apiSlice.injectEndpoints({
                     limit: String(limit),
                 });
 
-
                 if (access === "members") {
                     params.set(
                         "isFree",
                         "false"
                     );
                 }
-
 
                 if (access === "public") {
                     params.set(
@@ -49,31 +41,13 @@ export const collectionsApiSlice = apiSlice.injectEndpoints({
                     );
                 }
 
-
                 return {
                     url: "/collections/public",
                     params,
                 };
             },
 
-
             providesTags: ["Collections"],
-        }),
-
-
-
-        getSpecializations: builder.query<
-            Specialization[],
-            void
-        >({
-
-            query: () =>
-                "/specializations",
-
-
-            transformResponse: (
-                response: GetSpecializationsListResponse
-            ) => response.data,
 
         }),
 
@@ -83,5 +57,4 @@ export const collectionsApiSlice = apiSlice.injectEndpoints({
 
 export const {
     useGetCollectionsQuery,
-    useGetSpecializationsQuery,
 } = collectionsApiSlice;

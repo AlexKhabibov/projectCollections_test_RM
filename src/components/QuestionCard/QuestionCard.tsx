@@ -2,7 +2,7 @@ import { useState } from "react";
 import DOMPurify from "dompurify";
 import styles from "./QuestionCard.module.css";
 import { Link, useLocation } from "react-router-dom";
-import type { Question } from "../../types/apiTypes";
+import type { Question } from "../../types/types";
 
 function QuestionCard({ question }: { question: Question }) {
     const [isOpen, setIsOpen] = useState(false);

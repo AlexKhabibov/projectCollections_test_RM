@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import DOMPurify from 'dompurify';
-import type { Question } from '../../types/apiTypes';
+import type { Question } from '../../types/types';
 import styles from './QuestionDetailsLongAnswer.module.css';
 
 function QuestionDetailsLongAnswer({

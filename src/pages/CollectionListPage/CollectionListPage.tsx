@@ -5,7 +5,8 @@ import Pagination from "../../components/Pagination/Pagination";
 import CollectionListSidebar from "../../components/CollectionListSidebar/CollectionListSidebar";
 import SidebarDrawer from "../../components/Sidebar/SidebarDrawer/SidebarDrawer";
 import styles from "./CollectionListPage.module.css";
-import { useGetCollectionsQuery, useGetSpecializationsQuery } from "../../api/apiSlice/collectionListApiSlice";
+import { useGetCollectionsQuery } from "../../api/apiSlice/collectionsApiSlice";
+import { useGetSpecializationsQuery } from "../../api/apiSlice/specializationsApiSlice";
 
 function CollectionListPage() {
 

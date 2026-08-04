@@ -1,4 +1,4 @@
-import type { Collection } from '../../types/apiTypes';
+import type { Collection } from '../../types/types';
 import CollectionCard from '../CollectionCard/CollectionCard';
 import styles from './CollectionCardList.module.css'
 
