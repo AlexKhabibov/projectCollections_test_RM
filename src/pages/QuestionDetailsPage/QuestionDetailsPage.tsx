@@ -11,7 +11,7 @@ import { skipToken } from "@reduxjs/toolkit/query";
 function QuestionDetailsPage() {
 
     const { id } = useParams();
-    
+
     const {
         data: question,
         isLoading,
@@ -27,12 +27,12 @@ function QuestionDetailsPage() {
         return <div>Загрузка...</div>;
     }
 
-    if (!question) {
-        return <div>Вопрос не найден</div>;
-    }
-
     if (error) {
         return <div>Ошибка загрузки вопроса</div>;
+    }
+
+    if (!question) {
+        return <div>Вопрос не найден</div>;
     }
 
     return (
