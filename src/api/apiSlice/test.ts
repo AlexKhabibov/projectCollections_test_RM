@@ -37,36 +37,47 @@
 // // console.log(isAnagram("rat", "car")); // false
 
 
-// // function twoSumTwoPointers(array: number[], target: number): number[] | undefined {
-// //     let leftPointer = 0;
-// //     let rightPointer = array.length - 1;
-// //     const arraySorted = array.toSorted((a, b) => a - b);
-
-// //     while (leftPointer < rightPointer) {
-// //         if (arraySorted[leftPointer] + arraySorted[rightPointer] === target) {
-// //             return [arraySorted[leftPointer], arraySorted[rightPointer]]
-// //         } else if (arraySorted[leftPointer] + arraySorted[rightPointer] < target) {
-// //             leftPointer++;
-// //         } else {
-// //             rightPointer--;
-// //         }
-
-// //     }
-// //     return []
-
-// // }
-
-// // console.log(twoSumTwoPointers([4, 5, 3, 6], 7)); // [3, 4]
-
-
-
-
-
-
-
 // function twoSumTwoPointers(array: number[], target: number): number[] | undefined {
+//     let leftPointer = 0;
+//     let rightPointer = array.length - 1;
+//     const arraySorted = array.toSorted((a, b) => a - b);
 
+//     while (leftPointer < rightPointer) {
+//         if (arraySorted[leftPointer] + arraySorted[rightPointer] === target) {
+//             return [arraySorted[leftPointer], arraySorted[rightPointer]]
+//         } else if (arraySorted[leftPointer] + arraySorted[rightPointer] < target) {
+//             leftPointer++;
+//         } else {
+//             rightPointer--;
+//         }
+
+//     }
+//     return []
 
 // }
 
 // console.log(twoSumTwoPointers([4, 5, 3, 6], 7)); // [3, 4]
+
+
+
+
+
+
+
+// function twoSumHash(array: number[], target: number): number[] | undefined {
+//     const resultMap = new Map();
+
+//     for (const number of array) {
+//         const complement = target - number;
+
+//         if (resultMap.has(complement)) {
+//             return [resultMap.get(complement), number]
+//         }
+
+//         resultMap.set(number, number);
+//     }
+
+//     return [];
+// }
+
+// console.log(twoSumHash([4, 5, 3, 6], 7)); // [3, 4]

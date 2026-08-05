@@ -178,3 +178,37 @@ export const simulatorQuestionModes = [
         label: "Случайные",
     },
 ] as const;
+
+export interface StartSimulatorParams {
+    specialization: number;
+    skills?: string[];
+    difficulty: SimulatorDifficulty;
+    limit: number;
+    collection?: number;
+}
+export interface SimulatorAnswer {
+    questionId: number;
+    questionTitle: string;
+    answer: string;
+}
+
+export interface SimulatorResponse {
+    id: string;
+    startDate: string;
+    fullCount: number;
+    skills: string[];
+    response: {
+        answers: SimulatorAnswer[];
+    };
+    questions: Question[];
+}
+
+export const difficultyMap: Record<
+    SimulatorDifficulty,
+    number[]
+> = {
+    beginner: [1, 2, 3],
+    elementary: [4, 5, 6],
+    intermediate: [7, 8],
+    advanced: [9, 10],
+};

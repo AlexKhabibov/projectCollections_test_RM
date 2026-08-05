@@ -1,16 +1,14 @@
 import { useState } from "react";
 import { useGetSpecializationsQuery } from "../../../api/apiSlice/specializationsApiSlice";
 import { useGetSkillsQuery } from "../../../api/apiSlice/skillsApiSlice";
-import type {
-    SimulatorDifficulty,
-    SimulatorQuestionMode,
-} from "../../../types/types";
+import type { SimulatorDifficulty, SimulatorQuestionMode } from "../../../types/types";
 import SpecializationSelect from "./SpecializationSelect";
 import DifficultySelect from "./DifficultySelect";
 import CategorySelect from "./CategorySelect";
 import QuestionModeSelect from "./QuestionModeSelect";
 import QuestionsCountInput from "./QuestionsCountInput";
 import StartSimulatorButton from "./StartSimulatorButton";
+import { useLazyStartSimulatorQuery } from "../../../api/apiSlice/simulatorApiSlice";
 
 function SimulatorSettings() {
 
@@ -79,6 +77,15 @@ function SimulatorSettings() {
             </div>
         );
     }
+
+    const [
+        startSimulator,
+        {
+            data,
+            isLoading,
+            error,
+        },
+    ] = useLazyStartSimulatorQuery();
 
     const filteredSkills =
         selectedSpecialization === null
