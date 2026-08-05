@@ -39,7 +39,7 @@ function SkillsSelect({
         <div>
 
             <h2>
-                Выберите навыки
+                Категории вопросов
             </h2>
 
             <div>
