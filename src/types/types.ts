@@ -35,7 +35,7 @@ export interface Specialization {
     description: string;
     imageSrc: string;
     createdAt: string;
-    updatedA: string;
+    updatedAt: string;
     createdBy: User
 }
 

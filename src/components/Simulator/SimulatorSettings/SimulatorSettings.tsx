@@ -2,6 +2,9 @@ import { useState } from "react";
 import { useGetSpecializationsQuery } from "../../../api/apiSlice/specializationsApiSlice";
 import { useGetSkillsQuery } from "../../../api/apiSlice/skillsApiSlice";
 import type { SimulatorDifficulty } from "../../../types/types";
+import SpecializationSelect from "./SpecializationSelect";
+import SkillsSelect from "./SkillsSelect";
+import DifficultySelect from "./DifficultySelect";
 
 function SimulatorSettings() {
 
@@ -61,20 +64,53 @@ function SimulatorSettings() {
         );
     }
 
+    const filteredSkills =
+        selectedSpecialization === null
+            ? skills
+            : skills.filter((skill) =>
+                skill.specializations.some(
+                    (specialization) =>
+                        specialization.id ===
+                        selectedSpecialization
+                )
+            );
+
+    const handleSpecializationChange = (
+        specializationId: string
+    ) => {
+
+        setSelectedSpecialization(
+            specializationId
+        );
+
+        setSelectedSkills([]);
+    };
+
     return (
         <div>
 
             <h1>
-                Тренажер
+                Собеседование
             </h1>
 
-            <p>
-                Специализаций: {specializations.length}
-            </p>
+            <SpecializationSelect
+                specializations={specializations}
+                value={selectedSpecialization}
+                onChange={
+                    handleSpecializationChange
+                }
+            />
 
-            <p>
-                Навыков: {skills.length}
-            </p>
+            <SkillsSelect
+                skills={filteredSkills}
+                selectedSkills={selectedSkills}
+                onChange={setSelectedSkills}
+            />
+
+            <DifficultySelect
+                value={difficulty}
+                onChange={setDifficulty}
+            />
 
         </div>
     );
