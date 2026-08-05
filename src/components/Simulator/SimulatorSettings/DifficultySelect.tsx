@@ -18,7 +18,7 @@ function DifficultySelect({
         <div className={styles.wrapper}>
 
             <h2 className={styles.title}>
-                Выберите уровень сложности
+                Уровень сложности
             </h2>
 
             <div className={styles.buttons}>

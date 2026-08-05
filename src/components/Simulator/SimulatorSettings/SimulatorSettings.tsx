@@ -1,10 +1,16 @@
 import { useState } from "react";
 import { useGetSpecializationsQuery } from "../../../api/apiSlice/specializationsApiSlice";
 import { useGetSkillsQuery } from "../../../api/apiSlice/skillsApiSlice";
-import type { SimulatorDifficulty } from "../../../types/types";
+import type {
+    SimulatorDifficulty,
+    SimulatorQuestionMode,
+} from "../../../types/types";
 import SpecializationSelect from "./SpecializationSelect";
-import SkillsSelect from "./SkillsSelect";
 import DifficultySelect from "./DifficultySelect";
+import CategorySelect from "./CategorySelect";
+import QuestionModeSelect from "./QuestionModeSelect";
+import QuestionsCountInput from "./QuestionsCountInput";
+import StartSimulatorButton from "./StartSimulatorButton";
 
 function SimulatorSettings() {
 
@@ -34,6 +40,16 @@ function SimulatorSettings() {
         difficulty,
         setDifficulty,
     ] = useState<SimulatorDifficulty | null>(null);
+
+    const [
+        questionMode,
+        setQuestionMode,
+    ] = useState<SimulatorQuestionMode | null>(null);
+
+    const [
+        questionsCount,
+        setQuestionsCount,
+    ] = useState(20);
 
     if (
         isSpecializationsLoading ||
@@ -85,6 +101,17 @@ function SimulatorSettings() {
 
         setSelectedSkills([]);
     };
+    const handleStart = () => {
+
+        console.log({
+            selectedSpecialization,
+            selectedSkills,
+            difficulty,
+            questionMode,
+            questionsCount,
+        });
+
+    };
 
     return (
         <div>
@@ -96,12 +123,10 @@ function SimulatorSettings() {
             <SpecializationSelect
                 specializations={specializations}
                 value={selectedSpecialization}
-                onChange={
-                    handleSpecializationChange
-                }
+                onChange={handleSpecializationChange}
             />
 
-            <SkillsSelect
+            <CategorySelect
                 skills={filteredSkills}
                 selectedSkills={selectedSkills}
                 onChange={setSelectedSkills}
@@ -110,6 +135,26 @@ function SimulatorSettings() {
             <DifficultySelect
                 value={difficulty}
                 onChange={setDifficulty}
+            />
+
+            <QuestionModeSelect
+                value={questionMode}
+                onChange={setQuestionMode}
+            />
+
+            <QuestionsCountInput
+                value={questionsCount}
+                onChange={setQuestionsCount}
+            />
+
+            <StartSimulatorButton
+                disabled={
+                    selectedSpecialization === null ||
+                    selectedSkills.length === 0 ||
+                    difficulty === null ||
+                    questionMode === null
+                }
+                onClick={handleStart}
             />
 
         </div>

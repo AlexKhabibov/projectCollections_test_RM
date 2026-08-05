@@ -158,3 +158,23 @@ export const simulatorDifficulties = [
         label: "9–10",
     },
 ] as const;
+
+export type SimulatorQuestionMode =
+    | "review"
+    | "new"
+    | "random";
+
+export const simulatorQuestionModes = [
+    {
+        value: "review",
+        label: "Повторение",
+    },
+    {
+        value: "new",
+        label: "Только новые",
+    },
+    {
+        value: "random",
+        label: "Случайные",
+    },
+] as const;

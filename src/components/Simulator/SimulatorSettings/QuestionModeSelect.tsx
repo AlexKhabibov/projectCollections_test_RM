@@ -1,14 +1,12 @@
-import type { Specialization } from "../../../types/types";
-import styles from "./SpecializationSelect.module.css";
+import { simulatorQuestionModes, type SimulatorQuestionMode } from "../../../types/types";
+import styles from "./QuestionModeSelect.module.css";
 
 interface Props {
-    specializations: Specialization[];
-    value: string | null;
-    onChange: (id: string) => void;
+    value: SimulatorQuestionMode | null;
+    onChange: (mode: SimulatorQuestionMode) => void;
 }
 
-function SpecializationSelect({
-    specializations,
+function QuestionModeSelect({
     value,
     onChange,
 }: Props) {
@@ -17,25 +15,23 @@ function SpecializationSelect({
         <div className={styles.wrapper}>
 
             <h2 className={styles.title}>
-                Выберите специализацию
+                Выберите режим
             </h2>
 
             <div className={styles.buttons}>
 
-                {specializations.map((specialization) => {
+                {simulatorQuestionModes.map((mode) => {
 
                     const isSelected =
-                        value === specialization.id;
+                        value === mode.value;
 
                     return (
 
                         <button
-                            key={specialization.id}
+                            key={mode.value}
                             type="button"
                             onClick={() =>
-                                onChange(
-                                    specialization.id
-                                )
+                                onChange(mode.value)
                             }
                             className={
                                 isSelected
@@ -43,7 +39,7 @@ function SpecializationSelect({
                                     : styles.button
                             }
                         >
-                            {specialization.title}
+                            {mode.label}
                         </button>
 
                     );
@@ -56,4 +52,4 @@ function SpecializationSelect({
     );
 }
 
-export default SpecializationSelect;
+export default QuestionModeSelect;
