@@ -6,7 +6,8 @@ import CollectionDetailsPage from "../pages/CollectionDetailsPage/CollectionDeta
 import QuestionsListPage from "../pages/QuestionsListPage/QuestionsListPage";
 import QuestionDetailsPage from "../pages/QuestionDetailsPage/QuestionDetailsPage";
 import Layout from "../components/Layout/Layout";
-import SimulatorPage from "../pages/SimulatorPage/SimulatorPage";
+import SimulatorStartPage from "../pages/SimulatorStartPage/SimulatorStartPage";
+import SimulatorSessionPage from "../pages/SimulatorSessionPage/SimulatorSessionPage";
 
 export const router = createBrowserRouter([
     {
@@ -35,7 +36,11 @@ export const router = createBrowserRouter([
             },
             {
                 path: "simulator",
-                element: <SimulatorPage />,
+                element: <SimulatorStartPage />,
+            },
+            {
+                path: "simulator-session",
+                element: <SimulatorSessionPage />
             }
         ]
     },

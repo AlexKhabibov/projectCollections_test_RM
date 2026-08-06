@@ -9,8 +9,15 @@ import QuestionModeSelect from "./QuestionModeSelect";
 import QuestionsCountInput from "./QuestionsCountInput";
 import StartSimulatorButton from "./StartSimulatorButton";
 import { useLazyStartSimulatorQuery } from "../../../api/apiSlice/simulatorApiSlice";
+import { useDispatch } from "react-redux";
+import { setQuiz } from "../../../store/simulatorSlice";
+import { useNavigate } from "react-router-dom";
 
 function SimulatorSettings() {
+
+    const dispatch = useDispatch();
+
+    const navigate = useNavigate();
 
     const {
         data: specializations,
@@ -119,6 +126,9 @@ function SimulatorSettings() {
                 difficulty,
                 limit: questionsCount,
             }).unwrap();
+
+            dispatch(setQuiz(result));
+            navigate("/simulator-session");
 
             console.log(result);
 

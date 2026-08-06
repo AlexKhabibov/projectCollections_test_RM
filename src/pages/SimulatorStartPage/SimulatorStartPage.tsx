@@ -1,6 +1,6 @@
 import SimulatorSettings from "../../components/Simulator/SimulatorSettings/SimulatorSettings";
 
-function SimulatorPage() {
+function SimulatorStartPage() {
     return (
         <>
             <SimulatorSettings />
@@ -8,4 +8,4 @@ function SimulatorPage() {
     )
 }
 
-export default SimulatorPage;
+export default SimulatorStartPage;
