@@ -17,10 +17,7 @@ export const simulatorApiSlice =
 
         endpoints: (builder) => ({
 
-            startSimulator: builder.query<
-                SimulatorResponse,
-                StartSimulatorParams
-            >({
+            startSimulator: builder.query<SimulatorResponse, StartSimulatorParams>({
 
                 query: ({
                     specialization,

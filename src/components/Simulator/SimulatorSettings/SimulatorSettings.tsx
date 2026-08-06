@@ -49,6 +49,9 @@ function SimulatorSettings() {
         setQuestionsCount,
     ] = useState(20);
 
+    const [startSimulator] =
+        useLazyStartSimulatorQuery();
+
     if (
         isSpecializationsLoading ||
         isSkillsLoading
@@ -78,15 +81,6 @@ function SimulatorSettings() {
         );
     }
 
-    const [
-        startSimulator,
-        {
-            data,
-            isLoading,
-            error,
-        },
-    ] = useLazyStartSimulatorQuery();
-
     const filteredSkills =
         selectedSpecialization === null
             ? skills
@@ -108,16 +102,31 @@ function SimulatorSettings() {
 
         setSelectedSkills([]);
     };
-    const handleStart = () => {
+    const handleStart = async () => {
 
-        console.log({
-            selectedSpecialization,
-            selectedSkills,
-            difficulty,
-            questionMode,
-            questionsCount,
-        });
+        if (
+            selectedSpecialization === null ||
+            difficulty === null
+        ) {
+            return;
+        }
 
+        try {
+
+            const result = await startSimulator({
+                specialization: Number(selectedSpecialization),
+                skills: selectedSkills,
+                difficulty,
+                limit: questionsCount,
+            }).unwrap();
+
+            console.log(result);
+
+        } catch (error) {
+
+            console.error(error);
+
+        }
     };
 
     return (
