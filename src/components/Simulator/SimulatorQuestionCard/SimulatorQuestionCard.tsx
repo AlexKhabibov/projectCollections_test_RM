@@ -1,10 +1,10 @@
 import { useDispatch } from "react-redux";
-import {
-    nextQuestion,
-    previousQuestion,
-} from "../../../store/simulatorSlice";
-import type { Question } from "../../../types/types";
+
+
+
 import styles from "./SimulatorQuestionCard.module.css";
+import type { Question } from "../../../types/types";
+import { nextQuestion, previousQuestion } from "../../../store/simulatorSlice";
 
 interface Props {
     question: Question;
@@ -21,7 +21,6 @@ function SimulatorQuestionCard({
     const dispatch = useDispatch();
 
     return (
-
         <section className={styles.card}>
 
             <header className={styles.header}>
@@ -30,7 +29,9 @@ function SimulatorQuestionCard({
                     type="button"
                     disabled={isFirst}
                     onClick={() =>
-                        dispatch(previousQuestion())
+                        dispatch(
+                            previousQuestion()
+                        )
                     }
                     className={styles.navButton}
                 >
@@ -41,7 +42,9 @@ function SimulatorQuestionCard({
                     type="button"
                     disabled={isLast}
                     onClick={() =>
-                        dispatch(nextQuestion())
+                        dispatch(
+                            nextQuestion()
+                        )
                     }
                     className={styles.navButton}
                 >
@@ -58,9 +61,15 @@ function SimulatorQuestionCard({
                         {question.title}
                     </h2>
 
+                    <p className={styles.description}>
+                        {question.description}
+                    </p>
+
                     <button
                         type="button"
-                        className={styles.answerButton}
+                        className={
+                            styles.answerButton
+                        }
                     >
                         Посмотреть ответ
                     </button>
@@ -79,7 +88,11 @@ function SimulatorQuestionCard({
 
                     ) : (
 
-                        <div className={styles.placeholder}>
+                        <div
+                            className={
+                                styles.placeholder
+                            }
+                        >
                             Изображение
                         </div>
 
@@ -90,7 +103,6 @@ function SimulatorQuestionCard({
             </div>
 
         </section>
-
     );
 }
 

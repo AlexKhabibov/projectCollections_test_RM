@@ -1,0 +1,45 @@
+.result {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.title {
+    margin: 0 0 32px;
+
+    font-size: 32px;
+    font-weight: 600;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 20px;
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    padding: 24px;
+
+    background: #ffffff;
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.stat span {
+    color: #777777;
+    font-size: 16px;
+}
+
+.stat strong {
+    font-size: 28px;
+    font-weight: 600;
+}
