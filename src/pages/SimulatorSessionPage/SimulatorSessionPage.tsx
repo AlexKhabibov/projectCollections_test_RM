@@ -1,15 +1,14 @@
 import { useSelector } from "react-redux";
 import type { RootState } from "../../store/store";
+import SimulatorSession from "../../components/Simulator/SimulatorSession/SimulatorSession";
 
 function SimulatorSessionPage() {
 
-    const quiz = useSelector(
-        (state: RootState) => state.simulator.quiz
-    );
-
-    const currentQuestionIndex = useSelector(
-        (state: RootState) =>
-            state.simulator.currentQuestionIndex
+    const {
+        quiz,
+        currentQuestionIndex,
+    } = useSelector(
+        (state: RootState) => state.simulator
     );
 
     if (!quiz) {
@@ -20,17 +19,16 @@ function SimulatorSessionPage() {
         quiz.questions[currentQuestionIndex];
 
     return (
-        <div>
-
-            <h1>
-                {question.title}
-            </h1>
-
-            <p>
-                {question.description}
-            </p>
-
-        </div>
+        <SimulatorSession
+            question={question}
+            currentQuestion={currentQuestionIndex + 1}
+            totalQuestions={quiz.questions.length}
+            isFirst={currentQuestionIndex === 0}
+            isLast={
+                currentQuestionIndex ===
+                quiz.questions.length - 1
+            }
+        />
     );
 }
 

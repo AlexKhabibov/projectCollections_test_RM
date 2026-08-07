@@ -28,6 +28,14 @@ const simulatorSlice = createSlice({
             state.isFinished = false;
         },
 
+        previousQuestion: (state) => {
+
+            if (state.currentQuestionIndex > 0) {
+                state.currentQuestionIndex--;
+            }
+
+        },
+
         nextQuestion: (state) => {
 
             if (!state.quiz) return;
@@ -53,6 +61,7 @@ const simulatorSlice = createSlice({
 
 export const {
     setQuiz,
+    previousQuestion,
     nextQuestion,
     resetQuiz,
 } = simulatorSlice.actions;

@@ -1,0 +1,77 @@
+.card {
+    background: white;
+    border-radius: 20px;
+    padding: 32px;
+    box-shadow: 0 4px 12px rgba(0,0,0,.05);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 32px;
+}
+
+.navButton {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: #3f8cff;
+}
+
+.navButton:disabled {
+    opacity: .4;
+    cursor: default;
+}
+
+.content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+}
+
+.questionBlock {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.title {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.answerButton {
+    width: fit-content;
+    background: transparent;
+    border: none;
+    color: #3f8cff;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.imageBlock {
+    width: 340px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image {
+    max-width: 100%;
+    border-radius: 12px;
+}
+
+.placeholder {
+    width: 320px;
+    height: 240px;
+    border: 2px dashed #d9d9d9;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #888;
+}
