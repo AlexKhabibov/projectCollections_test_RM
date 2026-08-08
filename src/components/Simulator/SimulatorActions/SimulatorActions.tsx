@@ -3,6 +3,7 @@ import styles from "./SimulatorActions.module.css";
 import type { Question } from "../../../types/types";
 import {
     answerQuestion,
+    finishQuiz,
     nextQuestion,
 } from "../../../store/simulatorSlice";
 
@@ -29,6 +30,10 @@ function SimulatorActions({
         );
 
         dispatch(nextQuestion());
+    };
+
+    const handleFinish = () => {
+        dispatch(finishQuiz());
     };
 
     return (
@@ -61,6 +66,7 @@ function SimulatorActions({
             <button
                 type="button"
                 className={styles.finishButton}
+                onClick={handleFinish}
             >
                 Завершить
             </button>

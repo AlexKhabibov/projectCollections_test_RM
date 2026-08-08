@@ -1,0 +1,55 @@
+.actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+
+    padding-top: 8px;
+}
+
+.primaryButton,
+.secondaryButton {
+    min-height: 44px;
+
+    padding: 0 20px;
+
+    border-radius: 10px;
+
+    font-size: 15px;
+    font-weight: 500;
+
+    cursor: pointer;
+}
+
+.primaryButton {
+    border: 1px solid #222;
+
+    background: #222;
+    color: #fff;
+}
+
+.primaryButton:hover {
+    background: #333;
+}
+
+.secondaryButton {
+    border: 1px solid #ddd;
+
+    background: #fff;
+    color: #444;
+}
+
+.secondaryButton:hover {
+    background: #f7f7f7;
+}
+
+@media (max-width: 600px) {
+
+    .actions {
+        flex-direction: column;
+    }
+
+    .primaryButton,
+    .secondaryButton {
+        width: 100%;
+    }
+}

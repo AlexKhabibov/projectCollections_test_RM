@@ -1,12 +1,5 @@
-import {
-    createSlice,
-    type PayloadAction,
-} from "@reduxjs/toolkit";
-
-import type {
-    SimulatorAnswer,
-    SimulatorResponse,
-} from "../types/types";
+import { createSlice, type PayloadAction, } from "@reduxjs/toolkit";
+import type { SimulatorAnswer, SimulatorResponse, } from "../types/types";
 
 interface SimulatorState {
     quiz: SimulatorResponse | null;
@@ -25,9 +18,7 @@ const initialState: SimulatorState = {
 const simulatorSlice = createSlice({
 
     name: "simulator",
-
     initialState,
-
     reducers: {
 
         setQuiz: (
@@ -41,13 +32,43 @@ const simulatorSlice = createSlice({
             state.answers = [];
         },
 
+        answerQuestion: (
+            state,
+            action: PayloadAction<SimulatorAnswer>
+        ) => {
+
+            const existingIndex =
+                state.answers.findIndex(
+                    (answer) =>
+                        answer.questionId ===
+                        action.payload.questionId
+                );
+
+            if (existingIndex !== -1) {
+
+                state.answers[existingIndex] =
+                    action.payload;
+
+            } else {
+
+                state.answers.push(
+                    action.payload
+                );
+            }
+        },
+
         nextQuestion: (state) => {
 
-            if (!state.quiz) return;
+            if (!state.quiz) {
+                return;
+            }
+
+            const lastQuestionIndex =
+                state.quiz.questions.length - 1;
 
             if (
                 state.currentQuestionIndex <
-                state.quiz.questions.length - 1
+                lastQuestionIndex
             ) {
 
                 state.currentQuestionIndex++;
@@ -63,36 +84,14 @@ const simulatorSlice = createSlice({
             if (
                 state.currentQuestionIndex > 0
             ) {
+
                 state.currentQuestionIndex--;
             }
         },
 
-        answerQuestion: (
-            state,
-            action: PayloadAction<SimulatorAnswer>
-        ) => {
+        finishQuiz: (state) => {
 
-            const existingAnswerIndex =
-                state.answers.findIndex(
-                    (answer) =>
-                        answer.questionId ===
-                        action.payload.questionId
-                );
-
-            if (
-                existingAnswerIndex !== -1
-            ) {
-
-                state.answers[
-                    existingAnswerIndex
-                ] = action.payload;
-
-            } else {
-
-                state.answers.push(
-                    action.payload
-                );
-            }
+            state.isFinished = true;
         },
 
         resetQuiz: (state) => {
@@ -107,9 +106,10 @@ const simulatorSlice = createSlice({
 
 export const {
     setQuiz,
+    answerQuestion,
     nextQuestion,
     previousQuestion,
-    answerQuestion,
+    finishQuiz,
     resetQuiz,
 } = simulatorSlice.actions;
 
