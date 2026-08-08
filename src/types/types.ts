@@ -1,23 +1,23 @@
 export interface User {
-    id: string | number
-    username: string
+    id: string | number;
+    username: string;
 }
 
 export interface Collection {
-    id: string | number
-    title: string
-    slug?: string
-    description: string
-    imageSrc: string | null
-    createdAt: string
-    updatedAt: string
-    createdBy: User
-    isFree: boolean
-    keywords: string[]
-    company: Company | null
-    questionsCount: number
-    tasksCount: number
-    specializations: Specialization[]
+    id: string | number;
+    title: string;
+    slug?: string;
+    description: string;
+    imageSrc: string | null;
+    createdAt: string;
+    updatedAt: string;
+    createdBy: User;
+    isFree: boolean;
+    keywords: string[];
+    company: Company | null;
+    questionsCount: number;
+    tasksCount: number;
+    specializations: Specialization[];
 }
 
 export interface GetCollectionsListResponse {
@@ -36,7 +36,7 @@ export interface Specialization {
     imageSrc: string;
     createdAt: string;
     updatedAt: string;
-    createdBy: User
+    createdBy: User;
 }
 
 export interface GetSpecializationsListResponse {
@@ -44,13 +44,13 @@ export interface GetSpecializationsListResponse {
     page: number;
     limit: number;
     data: Specialization[];
-};
+}
 
 export interface GetSkillsListResponse {
-    total: number
-    page: number
-    limit: number
-    data: Skill[]
+    total: number;
+    page: number;
+    limit: number;
+    data: Skill[];
 }
 
 export interface Skill {
@@ -81,22 +81,24 @@ export interface Question {
     slug: string;
     description: string;
     code: string;
-    imageSrc: string | null;
+    imageSrc: string;
     keywords: string[];
     longAnswer: string;
     shortAnswer: string;
-    status: QuestionStatus;
+    status: string;
     rate: number;
     complexity: number;
     createdById: string;
     updatedById: string;
+
     questionSpecializations: Specialization[];
-    questionSkills: Skill[];
+    questionSkills: QuestionSkill[];
     questionTopics: Topic[];
+
     createdAt: string;
     updatedAt: string;
-    createdBy: User | null;
-    updatedBy: User | null;
+    createdBy: User;
+    updatedBy: User;
 }
 
 export interface Topic {
@@ -108,51 +110,50 @@ export interface Topic {
     updatedAt: string;
 }
 
-export type QuestionStatus = "public" | "private" | "draft";
+export type QuestionStatus =
+    | "public"
+    | "private"
+    | "draft";
 
 export interface Company {
-    id: string | number
-    title: string
-    legalName: string
-    description: string
-    imageSrc: string | null
-    inn: string
-    kpp: string
-    createdAt: string
-    updatedAt: string
-    createdBy: User
+    id: string | number;
+    title: string;
+    legalName: string;
+    description: string;
+    imageSrc: string | null;
+    inn: string;
+    kpp: string;
+    createdAt: string;
+    updatedAt: string;
+    createdBy: User;
 }
 
 export type AccessType =
-    'members' | 'public';
+    | "members"
+    | "public";
 
 
-
+    
 
 export type SimulatorDifficulty =
-
     | "beginner"
     | "elementary"
     | "intermediate"
     | "advanced";
 
 export const simulatorDifficulties = [
-
     {
         value: "beginner",
         label: "1–3",
     },
-
     {
         value: "elementary",
         label: "4–6",
     },
-
     {
         value: "intermediate",
         label: "7–8",
     },
-
     {
         value: "advanced",
         label: "9–10",
@@ -186,10 +187,15 @@ export interface StartSimulatorParams {
     limit: number;
     collection?: number;
 }
+
+export type SimulatorAnswerType =
+    | "KNOWN"
+    | "UNKNOWN";
+
 export interface SimulatorAnswer {
     questionId: number;
     questionTitle: string;
-    answer: string;
+    answer: SimulatorAnswerType;
 }
 
 export interface SimulatorResponse {
@@ -197,9 +203,11 @@ export interface SimulatorResponse {
     startDate: string;
     fullCount: number;
     skills: string[];
+
     response: {
         answers: SimulatorAnswer[];
     };
+
     questions: Question[];
 }
 
@@ -212,3 +220,12 @@ export const difficultyMap: Record<
     intermediate: [7, 8],
     advanced: [9, 10],
 };
+
+export interface QuestionSkill {
+    id: number;
+    title: string;
+    description: string;
+    imageSrc: string;
+    createdAt: string;
+    updatedAt: string;
+}

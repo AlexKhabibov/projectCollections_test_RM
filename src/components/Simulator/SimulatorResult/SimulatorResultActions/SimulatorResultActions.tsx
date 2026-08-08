@@ -1,21 +1,16 @@
-import { useDispatch } from "react-redux";
-import styles from "./SimulatorResultActions.module.css";
 import { useNavigate } from "react-router-dom";
-import { resetQuiz } from "../../../../store/simulatorSlice";
+import styles from "./SimulatorResultActions.module.css";
 
 function SimulatorResultActions() {
 
     const navigate = useNavigate();
-    const dispatch = useDispatch();
 
     const handleRestart = () => {
-        dispatch(resetQuiz());
         navigate("/simulator");
     };
 
-    const handleQuestions = () => {
-        dispatch(resetQuiz());
-        navigate("/questions");
+    const handleGoHome = () => {
+        navigate("/");
     };
 
     return (
@@ -23,7 +18,7 @@ function SimulatorResultActions() {
 
             <button
                 type="button"
-                className={styles.primaryButton}
+                className={styles.primary}
                 onClick={handleRestart}
             >
                 Пройти ещё раз
@@ -31,14 +26,14 @@ function SimulatorResultActions() {
 
             <button
                 type="button"
-                className={styles.secondaryButton}
-                onClick={handleQuestions}
+                className={styles.secondary}
+                onClick={handleGoHome}
             >
-                Вернуться к вопросам
+                К списку коллекций
             </button>
 
         </section>
     );
 }
 
-export default SimulatorResultActions;;
+export default SimulatorResultActions;

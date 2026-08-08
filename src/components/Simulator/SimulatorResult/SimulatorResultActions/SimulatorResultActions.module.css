@@ -1,55 +1,49 @@
 .actions {
     display: flex;
+    align-items: center;
     justify-content: center;
     gap: 12px;
 
-    padding-top: 8px;
+    margin-top: 32px;
+    padding-bottom: 32px;
 }
 
-.primaryButton,
-.secondaryButton {
-    min-height: 44px;
+.primary,
+.secondary {
+    min-width: 180px;
+    padding: 12px 20px;
 
-    padding: 0 20px;
+    border-radius: 8px;
 
-    border-radius: 10px;
-
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 500;
 
     cursor: pointer;
+
+    transition:
+        background-color 0.15s ease,
+        border-color 0.15s ease,
+        opacity 0.15s ease;
 }
 
-.primaryButton {
-    border: 1px solid #222;
+.primary {
+    border: 1px solid #2563eb;
 
-    background: #222;
-    color: #fff;
+    color: #ffffff;
+    background-color: #2563eb;
 }
 
-.primaryButton:hover {
-    background: #333;
+.primary:hover {
+    background-color: #1d4ed8;
 }
 
-.secondaryButton {
-    border: 1px solid #ddd;
+.secondary {
+    border: 1px solid #d1d5db;
 
-    background: #fff;
-    color: #444;
+    color: #374151;
+    background-color: #ffffff;
 }
 
-.secondaryButton:hover {
-    background: #f7f7f7;
-}
-
-@media (max-width: 600px) {
-
-    .actions {
-        flex-direction: column;
-    }
-
-    .primaryButton,
-    .secondaryButton {
-        width: 100%;
-    }
+.secondary:hover {
+    background-color: #f9fafb;
 }

@@ -1,8 +1,16 @@
 import { useSelector } from "react-redux";
 import type { RootState } from "../../../store/store";
+
+import SimulatorResultQuestions
+    from "./SimulatorResultQuestions/SimulatorResultQuestions";
+
+import SimulatorResultActions
+    from "./SimulatorResultActions/SimulatorResultActions";
+
+import SimulatorSkillsProgress
+    from "../SimulatorSkillsProgress/SimulatorSkillsProgress";
+
 import styles from "./SimulatorResult.module.css";
-import SimulatorResultQuestions from "./SimulatorResultQuestions/SimulatorResultQuestions";
-import SimulatorResultActions from "./SimulatorResultActions/SimulatorResultActions";
 
 function SimulatorResult() {
 
@@ -32,7 +40,7 @@ function SimulatorResult() {
                 answer.answer === "UNKNOWN"
         ).length;
 
-    const studiedPercent =
+    const knownPercent =
         totalQuestions > 0
             ? Math.round(
                 (knownCount / totalQuestions) * 100
@@ -63,7 +71,7 @@ function SimulatorResult() {
                 <div className={styles.mainStat}>
 
                     <span className={styles.mainStatValue}>
-                        {studiedPercent}%
+                        {knownPercent}%
                     </span>
 
                     <span className={styles.mainStatLabel}>
@@ -109,6 +117,8 @@ function SimulatorResult() {
                 </div>
 
             </section>
+
+            <SimulatorSkillsProgress />
 
             <SimulatorResultQuestions />
 

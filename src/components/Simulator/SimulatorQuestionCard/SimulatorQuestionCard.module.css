@@ -12,13 +12,10 @@
 
 .navigationButton {
     padding: 8px 0;
-
     border: none;
     background: transparent;
-
     color: #555;
     font-size: 16px;
-
     cursor: pointer;
 }
 
@@ -31,7 +28,6 @@
     display: grid;
     grid-template-columns: minmax(0, 1fr) 420px;
     gap: 48px;
-
     align-items: center;
 }
 
@@ -43,7 +39,6 @@
 
 .title {
     margin: 0 0 20px;
-
     font-size: 32px;
     line-height: 1.2;
     font-weight: 600;
@@ -51,7 +46,6 @@
 
 .description {
     margin: 0 0 28px;
-
     color: #555;
     font-size: 17px;
     line-height: 1.6;
@@ -59,12 +53,9 @@
 
 .answerButton {
     padding: 12px 20px;
-
     border: 1px solid #ddd;
     border-radius: 10px;
-
     background: #fff;
-
     font-size: 15px;
     cursor: pointer;
 }
@@ -79,12 +70,9 @@
 
 .image {
     display: block;
-
     width: 100%;
     height: auto;
-
     border-radius: 16px;
-
     object-fit: cover;
 }
 
@@ -92,13 +80,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-
     min-height: 260px;
-
     border-radius: 16px;
-
     background: #f0f0f0;
-
     color: #999;
 }
 

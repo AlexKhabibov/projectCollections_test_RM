@@ -1,0 +1,75 @@
+.section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    padding: 24px;
+
+    background: #ffffff;
+    border-radius: 16px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.title {
+    margin: 0;
+
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.skill {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.skillHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 16px;
+}
+
+.skillTitle {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.skillCount {
+    color: #777777;
+
+    font-size: 14px;
+}
+
+.track {
+    width: 100%;
+    height: 8px;
+
+    overflow: hidden;
+
+    border-radius: 999px;
+
+    background: #eeeeee;
+}
+
+.bar {
+    height: 100%;
+
+    border-radius: inherit;
+
+    background: #222222;
+
+    transition: width 0.2s ease;
+}

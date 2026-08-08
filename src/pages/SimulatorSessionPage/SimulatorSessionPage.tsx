@@ -1,10 +1,11 @@
 import { useSelector } from "react-redux";
 import type { RootState } from "../../store/store";
+
 import SimulatorSession
     from "../../components/Simulator/SimulatorSession/SimulatorSession";
+
 import SimulatorResult
     from "../../components/Simulator/SimulatorResult/SimulatorResult";
-import styles from "./SimulatorSessionPage.module.css";
 
 function SimulatorSessionPage() {
 
@@ -17,53 +18,31 @@ function SimulatorSessionPage() {
     );
 
     if (!quiz) {
-        return (
-            <main className={styles.page}>
-                <div className={styles.container}>
-                    <h2>Тест не найден</h2>
-                </div>
-            </main>
-        );
+        return <h2>Тест не найден</h2>;
     }
 
     if (isFinished) {
-        return (
-            <main className={styles.page}>
-                <div className={styles.container}>
-                    <SimulatorResult />
-                </div>
-            </main>
-        );
+        return <SimulatorResult />;
     }
 
     const question =
         quiz.questions[currentQuestionIndex];
 
+    const isFirst =
+        currentQuestionIndex === 0;
+
+    const isLast =
+        currentQuestionIndex ===
+        quiz.questions.length - 1;
+
     return (
-        <main className={styles.page}>
-
-            <div className={styles.container}>
-
-                <SimulatorSession
-                    question={question}
-                    currentQuestion={
-                        currentQuestionIndex + 1
-                    }
-                    totalQuestions={
-                        quiz.questions.length
-                    }
-                    isFirst={
-                        currentQuestionIndex === 0
-                    }
-                    isLast={
-                        currentQuestionIndex ===
-                        quiz.questions.length - 1
-                    }
-                />
-
-            </div>
-
-        </main>
+        <SimulatorSession
+            question={question}
+            currentQuestion={currentQuestionIndex + 1}
+            totalQuestions={quiz.questions.length}
+            isFirst={isFirst}
+            isLast={isLast}
+        />
     );
 }
 
