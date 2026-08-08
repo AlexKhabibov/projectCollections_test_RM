@@ -1,10 +1,13 @@
 import { useDispatch } from "react-redux";
 
+import {
+    nextQuestion,
+    previousQuestion,
+} from "../../../store/simulatorSlice";
 
+import type { Question } from "../../../types/types";
 
 import styles from "./SimulatorQuestionCard.module.css";
-import type { Question } from "../../../types/types";
-import { nextQuestion, previousQuestion } from "../../../store/simulatorSlice";
 
 interface Props {
     question: Question;
@@ -21,19 +24,17 @@ function SimulatorQuestionCard({
     const dispatch = useDispatch();
 
     return (
-        <section className={styles.card}>
+        <article className={styles.card}>
 
-            <header className={styles.header}>
+            <div className={styles.navigation}>
 
                 <button
                     type="button"
                     disabled={isFirst}
                     onClick={() =>
-                        dispatch(
-                            previousQuestion()
-                        )
+                        dispatch(previousQuestion())
                     }
-                    className={styles.navButton}
+                    className={styles.navigationButton}
                 >
                     ← Назад
                 </button>
@@ -42,24 +43,22 @@ function SimulatorQuestionCard({
                     type="button"
                     disabled={isLast}
                     onClick={() =>
-                        dispatch(
-                            nextQuestion()
-                        )
+                        dispatch(nextQuestion())
                     }
-                    className={styles.navButton}
+                    className={styles.navigationButton}
                 >
                     Далее →
                 </button>
 
-            </header>
+            </div>
 
             <div className={styles.content}>
 
-                <div className={styles.questionBlock}>
+                <div className={styles.text}>
 
-                    <h2 className={styles.title}>
+                    <h1 className={styles.title}>
                         {question.title}
-                    </h2>
+                    </h1>
 
                     <p className={styles.description}>
                         {question.description}
@@ -67,42 +66,32 @@ function SimulatorQuestionCard({
 
                     <button
                         type="button"
-                        className={
-                            styles.answerButton
-                        }
+                        className={styles.answerButton}
                     >
                         Посмотреть ответ
                     </button>
 
                 </div>
 
-                <div className={styles.imageBlock}>
+                <div className={styles.imageWrapper}>
 
                     {question.imageSrc ? (
-
                         <img
                             src={question.imageSrc}
                             alt={question.title}
                             className={styles.image}
                         />
-
                     ) : (
-
-                        <div
-                            className={
-                                styles.placeholder
-                            }
-                        >
-                            Изображение
+                        <div className={styles.placeholder}>
+                            Нет изображения
                         </div>
-
                     )}
 
                 </div>
 
             </div>
 
-        </section>
+        </article>
     );
 }
 

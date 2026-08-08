@@ -1,7 +1,10 @@
 import { useDispatch } from "react-redux";
 import styles from "./SimulatorActions.module.css";
 import type { Question } from "../../../types/types";
-import { answerQuestion, nextQuestion } from "../../../store/simulatorSlice";
+import {
+    answerQuestion,
+    nextQuestion,
+} from "../../../store/simulatorSlice";
 
 interface Props {
     question: Question;
@@ -31,7 +34,7 @@ function SimulatorActions({
     return (
         <section className={styles.actions}>
 
-            <div className={styles.buttons}>
+            <div className={styles.answerButtons}>
 
                 <button
                     type="button"

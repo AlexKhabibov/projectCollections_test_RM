@@ -1,16 +1,16 @@
 import styles from "./SimulatorQuestionsProgress.module.css";
 
 interface Props {
-    current: number;
-    total: number;
+    currentQuestion: number;
+    totalQuestions: number;
 }
 
 function SimulatorQuestionsProgress({
-    current,
-    total,
+    currentQuestion,
+    totalQuestions,
 }: Props) {
 
-    const progress = (current / total) * 100;
+    const progress = (currentQuestion / totalQuestions) * 100;
 
     return (
 
@@ -23,7 +23,7 @@ function SimulatorQuestionsProgress({
                 </h2>
 
                 <span className={styles.counter}>
-                    {current}/{total}
+                    {currentQuestion}/{totalQuestions}
                 </span>
 
             </div>

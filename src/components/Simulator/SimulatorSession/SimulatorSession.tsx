@@ -1,7 +1,7 @@
 import type { Question } from "../../../types/types";
-import SimulatorActions from "../SimulatorActions/SimulatorActions";
-import SimulatorQuestionCard from "../SimulatorQuestionCard/SimulatorQuestionCard";
 import SimulatorQuestionsProgress from "../SimulatorQuestionsProgress/SimulatorQuestionsProgress";
+import SimulatorQuestionCard from "../SimulatorQuestionCard/SimulatorQuestionCard";
+import SimulatorActions from "../SimulatorActions/SimulatorActions";
 import styles from "./SimulatorSession.module.css";
 
 interface Props {
@@ -21,24 +21,28 @@ function SimulatorSession({
 }: Props) {
 
     return (
-        <section className={styles.session}>
+        <div className={styles.session}>
 
             <SimulatorQuestionsProgress
-                current={currentQuestion}
-                total={totalQuestions}
+                currentQuestion={currentQuestion}
+                totalQuestions={totalQuestions}
             />
 
-            <SimulatorQuestionCard
-                question={question}
-                isFirst={isFirst}
-                isLast={isLast}
-            />
+            <section className={styles.questionContainer}>
 
-            <SimulatorActions
-                question={question}
-            />
+                <SimulatorQuestionCard
+                    question={question}
+                    isFirst={isFirst}
+                    isLast={isLast}
+                />
 
-        </section>
+                <SimulatorActions
+                    question={question}
+                />
+
+            </section>
+
+        </div>
     );
 }
 
