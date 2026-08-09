@@ -1,15 +1,20 @@
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
+
 import type { RootState } from "../../store/store";
 
 import SimulatorSession
     from "../../components/Simulator/SimulatorSession/SimulatorSession";
+
+import SimulatorResult
+    from "../../components/Simulator/SimulatorResult/SimulatorResult";
 
 function SimulatorSessionPage() {
 
     const {
         quiz,
         currentQuestionIndex,
+        isFinished,
     } = useSelector(
         (state: RootState) => state.simulator
     );
@@ -23,8 +28,21 @@ function SimulatorSessionPage() {
         );
     }
 
+    if (isFinished) {
+        return <SimulatorResult />;
+    }
+
     const question =
         quiz.questions[currentQuestionIndex];
+
+    if (!question) {
+        return (
+            <Navigate
+                to="/simulator"
+                replace
+            />
+        );
+    }
 
     const isFirst =
         currentQuestionIndex === 0;

@@ -10,11 +10,13 @@ function SimulatorQuestionsProgress({
     totalQuestions,
 }: Props) {
 
-    const progress = (currentQuestion / totalQuestions) * 100;
+    const progress =
+        totalQuestions > 0
+            ? (currentQuestion / totalQuestions) * 100
+            : 0;
 
     return (
-
-        <section className={styles.wrapper}>
+        <section className={styles.progress}>
 
             <div className={styles.header}>
 
@@ -28,10 +30,10 @@ function SimulatorQuestionsProgress({
 
             </div>
 
-            <div className={styles.progress}>
+            <div className={styles.track}>
 
                 <div
-                    className={styles.bar}
+                    className={styles.value}
                     style={{
                         width: `${progress}%`,
                     }}
@@ -40,7 +42,6 @@ function SimulatorQuestionsProgress({
             </div>
 
         </section>
-
     );
 }
 

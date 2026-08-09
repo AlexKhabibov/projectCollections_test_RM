@@ -1,7 +1,14 @@
 import type { Question } from "../../../types/types";
-import SimulatorQuestionsProgress from "../SimulatorQuestionsProgress/SimulatorQuestionsProgress";
-import SimulatorQuestionCard from "../SimulatorQuestionCard/SimulatorQuestionCard";
-import SimulatorActions from "../SimulatorActions/SimulatorActions";
+
+import SimulatorQuestionsProgress
+    from "../SimulatorQuestionsProgress/SimulatorQuestionsProgress";
+
+import SimulatorQuestionCard
+    from "../SimulatorQuestionCard/SimulatorQuestionCard";
+
+import SimulatorActions
+    from "../SimulatorActions/SimulatorActions";
+
 import styles from "./SimulatorSession.module.css";
 
 interface Props {
@@ -37,8 +44,6 @@ function SimulatorSession({
                         isFirst={isFirst}
                         isLast={isLast}
                     />
-
-                    <div className={styles.divider} />
 
                     <SimulatorActions
                         question={question}

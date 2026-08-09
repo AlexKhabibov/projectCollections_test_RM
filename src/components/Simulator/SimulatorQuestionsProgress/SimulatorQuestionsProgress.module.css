@@ -1,38 +1,71 @@
-.wrapper {
-    background: #ffffff;
-    border-radius: 20px;
+.progress {
+    width: 100%;
     padding: 24px;
-    box-shadow: 0 4px 12px rgba(0,0,0,.05);
+
+    background: #ffffff;
+    border-radius: 16px;
+
+    box-shadow:
+        0 4px 16px rgba(0, 0, 0, 0.06);
+
+    box-sizing: border-box;
 }
 
 .header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    margin-bottom: 18px;
+    justify-content: space-between;
+
+    margin-bottom: 14px;
 }
 
 .title {
-    font-size: 22px;
-    font-weight: 700;
+    margin: 0;
+
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.3;
+
+    color: #222222;
 }
 
 .counter {
-    font-size: 18px;
-    font-weight: 600;
+    font-size: 14px;
+    line-height: 1;
+
+    color: #666666;
 }
 
-.progress {
+.track {
     width: 100%;
-    height: 12px;
-    background: #ececec;
-    border-radius: 999px;
+    height: 5px;
+
     overflow: hidden;
+
+    background: #e8dcff;
+    border-radius: 999px;
 }
 
-.bar {
+.value {
     height: 100%;
-    background: #3f8cff;
+
+    background: #6414f5;
     border-radius: inherit;
-    transition: width .3s;
+
+    transition: width 0.25s ease;
+}
+
+@media (max-width: 600px) {
+    .progress {
+        padding: 20px;
+        border-radius: 16px;
+    }
+
+    .title {
+        font-size: 18px;
+    }
+
+    .counter {
+        font-size: 13px;
+    }
 }

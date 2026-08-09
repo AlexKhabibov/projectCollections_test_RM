@@ -198,15 +198,20 @@ function SimulatorSettings() {
             </div>
 
             <div className={styles.footer}>
-                <StartSimulatorButton
-                    disabled={
-                        selectedSpecialization === null ||
-                        selectedSkills.length === 0 ||
-                        difficulty === null ||
-                        questionMode === null
-                    }
-                    onClick={handleStart}
-                />
+
+                <div className={styles.actions}>
+
+                    <StartSimulatorButton
+                        disabled={
+                            selectedSpecialization === null ||
+                            selectedSkills.length === 0 ||
+                            difficulty === null ||
+                            questionMode === null
+                        }
+                        onClick={handleStart}
+                    />
+                </div>
+
             </div>
 
         </section>

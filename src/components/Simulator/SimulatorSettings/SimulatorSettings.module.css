@@ -1,33 +1,36 @@
 .settings {
     width: 100%;
-    max-width: 1200px;
+    max-width: 1240px;
 
     margin: 40px auto;
-    padding: 32px 24px 24px;
+    padding: 28px 32px 26px;
 
     background: #ffffff;
-    border-radius: 20px;
+    border-radius: 24px;
 
-    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+    box-shadow:
+        0 6px 20px rgba(0, 0, 0, 0.08);
+
+    box-sizing: border-box;
 }
 
 .title {
     margin: 0 0 32px;
 
     font-size: 28px;
-    line-height: 1.2;
     font-weight: 500;
+    line-height: 1.2;
 
-    color: #222222;
+    color: #171717;
 }
 
 .content {
     display: grid;
-    grid-template-columns: minmax(0, 1.7fr) minmax(280px, 1fr);
+    grid-template-columns:
+        minmax(0, 1.7fr)
+        minmax(320px, 1fr);
 
-    column-gap: 80px;
-
-    min-height: 400px;
+    gap: 80px;
 }
 
 .leftColumn,
@@ -48,38 +51,36 @@
     width: 100%;
 }
 
-/* Нижняя часть с кнопкой */
-
 .footer {
     display: flex;
     justify-content: flex-end;
-    align-items: center;
 
-    margin-top: 24px;
-    padding-top: 20px;
-
-    border-top: 1px solid transparent;
+    margin-top: 40px;
 }
 
-/* Loading / errors */
+.actions {
+    display: flex;
+    justify-content: flex-end;
+}
 
 .status {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 100%;
+    max-width: 1240px;
 
-    min-height: 300px;
+    margin: 40px auto;
+    padding: 40px;
 
-    font-size: 18px;
-    color: #555555;
+    text-align: center;
+
+    color: #666666;
 }
-
-/* Планшет */
 
 @media (max-width: 900px) {
     .settings {
+        width: calc(100% - 32px);
+
         margin: 24px 16px;
-        width: auto;
+        padding: 24px;
     }
 
     .content {
@@ -87,37 +88,35 @@
         gap: 28px;
     }
 
-    .leftColumn,
-    .rightColumn {
-        gap: 24px;
+    .footer {
+        margin-top: 28px;
     }
 }
 
-/* Телефон */
-
 @media (max-width: 600px) {
     .settings {
-        margin: 16px 12px;
-        padding: 24px 16px 20px;
+        width: calc(100% - 24px);
 
-        border-radius: 16px;
+        margin: 16px 12px;
+        padding: 20px 16px;
+        border-radius: 20px;
     }
 
     .title {
         margin-bottom: 24px;
-
         font-size: 24px;
     }
 
-    .content {
-        min-height: 0;
+    .leftColumn,
+    .rightColumn {
+        gap: 24px;
     }
 
     .footer {
-        justify-content: stretch;
+        margin-top: 24px;
     }
 
-    .footer > * {
+    .actions {
         width: 100%;
     }
 }

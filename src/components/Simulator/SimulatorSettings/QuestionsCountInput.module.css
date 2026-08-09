@@ -1,26 +1,55 @@
-.wrapper {
+.container {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
 }
 
 .label {
-    margin: 0;
-    font-size: 18px;
-    font-weight: 600;
-    color: #1f2937;
-}
-
-.input {
-    width: 120px;
-    padding: 10px 14px;
-    border: 1px solid #d1d5db;
-    border-radius: 10px;
     font-size: 16px;
-    outline: none;
-    transition: border-color 0.2s ease;
+    color: #555555;
 }
 
-.input:focus {
-    border-color: #3b82f6;
+.counter {
+    display: inline-flex;
+    align-items: center;
+
+    width: fit-content;
+    height: 42px;
+
+    border: 1px solid #c8c8c8;
+    border-radius: 12px;
+
+    overflow: hidden;
+}
+
+.button {
+    width: 42px;
+    height: 42px;
+
+    border: none;
+    background: #ffffff;
+
+    color: #999999;
+    font-size: 22px;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.15s ease,
+        color 0.15s ease;
+}
+
+.button:hover {
+    background: #f3edff;
+    color: #6414f5;
+}
+
+.value {
+    min-width: 48px;
+
+    text-align: center;
+
+    font-size: 16px;
+    color: #555555;
 }

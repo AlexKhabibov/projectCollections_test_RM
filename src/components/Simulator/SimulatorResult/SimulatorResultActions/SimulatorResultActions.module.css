@@ -1,49 +1,37 @@
 .actions {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
+    justify-content: flex-end;
 
-    margin-top: 32px;
-    padding-bottom: 32px;
+    padding: 4px 0;
 }
 
-.primary,
-.secondary {
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
     min-width: 180px;
-    padding: 12px 20px;
+    height: 48px;
 
-    border-radius: 8px;
+    padding: 0 24px;
 
-    font-size: 14px;
+    border: none;
+    border-radius: 12px;
+
+    background: #6414f5;
+    color: #ffffff;
+
+    font-size: 16px;
     font-weight: 500;
 
     cursor: pointer;
 
     transition:
         background-color 0.15s ease,
-        border-color 0.15s ease,
-        opacity 0.15s ease;
+        transform 0.15s ease;
 }
 
-.primary {
-    border: 1px solid #2563eb;
-
-    color: #ffffff;
-    background-color: #2563eb;
-}
-
-.primary:hover {
-    background-color: #1d4ed8;
-}
-
-.secondary {
-    border: 1px solid #d1d5db;
-
-    color: #374151;
-    background-color: #ffffff;
-}
-
-.secondary:hover {
-    background-color: #f9fafb;
+.button:hover {
+    background: #5510d6;
+    transform: translateY(-1px);
 }
