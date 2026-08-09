@@ -1,22 +1,28 @@
 import { useState } from "react";
-import { useGetSpecializationsQuery } from "../../../api/apiSlice/specializationsApiSlice";
 import { useGetSkillsQuery } from "../../../api/apiSlice/skillsApiSlice";
-import type { SimulatorDifficulty, SimulatorQuestionMode } from "../../../types/types";
+import type {
+    SimulatorDifficulty,
+    SimulatorQuestionMode,
+} from "../../../types/types";
+
 import SpecializationSelect from "./SpecializationSelect";
 import DifficultySelect from "./DifficultySelect";
 import CategorySelect from "./CategorySelect";
 import QuestionModeSelect from "./QuestionModeSelect";
 import QuestionsCountInput from "./QuestionsCountInput";
 import StartSimulatorButton from "./StartSimulatorButton";
+
 import { useLazyStartSimulatorQuery } from "../../../api/apiSlice/simulatorApiSlice";
 import { useDispatch } from "react-redux";
 import { setQuiz } from "../../../store/simulatorSlice";
 import { useNavigate } from "react-router-dom";
 
+import styles from "./SimulatorSettings.module.css";
+import { useGetSpecializationsQuery } from "../../../api/apiSlice/specializationsApiSlice";
+
 function SimulatorSettings() {
 
     const dispatch = useDispatch();
-
     const navigate = useNavigate();
 
     const {
@@ -63,7 +69,11 @@ function SimulatorSettings() {
         isSpecializationsLoading ||
         isSkillsLoading
     ) {
-        return <div>Загрузка...</div>;
+        return (
+            <div className={styles.status}>
+                Загрузка...
+            </div>
+        );
     }
 
     if (
@@ -71,18 +81,15 @@ function SimulatorSettings() {
         skillsError
     ) {
         return (
-            <div>
+            <div className={styles.status}>
                 Ошибка загрузки данных
             </div>
         );
     }
 
-    if (
-        !specializations ||
-        !skills
-    ) {
+    if (!specializations || !skills) {
         return (
-            <div>
+            <div className={styles.status}>
                 Данные не найдены
             </div>
         );
@@ -102,13 +109,10 @@ function SimulatorSettings() {
     const handleSpecializationChange = (
         specializationId: string
     ) => {
-
-        setSelectedSpecialization(
-            specializationId
-        );
-
+        setSelectedSpecialization(specializationId);
         setSelectedSkills([]);
     };
+
     const handleStart = async () => {
 
         if (
@@ -119,9 +123,9 @@ function SimulatorSettings() {
         }
 
         try {
-
             const result = await startSimulator({
-                specialization: Number(selectedSpecialization),
+                specialization:
+                    Number(selectedSpecialization),
                 skills: selectedSkills,
                 difficulty,
                 limit: questionsCount,
@@ -130,60 +134,82 @@ function SimulatorSettings() {
             dispatch(setQuiz(result));
             navigate("/simulator-session");
 
-            console.log(result);
-
         } catch (error) {
-
             console.error(error);
-
         }
     };
 
     return (
-        <div>
+        <section className={styles.settings}>
 
-            <h1>
+            <h1 className={styles.title}>
                 Собеседование
             </h1>
 
-            <SpecializationSelect
-                specializations={specializations}
-                value={selectedSpecialization}
-                onChange={handleSpecializationChange}
-            />
+            <div className={styles.content}>
 
-            <CategorySelect
-                skills={filteredSkills}
-                selectedSkills={selectedSkills}
-                onChange={setSelectedSkills}
-            />
+                <div className={styles.leftColumn}>
 
-            <DifficultySelect
-                value={difficulty}
-                onChange={setDifficulty}
-            />
+                    <div className={styles.block}>
+                        <SpecializationSelect
+                            specializations={specializations}
+                            value={selectedSpecialization}
+                            onChange={
+                                handleSpecializationChange
+                            }
+                        />
+                    </div>
 
-            <QuestionModeSelect
-                value={questionMode}
-                onChange={setQuestionMode}
-            />
+                    <div className={styles.block}>
+                        <CategorySelect
+                            skills={filteredSkills}
+                            selectedSkills={selectedSkills}
+                            onChange={setSelectedSkills}
+                        />
+                    </div>
 
-            <QuestionsCountInput
-                value={questionsCount}
-                onChange={setQuestionsCount}
-            />
+                </div>
 
-            <StartSimulatorButton
-                disabled={
-                    selectedSpecialization === null ||
-                    selectedSkills.length === 0 ||
-                    difficulty === null ||
-                    questionMode === null
-                }
-                onClick={handleStart}
-            />
+                <div className={styles.rightColumn}>
 
-        </div>
+                    <div className={styles.block}>
+                        <DifficultySelect
+                            value={difficulty}
+                            onChange={setDifficulty}
+                        />
+                    </div>
+
+                    <div className={styles.block}>
+                        <QuestionModeSelect
+                            value={questionMode}
+                            onChange={setQuestionMode}
+                        />
+                    </div>
+
+                    <div className={styles.block}>
+                        <QuestionsCountInput
+                            value={questionsCount}
+                            onChange={setQuestionsCount}
+                        />
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div className={styles.footer}>
+                <StartSimulatorButton
+                    disabled={
+                        selectedSpecialization === null ||
+                        selectedSkills.length === 0 ||
+                        difficulty === null ||
+                        questionMode === null
+                    }
+                    onClick={handleStart}
+                />
+            </div>
+
+        </section>
     );
 }
 

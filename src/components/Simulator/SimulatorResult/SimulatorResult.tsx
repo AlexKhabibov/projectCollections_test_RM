@@ -1,16 +1,11 @@
 import { useSelector } from "react-redux";
 import type { RootState } from "../../../store/store";
-
-import SimulatorResultQuestions
-    from "./SimulatorResultQuestions/SimulatorResultQuestions";
-
-import SimulatorResultActions
-    from "./SimulatorResultActions/SimulatorResultActions";
-
 import SimulatorSkillsProgress
     from "../SimulatorSkillsProgress/SimulatorSkillsProgress";
-
+import SimulatorResultQuestions
+    from "./SimulatorResultQuestions/SimulatorResultQuestions";
 import styles from "./SimulatorResult.module.css";
+import SimulatorResultStatistics from "../SimulatorResultStatistics/SimulatorResultStatistics";
 
 function SimulatorResult() {
 
@@ -34,95 +29,60 @@ function SimulatorResult() {
                 answer.answer === "KNOWN"
         ).length;
 
-    const unknownCount =
-        answers.filter(
-            (answer) =>
-                answer.answer === "UNKNOWN"
-        ).length;
-
-    const knownPercent =
+    const studiedPercent =
         totalQuestions > 0
             ? Math.round(
-                (knownCount / totalQuestions) * 100
+                (knownCount /
+                    totalQuestions) *
+                100
             )
             : 0;
 
     return (
         <main className={styles.result}>
 
-            <header className={styles.header}>
+            <section className={styles.overview}>
 
-                <div>
+                <header className={styles.header}>
 
                     <h1 className={styles.title}>
-                        Результат собеседования
+                        Умный режим изучения вопросов
                     </h1>
 
-                    <p className={styles.subtitle}>
-                        Статистика пройденных вопросов
-                    </p>
+                    <button
+                        type="button"
+                        className={styles.statisticsLink}
+                    >
+                        Посмотреть статистику
+                        <span>→</span>
+                    </button>
 
-                </div>
+                </header>
 
-            </header>
+                <div className={styles.overviewContent}>
 
-            <section className={styles.statistics}>
+                    <SimulatorResultStatistics
+                        totalQuestions={totalQuestions}
+                        knownCount={knownCount}
+                        studiedPercent={studiedPercent}
+                    />
 
-                <div className={styles.mainStat}>
-
-                    <span className={styles.mainStatValue}>
-                        {knownPercent}%
-                    </span>
-
-                    <span className={styles.mainStatLabel}>
-                        Изучено
-                    </span>
-
-                </div>
-
-                <div className={styles.stat}>
-
-                    <span className={styles.statValue}>
-                        {totalQuestions}
-                    </span>
-
-                    <span className={styles.statLabel}>
-                        Всего
-                    </span>
-
-                </div>
-
-                <div className={styles.stat}>
-
-                    <span className={styles.statValue}>
-                        {knownCount}
-                    </span>
-
-                    <span className={styles.statLabel}>
-                        Знаю
-                    </span>
-
-                </div>
-
-                <div className={styles.stat}>
-
-                    <span className={styles.statValue}>
-                        {unknownCount}
-                    </span>
-
-                    <span className={styles.statLabel}>
-                        Не знаю
-                    </span>
+                    <SimulatorSkillsProgress />
 
                 </div>
 
             </section>
 
-            <SimulatorSkillsProgress />
+            <section className={styles.questionsCard}>
 
-            <SimulatorResultQuestions />
+                <h2 className={styles.questionsTitle}>
+                    Список пройденных вопросов
+                    собеседования
+                </h2>
 
-            <SimulatorResultActions />
+                <SimulatorResultQuestions />
+
+            </section>
 
         </main>
     );

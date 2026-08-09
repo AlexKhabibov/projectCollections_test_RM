@@ -70,9 +70,7 @@ function calculateSkillsProgress(
         });
     });
 
-    return Array.from(
-        skillsMap.values()
-    );
+    return Array.from(skillsMap.values());
 }
 
 function SimulatorSkillsProgress() {
@@ -95,7 +93,7 @@ function SimulatorSkillsProgress() {
         );
 
     return (
-        <section className={styles.section}>
+        <section className={styles.card}>
 
             <h2 className={styles.title}>
                 Прогресс обучения по навыкам
@@ -123,30 +121,19 @@ function SimulatorSkillsProgress() {
                             <div
                                 className={styles.skillHeader}
                             >
-
-                                <span
-                                    className={
-                                        styles.skillTitle
-                                    }
-                                >
+                                <span>
                                     {skill.title}
                                 </span>
 
-                                <span
-                                    className={
-                                        styles.skillCount
-                                    }
-                                >
-                                    {skill.known} /{" "}
+                                <span>
+                                    {skill.known}/
                                     {skill.total}
                                 </span>
-
                             </div>
 
                             <div
                                 className={styles.track}
                             >
-
                                 <div
                                     className={styles.bar}
                                     style={{
@@ -154,7 +141,6 @@ function SimulatorSkillsProgress() {
                                             `${percent}%`,
                                     }}
                                 />
-
                             </div>
 
                         </div>

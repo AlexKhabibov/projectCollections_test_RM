@@ -21,28 +21,34 @@ function SimulatorSession({
 }: Props) {
 
     return (
-        <div className={styles.session}>
+        <main className={styles.session}>
 
-            <SimulatorQuestionsProgress
-                currentQuestion={currentQuestion}
-                totalQuestions={totalQuestions}
-            />
+            <div className={styles.container}>
 
-            <section className={styles.questionContainer}>
-
-                <SimulatorQuestionCard
-                    question={question}
-                    isFirst={isFirst}
-                    isLast={isLast}
+                <SimulatorQuestionsProgress
+                    currentQuestion={currentQuestion}
+                    totalQuestions={totalQuestions}
                 />
 
-                <SimulatorActions
-                    question={question}
-                />
+                <section className={styles.questionContainer}>
 
-            </section>
+                    <SimulatorQuestionCard
+                        question={question}
+                        isFirst={isFirst}
+                        isLast={isLast}
+                    />
 
-        </div>
+                    <div className={styles.divider} />
+
+                    <SimulatorActions
+                        question={question}
+                    />
+
+                </section>
+
+            </div>
+
+        </main>
     );
 }
 
