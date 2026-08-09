@@ -1,28 +1,26 @@
 import { useSelector } from "react-redux";
+import { Navigate } from "react-router-dom";
 import type { RootState } from "../../store/store";
 
 import SimulatorSession
     from "../../components/Simulator/SimulatorSession/SimulatorSession";
-
-import SimulatorResult
-    from "../../components/Simulator/SimulatorResult/SimulatorResult";
 
 function SimulatorSessionPage() {
 
     const {
         quiz,
         currentQuestionIndex,
-        isFinished,
     } = useSelector(
         (state: RootState) => state.simulator
     );
 
     if (!quiz) {
-        return <h2>Тест не найден</h2>;
-    }
-
-    if (isFinished) {
-        return <SimulatorResult />;
+        return (
+            <Navigate
+                to="/simulator"
+                replace
+            />
+        );
     }
 
     const question =

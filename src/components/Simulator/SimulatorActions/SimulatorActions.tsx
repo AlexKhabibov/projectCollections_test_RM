@@ -1,9 +1,9 @@
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import styles from "./SimulatorActions.module.css";
 import type { Question } from "../../../types/types";
 import {
     answerQuestion,
-    finishQuiz,
     nextQuestion,
 } from "../../../store/simulatorSlice";
 
@@ -16,6 +16,7 @@ function SimulatorActions({
 }: Props) {
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handleAnswer = (
         answer: "KNOWN" | "UNKNOWN"
@@ -33,13 +34,13 @@ function SimulatorActions({
     };
 
     const handleFinish = () => {
-        dispatch(finishQuiz());
+        navigate("/simulator-result");
     };
 
     return (
         <section className={styles.actions}>
 
-            <div className={styles.answerButtons}>
+            <div className={styles.buttons}>
 
                 <button
                     type="button"

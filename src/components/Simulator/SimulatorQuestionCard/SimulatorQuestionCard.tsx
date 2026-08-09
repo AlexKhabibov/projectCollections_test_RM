@@ -1,13 +1,7 @@
-import { useDispatch } from "react-redux";
-
-import {
-    nextQuestion,
-    previousQuestion,
-} from "../../../store/simulatorSlice";
-
+import { useState } from "react";
 import type { Question } from "../../../types/types";
-
 import styles from "./SimulatorQuestionCard.module.css";
+import DOMPurify from "dompurify";
 
 interface Props {
     question: Question;
@@ -17,81 +11,63 @@ interface Props {
 
 function SimulatorQuestionCard({
     question,
-    isFirst,
-    isLast,
 }: Props) {
 
-    const dispatch = useDispatch();
+    const [isAnswerVisible, setIsAnswerVisible] =
+        useState(false);
+
+    const toggleAnswer = () => {
+        setIsAnswerVisible((prev) => !prev);
+    };
 
     return (
-        <article className={styles.card}>
-
-            <div className={styles.navigation}>
-
-                <button
-                    type="button"
-                    disabled={isFirst}
-                    onClick={() =>
-                        dispatch(previousQuestion())
-                    }
-                    className={styles.navigationButton}
-                >
-                    ← Назад
-                </button>
-
-                <button
-                    type="button"
-                    disabled={isLast}
-                    onClick={() =>
-                        dispatch(nextQuestion())
-                    }
-                    className={styles.navigationButton}
-                >
-                    Далее →
-                </button>
-
-            </div>
+        <div className={styles.card}>
 
             <div className={styles.content}>
 
-                <div className={styles.text}>
+                <div className={styles.question}>
 
                     <h1 className={styles.title}>
+                        <span className={styles.dot} />
                         {question.title}
                     </h1>
-
-                    <p className={styles.description}>
-                        {question.description}
-                    </p>
 
                     <button
                         type="button"
                         className={styles.answerButton}
+                        onClick={toggleAnswer}
                     >
-                        Посмотреть ответ
+                        {isAnswerVisible
+                            ? "Скрыть ответ"
+                            : "Посмотреть ответ"}
                     </button>
+
+                    {isAnswerVisible && (
+                        <div
+                            className={styles.answer}
+                            dangerouslySetInnerHTML={{
+                                __html: DOMPurify.sanitize(question.longAnswer),
+                            }}
+                        />
+                    )}
 
                 </div>
 
                 <div className={styles.imageWrapper}>
 
-                    {question.imageSrc ? (
+                    {question.imageSrc && (
                         <img
                             src={question.imageSrc}
-                            alt={question.title}
+                            alt=""
                             className={styles.image}
                         />
-                    ) : (
-                        <div className={styles.placeholder}>
-                            Нет изображения
-                        </div>
                     )}
 
                 </div>
 
             </div>
 
-        </article>
+        </div>
     );
 }
 
