@@ -16,87 +16,68 @@ function SimulatorResultQuestions() {
     }
 
     return (
-        <section className={styles.section}>
+        <div className={styles.questions}>
 
-            <h2 className={styles.title}>
-                Результаты по вопросам
-            </h2>
+            {quiz.questions.map((question) => {
 
-            <div className={styles.list}>
+                const answer = answers.find(
+                    (item) =>
+                        item.questionId ===
+                        Number(question.id)
+                );
 
-                {quiz.questions.map((question, index) => {
+                const isKnown =
+                    answer?.answer === "KNOWN";
 
-                    const answer =
-                        answers.find(
-                            (answer) =>
-                                answer.questionId ===
-                                Number(question.id)
-                        );
+                return (
+                    <article
+                        key={question.id}
+                        className={styles.question}
+                    >
 
-                    const isKnown =
-                        answer?.answer === "KNOWN";
+                        <div className={styles.imageWrapper}>
 
-                    return (
-                        <article
-                            key={question.id}
-                            className={styles.question}
-                        >
-
-                            <div
-                                className={
-                                    styles.questionInfo
-                                }
-                            >
-
-                                <span
+                            {question.imageSrc ? (
+                                <img
+                                    src={question.imageSrc}
+                                    alt=""
+                                    className={styles.image}
+                                />
+                            ) : (
+                                <div
                                     className={
-                                        styles.questionNumber
+                                        styles.imagePlaceholder
                                     }
-                                >
-                                    {index + 1}
-                                </span>
+                                />
+                            )}
 
-                                <div>
+                        </div>
 
-                                    <h3
-                                        className={
-                                            styles.questionTitle
-                                        }
-                                    >
-                                        {question.title}
-                                    </h3>
+                        <div className={styles.content}>
 
-                                    <p
-                                        className={
-                                            styles.questionDescription
-                                        }
-                                    >
-                                        {question.description}
-                                    </p>
-
-                                </div>
-
-                            </div>
+                            <h3 className={styles.questionTitle}>
+                                {question.title}
+                            </h3>
 
                             <span
-                                className={
+                                className={`${styles.status} ${
                                     isKnown
                                         ? styles.known
                                         : styles.unknown
-                                }
+                                }`}
                             >
                                 {isKnown
                                     ? "Знаю"
                                     : "Не знаю"}
                             </span>
 
-                        </article>
-                    );
-                })}
+                        </div>
 
-            </div>
+                    </article>
+                );
+            })}
 
-        </section>
+        </div>
     );
 }
 

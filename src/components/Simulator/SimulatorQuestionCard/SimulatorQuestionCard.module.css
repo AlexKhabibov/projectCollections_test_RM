@@ -1,6 +1,8 @@
 .card {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(400px, 1fr);
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(400px, 1fr);
 
     gap: 32px;
 
@@ -16,27 +18,29 @@
 
 .question {
     position: relative;
+}
+
+.title {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
 
     margin: 0;
 
-    padding-left: 18px;
-
-    font-size: 20px;
-    font-weight: 400;
+    font-size: 22px;
+    font-weight: 500;
     line-height: 1.4;
 
     color: #222222;
 }
 
-.question::before {
-    content: "";
-
-    position: absolute;
-    left: 0;
-    top: 9px;
-
+.dot {
     width: 8px;
     height: 8px;
+
+    flex: 0 0 8px;
+
+    margin-top: 10px;
 
     border-radius: 50%;
 
@@ -44,9 +48,13 @@
 }
 
 .answerButton {
+    display: inline-flex;
+    align-items: center;
+
     width: fit-content;
 
-    margin-top: 14px;
+    margin-top: 16px;
+    margin-left: 18px;
 
     padding: 0;
 
@@ -55,7 +63,9 @@
 
     color: #6414f5;
 
+    font: inherit;
     font-size: 14px;
+    font-weight: 400;
 
     cursor: pointer;
 }
@@ -66,14 +76,22 @@
 }
 
 .answer {
-    margin-top: 18px;
+    margin-top: 20px;
+    margin-left: 18px;
 
     color: #444444;
+
     font-size: 15px;
     line-height: 1.6;
 }
 
+.imageWrapper {
+    width: 100%;
+}
+
 .image {
+    display: block;
+
     width: 100%;
     height: 346px;
 
@@ -89,4 +107,35 @@
     border-radius: 20px;
 
     background: #f0e7ff;
+}
+
+@media (max-width: 900px) {
+    .card {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .image {
+        height: 300px;
+    }
+
+    .placeholder {
+        height: 300px;
+    }
+}
+
+@media (max-width: 600px) {
+    .title {
+        font-size: 20px;
+    }
+
+    .image {
+        height: 240px;
+        border-radius: 16px;
+    }
+
+    .placeholder {
+        height: 240px;
+        border-radius: 16px;
+    }
 }

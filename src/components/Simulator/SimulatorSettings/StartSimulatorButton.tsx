@@ -18,6 +18,7 @@ function StartSimulatorButton({
             className={styles.button}
         >
             Начать
+            <span className={styles.arrow}>→</span>
         </button>
     );
 }

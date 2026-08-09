@@ -29,7 +29,10 @@ function SimulatorQuestionCard({
 
                     <h1 className={styles.title}>
                         <span className={styles.dot} />
-                        {question.title}
+
+                        <span>
+                            {question.title}
+                        </span>
                     </h1>
 
                     <button
@@ -46,7 +49,10 @@ function SimulatorQuestionCard({
                         <div
                             className={styles.answer}
                             dangerouslySetInnerHTML={{
-                                __html: DOMPurify.sanitize(question.longAnswer),
+                                __html:
+                                    DOMPurify.sanitize(
+                                        question.longAnswer
+                                    ),
                             }}
                         />
                     )}

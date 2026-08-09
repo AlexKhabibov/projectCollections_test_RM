@@ -1,4 +1,7 @@
-import { simulatorQuestionModes, type SimulatorQuestionMode } from "../../../types/types";
+import {
+    simulatorQuestionModes,
+    type SimulatorQuestionMode,
+} from "../../../types/types";
 import styles from "./QuestionModeSelect.module.css";
 
 interface Props {
@@ -26,10 +29,12 @@ function QuestionModeSelect({
                         value === mode.value;
 
                     return (
-
                         <button
                             key={mode.value}
                             type="button"
+                            disabled={
+                                mode.value === "review"
+                            }
                             onClick={() =>
                                 onChange(mode.value)
                             }
@@ -41,7 +46,6 @@ function QuestionModeSelect({
                         >
                             {mode.label}
                         </button>
-
                     );
 
                 })}
