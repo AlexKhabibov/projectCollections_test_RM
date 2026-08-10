@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import type { Question } from "../../../types/types";
-import styles from "./SimulatorQuestionCard.module.css";
 import DOMPurify from "dompurify";
+import { nextQuestion, previousQuestion } from "../../../store/simulatorSlice";
+import styles from "./SimulatorQuestionCard.module.css";
 
 interface Props {
     question: Question;
@@ -11,7 +13,11 @@ interface Props {
 
 function SimulatorQuestionCard({
     question,
+    isFirst,
+    isLast,
 }: Props) {
+
+    const dispatch = useDispatch();
 
     const [isAnswerVisible, setIsAnswerVisible] =
         useState(false);
@@ -20,8 +26,38 @@ function SimulatorQuestionCard({
         setIsAnswerVisible((prev) => !prev);
     };
 
+    const handlePrevious = () => {
+        dispatch(previousQuestion());
+    };
+
+    const handleNext = () => {
+        dispatch(nextQuestion());
+    };
+
     return (
         <div className={styles.card}>
+
+            <div className={styles.navigation}>
+
+                <button
+                    type="button"
+                    className={styles.navigationButton}
+                    disabled={isFirst}
+                    onClick={handlePrevious}
+                >
+                    ← Назад
+                </button>
+
+                <button
+                    type="button"
+                    className={styles.navigationButton}
+                    disabled={isLast}
+                    onClick={handleNext}
+                >
+                    Далее →
+                </button>
+
+            </div>
 
             <div className={styles.content}>
 
@@ -29,10 +65,7 @@ function SimulatorQuestionCard({
 
                     <h1 className={styles.title}>
                         <span className={styles.dot} />
-
-                        <span>
-                            {question.title}
-                        </span>
+                        {question.title}
                     </h1>
 
                     <button
