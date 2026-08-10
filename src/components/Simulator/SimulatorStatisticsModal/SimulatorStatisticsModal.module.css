@@ -1,0 +1,363 @@
+.overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 24px;
+
+    background: rgba(0, 0, 0, 0.28);
+}
+
+.modal {
+    position: relative;
+
+    width: 100%;
+    max-width: 850px;
+
+    padding: 28px;
+
+    border: 1px solid #6414f5;
+    border-radius: 28px;
+
+    background: #ffffff;
+
+    box-sizing: border-box;
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.16);
+}
+
+.close {
+    position: absolute;
+    top: -34px;
+    right: -2px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 28px;
+    height: 28px;
+
+    border: 1px solid #6414f5;
+    border-radius: 50%;
+
+    background: #ffffff;
+    color: #6414f5;
+
+    font-size: 22px;
+    font-weight: 300;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.15s ease,
+        color 0.15s ease;
+}
+
+.close:hover {
+    background: #6414f5;
+    color: #ffffff;
+}
+
+.content {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 0.82fr);
+
+    gap: 24px;
+}
+
+.left {
+    display: flex;
+    flex-direction: column;
+
+    padding: 2px 0 0;
+}
+
+.icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 38px;
+    height: 38px;
+
+    margin-bottom: 16px;
+
+    border-radius: 10px;
+
+    background: #f4eeff;
+
+    color: #6414f5;
+
+    font-size: 24px;
+}
+
+.title {
+    margin: 0;
+
+    font-size: 26px;
+    font-weight: 500;
+    line-height: 1.2;
+
+    color: #222222;
+}
+
+.description {
+    margin: 18px 0 14px;
+
+    font-size: 17px;
+    line-height: 1.45;
+
+    color: #666666;
+}
+
+.features {
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+
+    margin: 0 0 20px;
+    padding: 0;
+
+    list-style: none;
+}
+
+.features li {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    font-size: 16px;
+    line-height: 1.35;
+
+    color: #333333;
+}
+
+.features li span {
+    flex-shrink: 0;
+
+    color: #6414f5;
+
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.subscribeButton {
+    width: 100%;
+    height: 54px;
+
+    margin-top: auto;
+
+    border: none;
+    border-radius: 14px;
+
+    background: #6414f5;
+    color: #ffffff;
+
+    font-size: 18px;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.15s ease,
+        transform 0.15s ease;
+}
+
+.subscribeButton:hover {
+    background: #5510d6;
+    transform: translateY(-1px);
+}
+
+.subscribeButton:active {
+    transform: translateY(0);
+}
+
+.freePeriod {
+    margin-top: 8px;
+
+    text-align: center;
+
+    font-size: 15px;
+
+    color: #666666;
+}
+
+.right {
+    display: flex;
+    align-items: stretch;
+
+    padding: 24px;
+
+    border-radius: 20px;
+
+    background: #f5f5f5;
+}
+
+.progressCard {
+    width: 100%;
+
+    padding: 20px;
+
+    border-radius: 16px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 4px 14px rgba(0, 0, 0, 0.05);
+}
+
+.progressTitle {
+    margin: 0 0 22px;
+
+    font-size: 20px;
+    font-weight: 500;
+
+    color: #222222;
+}
+
+.totalProgress {
+    margin-bottom: 20px;
+
+    padding: 12px;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 3px 12px rgba(0, 0, 0, 0.05);
+}
+
+.totalProgressText {
+    margin-bottom: 8px;
+
+    font-size: 14px;
+
+    color: #999999;
+}
+
+.totalProgressTrack {
+    width: 100%;
+    height: 10px;
+
+    overflow: hidden;
+
+    border-radius: 999px;
+
+    background: #e8e8e8;
+}
+
+.totalProgressBar {
+    width: 72%;
+    height: 100%;
+
+    border-radius: inherit;
+
+    background: #009b18;
+}
+
+.skills {
+    display: flex;
+    flex-direction: column;
+
+    gap: 12px;
+}
+
+.skill {
+    display: flex;
+    flex-direction: column;
+
+    gap: 6px;
+}
+
+.skillHeader {
+    display: flex;
+    justify-content: space-between;
+
+    font-size: 15px;
+
+    color: #555555;
+}
+
+.skillTrack {
+    width: 100%;
+    height: 9px;
+
+    overflow: hidden;
+
+    border-radius: 999px;
+
+    background: #eadfff;
+}
+
+.skillBar {
+    height: 100%;
+
+    border-radius: inherit;
+
+    background: #6414f5;
+}
+
+@media (max-width: 750px) {
+
+    .overlay {
+        align-items: flex-start;
+
+        padding: 60px 16px 20px;
+
+        overflow-y: auto;
+    }
+
+    .modal {
+        padding: 24px;
+
+        border-radius: 22px;
+    }
+
+    .content {
+        grid-template-columns: 1fr;
+    }
+
+    .right {
+        padding: 16px;
+    }
+
+    .close {
+        top: -36px;
+        right: 0;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .modal {
+        padding: 20px;
+    }
+
+    .title {
+        font-size: 23px;
+    }
+
+    .description {
+        font-size: 16px;
+    }
+
+    .features li {
+        font-size: 15px;
+    }
+
+    .right {
+        padding: 10px;
+    }
+
+    .progressCard {
+        padding: 16px;
+    }
+}

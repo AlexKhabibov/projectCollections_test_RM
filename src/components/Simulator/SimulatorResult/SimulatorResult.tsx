@@ -1,13 +1,23 @@
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import type { RootState } from "../../../store/store";
 import SimulatorSkillsProgress
     from "../SimulatorSkillsProgress/SimulatorSkillsProgress";
 import SimulatorResultQuestions
     from "./SimulatorResultQuestions/SimulatorResultQuestions";
+import SimulatorResultStatistics
+    from "../SimulatorResultStatistics/SimulatorResultStatistics";
+import SimulatorStatisticsModal
+    from "../SimulatorStatisticsModal/SimulatorStatisticsModal";
 import styles from "./SimulatorResult.module.css";
-import SimulatorResultStatistics from "../SimulatorResultStatistics/SimulatorResultStatistics";
+import { calculateSkillsProgress } from "../../../utils/simulatorUtils";
 
 function SimulatorResult() {
+
+    const [
+        isStatisticsOpen,
+        setIsStatisticsOpen,
+    ] = useState(false);
 
     const {
         quiz,
@@ -38,6 +48,12 @@ function SimulatorResult() {
             )
             : 0;
 
+    const skillsProgress =
+        calculateSkillsProgress(
+            quiz.questions,
+            answers
+        );
+
     return (
         <main className={styles.result}>
 
@@ -51,20 +67,36 @@ function SimulatorResult() {
 
                     <button
                         type="button"
-                        className={styles.statisticsLink}
+                        className={
+                            styles.statisticsLink
+                        }
+                        onClick={() =>
+                            setIsStatisticsOpen(true)
+                        }
                     >
                         Посмотреть статистику
+
                         <span>→</span>
                     </button>
 
                 </header>
 
-                <div className={styles.overviewContent}>
+                <div
+                    className={
+                        styles.overviewContent
+                    }
+                >
 
                     <SimulatorResultStatistics
-                        totalQuestions={totalQuestions}
-                        knownCount={knownCount}
-                        studiedPercent={studiedPercent}
+                        totalQuestions={
+                            totalQuestions
+                        }
+                        knownCount={
+                            knownCount
+                        }
+                        studiedPercent={
+                            studiedPercent
+                        }
                     />
 
                     <SimulatorSkillsProgress />
@@ -73,9 +105,15 @@ function SimulatorResult() {
 
             </section>
 
-            <section className={styles.questionsCard}>
+            <section
+                className={styles.questionsCard}
+            >
 
-                <h2 className={styles.questionsTitle}>
+                <h2
+                    className={
+                        styles.questionsTitle
+                    }
+                >
                     Список пройденных вопросов
                     собеседования
                 </h2>
@@ -83,6 +121,23 @@ function SimulatorResult() {
                 <SimulatorResultQuestions />
 
             </section>
+
+            {isStatisticsOpen && (
+                <SimulatorStatisticsModal
+                    skillsProgress={
+                        skillsProgress
+                    }
+                    totalQuestions={
+                        totalQuestions
+                    }
+                    knownCount={
+                        knownCount
+                    }
+                    onClose={() =>
+                        setIsStatisticsOpen(false)
+                    }
+                />
+            )}
 
         </main>
     );
