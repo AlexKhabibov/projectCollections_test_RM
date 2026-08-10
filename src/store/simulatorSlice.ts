@@ -1,7 +1,14 @@
-import { createSlice, type PayloadAction, } from "@reduxjs/toolkit";
-import type { SimulatorAnswer, SimulatorResponse, } from "../types/types";
+import {
+    createSlice,
+    type PayloadAction,
+} from "@reduxjs/toolkit";
 
-interface SimulatorState {
+import type {
+    SimulatorAnswer,
+    SimulatorResponse,
+} from "../types/types";
+
+export interface SimulatorState {
     quiz: SimulatorResponse | null;
     currentQuestionIndex: number;
     isFinished: boolean;
@@ -18,7 +25,9 @@ const initialState: SimulatorState = {
 const simulatorSlice = createSlice({
 
     name: "simulator",
+
     initialState,
+
     reducers: {
 
         setQuiz: (
@@ -27,8 +36,11 @@ const simulatorSlice = createSlice({
         ) => {
 
             state.quiz = action.payload;
+
             state.currentQuestionIndex = 0;
+
             state.isFinished = false;
+
             state.answers = [];
         },
 
@@ -97,8 +109,11 @@ const simulatorSlice = createSlice({
         resetQuiz: (state) => {
 
             state.quiz = null;
+
             state.currentQuestionIndex = 0;
+
             state.isFinished = false;
+
             state.answers = [];
         },
     },

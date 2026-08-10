@@ -126,8 +126,7 @@ function SimulatorSkillsProgress() {
                                 </span>
 
                                 <span>
-                                    {skill.known}/
-                                    {skill.total}
+                                    {skill.known}/{skill.total}
                                 </span>
                             </div>
 
