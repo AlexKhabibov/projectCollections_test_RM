@@ -9,11 +9,14 @@ export default function QuestionsListPage() {
     const navigate = useNavigate();
     const location = useLocation();
     const params = new URLSearchParams(location.search);
-
     const page = Number(params.get("page") ?? 1);
     const limit = Number(params.get("limit") ?? 10);
     const search = params.get("search") ?? "";
-    const collectionId = params.get("collectionId") ?? "";
+    const collectionParam = params.get("collection");
+    const collection =
+        collectionParam ?
+            Number(collectionParam) :
+            undefined;
 
     const {
         data,
@@ -23,7 +26,7 @@ export default function QuestionsListPage() {
         page,
         limit,
         search,
-        collectionId,
+        collection,
     });
 
     const handlePageChange = (page: number) => {

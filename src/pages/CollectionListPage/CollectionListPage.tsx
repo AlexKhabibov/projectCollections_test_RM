@@ -1,39 +1,53 @@
 import { useState } from "react";
-import { useNavigate, useLocation, } from "react-router-dom";
-import CollectionCardList from "../../components/CollectionCardList/CollectionCardList";
-import Pagination from "../../components/Pagination/Pagination";
-import CollectionListSidebar from "../../components/CollectionListSidebar/CollectionListSidebar";
-import SidebarDrawer from "../../components/Sidebar/SidebarDrawer/SidebarDrawer";
+import {
+    useNavigate,
+    useLocation,
+} from "react-router-dom";
+import CollectionCardList
+    from "../../components/CollectionCardList/CollectionCardList";
+import Pagination
+    from "../../components/Pagination/Pagination";
+import CollectionListSidebar
+    from "../../components/CollectionListSidebar/CollectionListSidebar";
+import SidebarDrawer
+    from "../../components/Sidebar/SidebarDrawer/SidebarDrawer";
 import styles from "./CollectionListPage.module.css";
-import { useGetCollectionsQuery } from "../../api/apiSlice/collectionsApiSlice";
-import { useGetSpecializationsQuery } from "../../api/apiSlice/specializationsApiSlice";
+import {
+    useGetCollectionsQuery,
+} from "../../api/apiSlice/collectionsApiSlice";
+import {
+    useGetSpecializationsQuery,
+} from "../../api/apiSlice/specializationsApiSlice";
 
 function CollectionListPage() {
 
     const navigate = useNavigate();
     const location = useLocation();
     const params = new URLSearchParams(location.search);
-
     const page = Number(params.get("page") ?? 1);
     const limit = Number(params.get("limit") ?? 10);
-
     const access = params.get("access") ?? "";
+
+    const specializationParams =
+        params.getAll("specializations");
+
+    const selectedSpecializations =
+        specializationParams.map(Number);
 
     const {
         data: collections,
         isLoading: isCollectionsLoading,
         error: collectionsError,
-
     } = useGetCollectionsQuery({
         page,
         limit,
         access,
+        specializations: selectedSpecializations,
     });
 
     const {
         data: specializations,
         isLoading: isSpecializationsLoading,
-
     } = useGetSpecializationsQuery();
 
     const [
@@ -42,16 +56,21 @@ function CollectionListPage() {
     ] = useState(false);
 
     const handlePageChange = (
-        page: number
+        nextPage: number
     ) => {
 
-        params.set(
+        const newParams =
+            new URLSearchParams(
+                location.search
+            );
+
+        newParams.set(
             "page",
-            String(page)
+            String(nextPage)
         );
 
         navigate(
-            `${location.pathname}?${params.toString()}`
+            `${location.pathname}?${newParams.toString()}`
         );
     };
 
@@ -87,6 +106,7 @@ function CollectionListPage() {
             <main className={styles.main}>
 
                 <button
+                    type="button"
                     className={
                         styles.mobileSidebarButton
                     }
@@ -118,7 +138,6 @@ function CollectionListPage() {
                     }
                 />
 
-
             </main>
 
             <SidebarDrawer
@@ -139,6 +158,5 @@ function CollectionListPage() {
         </div>
     );
 }
-
 
 export default CollectionListPage;

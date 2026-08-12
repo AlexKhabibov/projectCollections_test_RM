@@ -90,11 +90,9 @@ export interface Question {
     complexity: number;
     createdById: string;
     updatedById: string;
-
     questionSpecializations: Specialization[];
     questionSkills: QuestionSkill[];
     questionTopics: Topic[];
-
     createdAt: string;
     updatedAt: string;
     createdBy: User;
@@ -133,7 +131,7 @@ export type AccessType =
     | "public";
 
 
-    
+
 
 export type SimulatorDifficulty =
     | "beginner"

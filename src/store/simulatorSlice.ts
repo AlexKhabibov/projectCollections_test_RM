@@ -1,11 +1,12 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import type { SimulatorAnswer, SimulatorResponse } from "../types/types";
+import type { SimulatorAnswer, SimulatorQuestionMode, SimulatorResponse } from "../types/types";
 
 export interface SimulatorState {
     quiz: SimulatorResponse | null;
     currentQuestionIndex: number;
     isFinished: boolean;
     answers: SimulatorAnswer[];
+    questionMode: SimulatorQuestionMode | null;
 }
 
 const initialState: SimulatorState = {
@@ -13,7 +14,14 @@ const initialState: SimulatorState = {
     currentQuestionIndex: 0,
     isFinished: false,
     answers: [],
+    questionMode: null,
 };
+
+interface SetQuizPayload {
+    quiz: SimulatorResponse;
+    questionMode: SimulatorQuestionMode;
+}
+
 
 const simulatorSlice = createSlice({
 
@@ -23,10 +31,10 @@ const simulatorSlice = createSlice({
 
         setQuiz: (
             state,
-            action: PayloadAction<SimulatorResponse>
+            action: PayloadAction<SetQuizPayload>
         ) => {
 
-            state.quiz = action.payload;
+            state.quiz = action.payload.quiz;
             state.currentQuestionIndex = 0;
             state.isFinished = false;
             state.answers = [];

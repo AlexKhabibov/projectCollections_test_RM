@@ -6,13 +6,15 @@ import CollectionDetailsPage from "../pages/CollectionDetailsPage/CollectionDeta
 import QuestionsListPage from "../pages/QuestionsListPage/QuestionsListPage";
 import QuestionDetailsPage from "../pages/QuestionDetailsPage/QuestionDetailsPage";
 import Layout from "../components/Layout/Layout";
-import SimulatorStartPage from "../pages/SimulatorStartPage/SimulatorStartPage";
-import SimulatorSessionPage from "../pages/SimulatorSessionPage/SimulatorSessionPage";
-import SimulatorResultPage from "../pages/SimulatorResultPage/SimulatorResultPage";
+import {
+    SimulatorStartPage,
+    SimulatorSessionPage,
+    SimulatorResultPage,
+} from "./lazyPages";
 
 export const router = createBrowserRouter([
     {
-        path: '/',
+        path: "/",
         element: <Layout />,
         errorElement: <ErrorPage />,
         children: [
@@ -22,12 +24,12 @@ export const router = createBrowserRouter([
             },
 
             {
-                path: 'collections/:id',
+                path: "collections/:id",
                 element: <CollectionDetailsPage />,
             },
 
             {
-                path: 'questions',
+                path: "questions",
                 element: <QuestionsListPage />,
             },
 
@@ -35,22 +37,25 @@ export const router = createBrowserRouter([
                 path: "questions/:id",
                 element: <QuestionDetailsPage />,
             },
+
             {
                 path: "simulator",
                 element: <SimulatorStartPage />,
             },
+
             {
                 path: "simulator-session",
-                element: <SimulatorSessionPage />
+                element: <SimulatorSessionPage />,
             },
+
             {
-                path: "/simulator-result",
+                path: "simulator-result",
                 element: <SimulatorResultPage />,
-            }
-        ]
+            },
+        ],
     },
     {
-        path: '*',
-        element: <NotFoundPage />
-    }
+        path: "*",
+        element: <NotFoundPage />,
+    },
 ]);

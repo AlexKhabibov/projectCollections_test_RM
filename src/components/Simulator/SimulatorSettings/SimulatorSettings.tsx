@@ -4,19 +4,16 @@ import type {
     SimulatorDifficulty,
     SimulatorQuestionMode,
 } from "../../../types/types";
-
 import SpecializationSelect from "./SpecializationSelect";
 import DifficultySelect from "./DifficultySelect";
 import CategorySelect from "./CategorySelect";
 import QuestionModeSelect from "./QuestionModeSelect";
 import QuestionsCountInput from "./QuestionsCountInput";
 import StartSimulatorButton from "./StartSimulatorButton";
-
 import { useLazyStartSimulatorQuery } from "../../../api/apiSlice/simulatorApiSlice";
 import { useDispatch } from "react-redux";
 import { setQuiz } from "../../../store/simulatorSlice";
 import { useNavigate } from "react-router-dom";
-
 import styles from "./SimulatorSettings.module.css";
 import { useGetSpecializationsQuery } from "../../../api/apiSlice/specializationsApiSlice";
 
@@ -117,7 +114,8 @@ function SimulatorSettings() {
 
         if (
             selectedSpecialization === null ||
-            difficulty === null
+            difficulty === null ||
+            questionMode === null
         ) {
             return;
         }
@@ -131,7 +129,11 @@ function SimulatorSettings() {
                 limit: questionsCount,
             }).unwrap();
 
-            dispatch(setQuiz(result));
+            dispatch(setQuiz({
+                quiz: result,
+                questionMode,
+            }));
+
             navigate("/simulator-session");
 
         } catch (error) {

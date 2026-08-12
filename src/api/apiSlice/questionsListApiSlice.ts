@@ -1,49 +1,44 @@
 import { apiSlice } from "./apiSlice";
 import type { GetQuestionsListResponse } from "../../types/types";
 
-
 interface GetQuestionsQueryParams {
     page?: number;
     limit?: number;
     search?: string;
-    collectionId?: string;
+    collection?: number;
 }
 
+export const questionsListApi =
+    apiSlice.injectEndpoints({
 
-export const questionsListApi = apiSlice.injectEndpoints({
+        endpoints: (builder) => ({
 
-    endpoints: (builder) => ({
+            getQuestions: builder.query<
+                GetQuestionsListResponse,
+                GetQuestionsQueryParams
+            >({
 
-        getQuestions: builder.query<
-            GetQuestionsListResponse,
-            GetQuestionsQueryParams
-        >({
+                query: ({
+                    page = 1,
+                    limit = 10,
+                    search = "",
+                    collection,
+                }) => ({
+                    url: "/questions/public-questions",
 
-            query: ({
-                page = 1,
-                limit = 10,
-                search = "",
-                collectionId = "",
-            }) => ({
-                url: "/questions/public-questions",
+                    params: {
+                        page,
+                        limit,
+                        title: search || undefined,
+                        collection: collection || undefined,
+                    },
+                }),
 
-                params: {
-                    page,
-                    limit,
-                    title: search || undefined,
-                    collectionId: collectionId || undefined,
-                },
+                providesTags: ["Questions"],
             }),
 
-
-            providesTags: ["Questions"],
-
         }),
-
-    }),
-
-});
-
+    });
 
 export const {
     useGetQuestionsQuery,

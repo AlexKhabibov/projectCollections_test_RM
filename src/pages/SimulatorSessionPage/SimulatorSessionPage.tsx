@@ -1,13 +1,12 @@
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
-
 import type { RootState } from "../../store/store";
-
 import SimulatorSession
     from "../../components/Simulator/SimulatorSession/SimulatorSession";
-
 import SimulatorResult
     from "../../components/Simulator/SimulatorResult/SimulatorResult";
+import { filterSimulatorQuestions }
+    from "../../utils/filterSimulatorQuestions";
 
 function SimulatorSessionPage() {
 
@@ -15,6 +14,8 @@ function SimulatorSessionPage() {
         quiz,
         currentQuestionIndex,
         isFinished,
+        questionMode,
+        answers,
     } = useSelector(
         (state: RootState) => state.simulator
     );
@@ -32,8 +33,23 @@ function SimulatorSessionPage() {
         return <SimulatorResult />;
     }
 
+    if (!questionMode) {
+        return (
+            <Navigate
+                to="/simulator"
+                replace
+            />
+        );
+    }
+
+    const questions = filterSimulatorQuestions(
+        quiz.questions,
+        questionMode,
+        answers
+    );
+
     const question =
-        quiz.questions[currentQuestionIndex];
+        questions[currentQuestionIndex];
 
     if (!question) {
         return (
@@ -49,13 +65,17 @@ function SimulatorSessionPage() {
 
     const isLast =
         currentQuestionIndex ===
-        quiz.questions.length - 1;
+        questions.length - 1;
 
     return (
         <SimulatorSession
             question={question}
-            currentQuestion={currentQuestionIndex + 1}
-            totalQuestions={quiz.questions.length}
+            currentQuestion={
+                currentQuestionIndex + 1
+            }
+            totalQuestions={
+                questions.length
+            }
             isFirst={isFirst}
             isLast={isLast}
         />

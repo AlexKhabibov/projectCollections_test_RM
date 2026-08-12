@@ -1,59 +1,63 @@
 import { apiSlice } from "./apiSlice";
-import type { GetCollectionsListResponse } from "../../types/types";
+import type {
+    GetCollectionsListResponse,
+} from "../../types/types";
 
 interface GetCollectionsQueryParams {
     page?: number;
     limit?: number;
     access?: string;
+    specializations?: number[];
 }
 
-export const collectionsApiSlice = apiSlice.injectEndpoints({
+export const collectionsApiSlice =
+    apiSlice.injectEndpoints({
 
-    endpoints: (builder) => ({
+        endpoints: (builder) => ({
 
-        getCollections: builder.query<
-            GetCollectionsListResponse,
-            GetCollectionsQueryParams
-        >({
+            getCollections: builder.query<
+                GetCollectionsListResponse,
+                GetCollectionsQueryParams
+            >({
+                query: ({
+                    page = 1,
+                    limit = 10,
+                    access = "",
+                    specializations = [],
+                }) => {
 
-            query: ({
-                page = 1,
-                limit = 10,
-                access = "",
-            }) => {
+                    const params = new URLSearchParams({
+                        page: String(page),
+                        limit: String(limit),
+                    });
 
-                const params = new URLSearchParams({
-                    page: String(page),
-                    limit: String(limit),
-                });
+                    if (access === "members") {
+                        params.set("isFree", "false");
+                    }
 
-                if (access === "members") {
-                    params.set(
-                        "isFree",
-                        "false"
-                    );
-                }
+                    if (access === "public") {
+                        params.set("isFree", "true");
+                    }
 
-                if (access === "public") {
-                    params.set(
-                        "isFree",
-                        "true"
-                    );
-                }
+                    specializations.forEach((id) => {
+                        params.append(
+                            "specializations",
+                            String(id)
+                        );
+                    });
 
-                return {
-                    url: "/collections/public",
-                    params,
-                };
-            },
+                    return {
+                        url: "/collections/public",
+                        params,
+                    };
+                },
 
-            providesTags: ["Collections"],
+                providesTags: ["Collections"],
+            }),
 
         }),
 
-    }),
-
-});
+    });
 
 export const {
     useGetCollectionsQuery,

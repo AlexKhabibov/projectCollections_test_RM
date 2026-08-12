@@ -1,14 +1,28 @@
 import { useState } from "react";
-import { useNavigate, useLocation, useParams, } from "react-router-dom";
+import {
+    useNavigate,
+    useLocation,
+    useParams,
+} from "react-router-dom";
 import { skipToken } from "@reduxjs/toolkit/query";
-import QuestionsList from "../../components/QuestionsList/QuestionsList";
-import Pagination from "../../components/Pagination/Pagination";
-import CollectionHeaderCard from "../../components/CollectionHeaderCard/CollectionHeaderCard";
-import CollectionDetailsSidebar from "../../components/CollectionDetailsSidebar/CollectionDetailsSidebar";
-import SidebarDrawer from "../../components/Sidebar/SidebarDrawer/SidebarDrawer";
-import { useGetQuestionsQuery } from "../../api/apiSlice/questionsListApiSlice";
-import styles from "./CollectionDetailsPage.module.css";
-import { useGetCollectionDetailsQuery } from "../../api/apiSlice/collectionDetailsApiSlice";
+import QuestionsList
+    from "../../components/QuestionsList/QuestionsList";
+import Pagination
+    from "../../components/Pagination/Pagination";
+import CollectionHeaderCard
+    from "../../components/CollectionHeaderCard/CollectionHeaderCard";
+import CollectionDetailsSidebar
+    from "../../components/CollectionDetailsSidebar/CollectionDetailsSidebar";
+import SidebarDrawer
+    from "../../components/Sidebar/SidebarDrawer/SidebarDrawer";
+import {
+    useGetQuestionsQuery,
+} from "../../api/apiSlice/questionsListApiSlice";
+import styles
+    from "./CollectionDetailsPage.module.css";
+import {
+    useGetCollectionDetailsQuery,
+} from "../../api/apiSlice/collectionDetailsApiSlice";
 
 function CollectionDetailsPage() {
 
@@ -16,7 +30,6 @@ function CollectionDetailsPage() {
     const navigate = useNavigate();
     const location = useLocation();
     const params = new URLSearchParams(location.search);
-
     const page = Number(params.get("page") ?? 1);
     const limit = Number(params.get("limit") ?? 10);
 
@@ -24,7 +37,6 @@ function CollectionDetailsPage() {
         data: collection,
         isLoading: isCollectionLoading,
         error: collectionError,
-
     } = useGetCollectionDetailsQuery(
         id ?? skipToken
     );
@@ -33,13 +45,13 @@ function CollectionDetailsPage() {
         data: questions,
         isLoading: isQuestionsLoading,
         error: questionsError,
-
     } = useGetQuestionsQuery(
-        id ? {
-            collectionId: id,
-            page,
-            limit,
-        }
+        id
+            ? {
+                collection: Number(id),
+                page,
+                limit,
+            }
             : skipToken
     );
 
@@ -62,11 +74,21 @@ function CollectionDetailsPage() {
         );
     };
 
-    if (isCollectionLoading || isQuestionsLoading) {
-        return <div>Загрузка...</div>;
+    if (
+        isCollectionLoading ||
+        isQuestionsLoading
+    ) {
+        return (
+            <div>
+                Загрузка...
+            </div>
+        );
     }
 
-    if (collectionError || questionsError) {
+    if (
+        collectionError ||
+        questionsError
+    ) {
         return (
             <div>
                 Ошибка загрузки данных
@@ -74,7 +96,10 @@ function CollectionDetailsPage() {
         );
     }
 
-    if (!collection || !questions) {
+    if (
+        !collection ||
+        !questions
+    ) {
         return (
             <div>
                 Данные не найдены
@@ -87,7 +112,6 @@ function CollectionDetailsPage() {
 
             <main className={styles.main}>
 
-
                 <button
                     className={
                         styles.mobileSidebarButton
@@ -99,21 +123,15 @@ function CollectionDetailsPage() {
                     Информация
                 </button>
 
-
-
                 <CollectionHeaderCard
                     collection={collection}
                 />
-
-
 
                 <QuestionsList
                     questionsList={
                         questions.data
                     }
                 />
-
-
 
                 <Pagination
                     page={
@@ -130,10 +148,7 @@ function CollectionDetailsPage() {
                     }
                 />
 
-
             </main>
-
-
 
             <SidebarDrawer
                 isOpen={isSidebarOpen}
@@ -147,7 +162,6 @@ function CollectionDetailsPage() {
                 />
 
             </SidebarDrawer>
-
 
         </div>
     );
