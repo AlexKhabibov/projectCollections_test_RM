@@ -7,6 +7,7 @@ export interface SimulatorState {
     isFinished: boolean;
     answers: SimulatorAnswer[];
     questionMode: SimulatorQuestionMode | null;
+    
 }
 
 const initialState: SimulatorState = {
@@ -22,7 +23,6 @@ interface SetQuizPayload {
     questionMode: SimulatorQuestionMode;
 }
 
-
 const simulatorSlice = createSlice({
 
     name: "simulator",
@@ -35,6 +35,7 @@ const simulatorSlice = createSlice({
         ) => {
 
             state.quiz = action.payload.quiz;
+            state.questionMode = action.payload.questionMode;
             state.currentQuestionIndex = 0;
             state.isFinished = false;
             state.answers = [];
@@ -108,6 +109,7 @@ const simulatorSlice = createSlice({
             state.currentQuestionIndex = 0;
             state.isFinished = false;
             state.answers = [];
+            state.questionMode = null;
         },
     },
 });
