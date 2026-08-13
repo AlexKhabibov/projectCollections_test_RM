@@ -16,6 +16,12 @@
     display: none;
 }
 
+.loader,
+.error,
+.data {
+    text-align: center;
+}
+
 @media (max-width: 1024px) {
 
     .content {

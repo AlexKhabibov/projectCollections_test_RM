@@ -13,9 +13,16 @@ export function loadSimulatorState():
             return undefined;
         }
 
-        return JSON.parse(
-            serializedState
-        ) as SimulatorState;
+        const parsedState =
+            JSON.parse(serializedState);
+
+        return {
+            ...parsedState,
+
+            studiedQuestionIds:
+                parsedState.studiedQuestionIds ?? [],
+
+        } as SimulatorState;
 
     } catch (error) {
 

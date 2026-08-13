@@ -78,12 +78,12 @@ function CollectionListPage() {
         isCollectionsLoading ||
         isSpecializationsLoading
     ) {
-        return <div>Загрузка...</div>;
+        return <div className="loader" >Загрузка...</div>;
     }
 
     if (collectionsError) {
         return (
-            <div>
+            <div className="error">
                 Ошибка загрузки коллекций
             </div>
         );
@@ -94,7 +94,7 @@ function CollectionListPage() {
         !specializations
     ) {
         return (
-            <div>
+            <div className="data">
                 Данные не найдены
             </div>
         );

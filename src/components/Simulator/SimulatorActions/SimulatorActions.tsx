@@ -22,6 +22,8 @@ function SimulatorActions({
         answer: "KNOWN" | "UNKNOWN"
     ) => {
 
+        console.log("КЛИК", answer);
+
         dispatch(
             answerQuestion({
                 questionId: Number(question.id),
@@ -30,7 +32,11 @@ function SimulatorActions({
             })
         );
 
+        console.log("DISPATCH ANSWER");
+
         dispatch(nextQuestion());
+
+        console.log("DISPATCH NEXT");
     };
 
     const handleFinish = () => {

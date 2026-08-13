@@ -5,35 +5,23 @@ import SimulatorSession
     from "../../components/Simulator/SimulatorSession/SimulatorSession";
 import SimulatorResult
     from "../../components/Simulator/SimulatorResult/SimulatorResult";
-import { filterSimulatorQuestions }
-    from "../../utils/filterSimulatorQuestions";
 
 function SimulatorSessionPage() {
 
     const {
-        quiz,
+        sessionQuestions,
         currentQuestionIndex,
         isFinished,
-        questionMode,
-        answers,
     } = useSelector(
-        (state: RootState) => state.simulator
+        (state: RootState) =>
+            state.simulator
     );
-
-    if (!quiz) {
-        return (
-            <Navigate
-                to="/simulator"
-                replace
-            />
-        );
-    }
 
     if (isFinished) {
         return <SimulatorResult />;
     }
 
-    if (!questionMode) {
+    if (sessionQuestions.length === 0) {
         return (
             <Navigate
                 to="/simulator"
@@ -42,14 +30,10 @@ function SimulatorSessionPage() {
         );
     }
 
-    const questions = filterSimulatorQuestions(
-        quiz.questions,
-        questionMode,
-        answers
-    );
-
     const question =
-        questions[currentQuestionIndex];
+        sessionQuestions[
+        currentQuestionIndex
+        ];
 
     if (!question) {
         return (
@@ -65,7 +49,7 @@ function SimulatorSessionPage() {
 
     const isLast =
         currentQuestionIndex ===
-        questions.length - 1;
+        sessionQuestions.length - 1;
 
     return (
         <SimulatorSession
@@ -74,7 +58,7 @@ function SimulatorSessionPage() {
                 currentQuestionIndex + 1
             }
             totalQuestions={
-                questions.length
+                sessionQuestions.length
             }
             isFirst={isFirst}
             isLast={isLast}

@@ -201,11 +201,9 @@ export interface SimulatorResponse {
     startDate: string;
     fullCount: number;
     skills: string[];
-
     response: {
         answers: SimulatorAnswer[];
     };
-
     questions: Question[];
 }
 

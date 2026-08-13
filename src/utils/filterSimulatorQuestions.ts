@@ -1,23 +1,23 @@
-import type { Question, SimulatorAnswer, SimulatorQuestionMode } from "../types/types";
+import type {
+    Question,
+    SimulatorQuestionMode,
+} from "../types/types";
 
 export function filterSimulatorQuestions(
     questions: Question[],
     mode: SimulatorQuestionMode,
-    answers: SimulatorAnswer[]
+    studiedQuestionIds: number[]
 ): Question[] {
 
-    const answeredQuestionIds = new Set(
-        answers.map(
-            (answer) => answer.questionId
-        )
-    );
+    const studiedIds =
+        new Set(studiedQuestionIds);
 
     switch (mode) {
 
         case "new":
             return questions.filter(
                 (question) =>
-                    !answeredQuestionIds.has(
+                    !studiedIds.has(
                         Number(question.id)
                     )
             );
@@ -25,7 +25,7 @@ export function filterSimulatorQuestions(
         case "review":
             return questions.filter(
                 (question) =>
-                    answeredQuestionIds.has(
+                    studiedIds.has(
                         Number(question.id)
                     )
             );

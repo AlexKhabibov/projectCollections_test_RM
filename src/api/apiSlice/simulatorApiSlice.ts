@@ -1,10 +1,17 @@
-import { type SimulatorDifficulty, type SimulatorResponse, type StartSimulatorParams } from "../../types/types";
-import { apiSlice } from "./apiSlice";
-
-const difficultyMap: Record<
+import type {
     SimulatorDifficulty,
-    number[]
-> = {
+    SimulatorResponse,
+    StartSimulatorParams,
+} from "../../types/types";
+
+import { apiSlice }
+    from "./apiSlice";
+
+const difficultyMap:
+    Record<
+        SimulatorDifficulty,
+        number[]
+    > = {
 
     beginner: [1, 2, 3],
     elementary: [4, 5, 6],
@@ -17,34 +24,44 @@ export const simulatorApiSlice =
 
         endpoints: (builder) => ({
 
-            startSimulator: builder.query<SimulatorResponse, StartSimulatorParams>({
+            startSimulator:
+                builder.query<
+                    SimulatorResponse,
+                    StartSimulatorParams
+                >({
 
-                query: ({
-                    specialization,
-                    skills,
-                    difficulty,
-                    limit,
-                    collection,
-                }) => ({
-
-                    url: "/interview-preparation/quizzes/mock/new",
-
-                    params: {
+                    query: ({
                         specialization,
-                        skills: skills?.length
-                            ? skills.join(",")
-                            : undefined,
-                        complexity: difficultyMap[difficulty].join(","),
-                        collection,
+                        skills,
+                        difficulty,
                         limit,
-                    },
+                        collection,
+                    }) => ({
 
+                        url:
+                            "/interview-preparation/quizzes/mock/new",
+
+                        params: {
+
+                            specialization,
+
+                            skills:
+                                skills?.length
+                                    ? skills.join(",")
+                                    : undefined,
+
+                            complexity:
+                                difficultyMap[
+                                    difficulty
+                                ].join(","),
+
+                            collection,
+
+                            limit,
+                        },
+                    }),
                 }),
-
-            }),
-
         }),
-
     });
 
 export const {

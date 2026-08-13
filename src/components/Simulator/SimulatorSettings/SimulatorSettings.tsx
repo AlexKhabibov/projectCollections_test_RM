@@ -1,21 +1,35 @@
 import { useState } from "react";
-import { useGetSkillsQuery } from "../../../api/apiSlice/skillsApiSlice";
+import { useGetSkillsQuery }
+    from "../../../api/apiSlice/skillsApiSlice";
 import type {
     SimulatorDifficulty,
     SimulatorQuestionMode,
 } from "../../../types/types";
-import SpecializationSelect from "./SpecializationSelect";
-import DifficultySelect from "./DifficultySelect";
-import CategorySelect from "./CategorySelect";
-import QuestionModeSelect from "./QuestionModeSelect";
-import QuestionsCountInput from "./QuestionsCountInput";
-import StartSimulatorButton from "./StartSimulatorButton";
-import { useLazyStartSimulatorQuery } from "../../../api/apiSlice/simulatorApiSlice";
+import SpecializationSelect
+    from "./SpecializationSelect";
+import DifficultySelect
+    from "./DifficultySelect";
+import CategorySelect
+    from "./CategorySelect";
+import QuestionModeSelect
+    from "./QuestionModeSelect";
+import QuestionsCountInput
+    from "./QuestionsCountInput";
+import StartSimulatorButton
+    from "./StartSimulatorButton";
+import {
+    useLazyStartSimulatorQuery,
+} from "../../../api/apiSlice/simulatorApiSlice";
 import { useDispatch } from "react-redux";
-import { setQuiz } from "../../../store/simulatorSlice";
-import { useNavigate } from "react-router-dom";
-import styles from "./SimulatorSettings.module.css";
-import { useGetSpecializationsQuery } from "../../../api/apiSlice/specializationsApiSlice";
+import { setQuiz }
+    from "../../../store/simulatorSlice";
+import { useNavigate }
+    from "react-router-dom";
+import styles
+    from "./SimulatorSettings.module.css";
+import {
+    useGetSpecializationsQuery,
+} from "../../../api/apiSlice/specializationsApiSlice";
 
 function SimulatorSettings() {
 
@@ -24,14 +38,18 @@ function SimulatorSettings() {
 
     const {
         data: specializations,
-        isLoading: isSpecializationsLoading,
-        error: specializationsError,
+        isLoading:
+        isSpecializationsLoading,
+        error:
+        specializationsError,
     } = useGetSpecializationsQuery();
 
     const {
         data: skills,
-        isLoading: isSkillsLoading,
-        error: skillsError,
+        isLoading:
+        isSkillsLoading,
+        error:
+        skillsError,
     } = useGetSkillsQuery();
 
     const [
@@ -47,20 +65,25 @@ function SimulatorSettings() {
     const [
         difficulty,
         setDifficulty,
-    ] = useState<SimulatorDifficulty | null>(null);
+    ] = useState<
+        SimulatorDifficulty | null
+    >(null);
 
     const [
         questionMode,
         setQuestionMode,
-    ] = useState<SimulatorQuestionMode | null>(null);
+    ] = useState<
+        SimulatorQuestionMode | null
+    >(null);
 
     const [
         questionsCount,
         setQuestionsCount,
     ] = useState(20);
 
-    const [startSimulator] =
-        useLazyStartSimulatorQuery();
+    const [
+        startSimulator,
+    ] = useLazyStartSimulatorQuery();
 
     if (
         isSpecializationsLoading ||
@@ -84,7 +107,10 @@ function SimulatorSettings() {
         );
     }
 
-    if (!specializations || !skills) {
+    if (
+        !specializations ||
+        !skills
+    ) {
         return (
             <div className={styles.status}>
                 Данные не найдены
@@ -95,18 +121,23 @@ function SimulatorSettings() {
     const filteredSkills =
         selectedSpecialization === null
             ? skills
-            : skills.filter((skill) =>
-                skill.specializations.some(
-                    (specialization) =>
-                        specialization.id ===
-                        selectedSpecialization
-                )
+            : skills.filter(
+                (skill) =>
+                    skill.specializations.some(
+                        (specialization) =>
+                            specialization.id ===
+                            selectedSpecialization
+                    )
             );
 
     const handleSpecializationChange = (
         specializationId: string
     ) => {
-        setSelectedSpecialization(specializationId);
+
+        setSelectedSpecialization(
+            specializationId
+        );
+
         setSelectedSkills([]);
     };
 
@@ -121,87 +152,162 @@ function SimulatorSettings() {
         }
 
         try {
-            const result = await startSimulator({
-                specialization:
-                    Number(selectedSpecialization),
-                skills: selectedSkills,
-                difficulty,
-                limit: questionsCount,
-            }).unwrap();
 
-            dispatch(setQuiz({
-                quiz: result,
-                questionMode,
-            }));
+            const result =
+                await startSimulator({
 
-            navigate("/simulator-session");
+                    specialization:
+                        Number(
+                            selectedSpecialization
+                        ),
+
+                    skills:
+                        selectedSkills,
+
+                    difficulty,
+
+                    limit:
+                        questionsCount,
+
+                }).unwrap();
+
+            dispatch(
+                setQuiz({
+
+                    quiz: result,
+
+                    questionMode,
+
+                })
+            );
+
+            navigate(
+                "/simulator-session"
+            );
 
         } catch (error) {
+
             console.error(error);
         }
     };
 
     return (
-        <section className={styles.settings}>
+        <section
+            className={styles.settings}
+        >
 
-            <h1 className={styles.title}>
+            <h1
+                className={styles.title}
+            >
                 Собеседование
             </h1>
 
-            <div className={styles.content}>
+            <div
+                className={styles.content}
+            >
 
-                <div className={styles.leftColumn}>
+                <div
+                    className={styles.leftColumn}
+                >
 
-                    <div className={styles.block}>
+                    <div
+                        className={styles.block}
+                    >
+
                         <SpecializationSelect
-                            specializations={specializations}
-                            value={selectedSpecialization}
+                            specializations={
+                                specializations
+                            }
+                            value={
+                                selectedSpecialization
+                            }
                             onChange={
                                 handleSpecializationChange
                             }
                         />
+
                     </div>
 
-                    <div className={styles.block}>
+                    <div
+                        className={styles.block}
+                    >
+
                         <CategorySelect
-                            skills={filteredSkills}
-                            selectedSkills={selectedSkills}
-                            onChange={setSelectedSkills}
+                            skills={
+                                filteredSkills
+                            }
+                            selectedSkills={
+                                selectedSkills
+                            }
+                            onChange={
+                                setSelectedSkills
+                            }
                         />
+
                     </div>
 
                 </div>
 
-                <div className={styles.rightColumn}>
+                <div
+                    className={styles.rightColumn}
+                >
 
-                    <div className={styles.block}>
+                    <div
+                        className={styles.block}
+                    >
+
                         <DifficultySelect
-                            value={difficulty}
-                            onChange={setDifficulty}
+                            value={
+                                difficulty
+                            }
+                            onChange={
+                                setDifficulty
+                            }
                         />
+
                     </div>
 
-                    <div className={styles.block}>
+                    <div
+                        className={styles.block}
+                    >
+
                         <QuestionModeSelect
-                            value={questionMode}
-                            onChange={setQuestionMode}
+                            value={
+                                questionMode
+                            }
+                            onChange={
+                                setQuestionMode
+                            }
                         />
+
                     </div>
 
-                    <div className={styles.block}>
+                    <div
+                        className={styles.block}
+                    >
+
                         <QuestionsCountInput
-                            value={questionsCount}
-                            onChange={setQuestionsCount}
+                            value={
+                                questionsCount
+                            }
+                            onChange={
+                                setQuestionsCount
+                            }
                         />
+
                     </div>
 
                 </div>
 
             </div>
 
-            <div className={styles.footer}>
+            <div
+                className={styles.footer}
+            >
 
-                <div className={styles.actions}>
+                <div
+                    className={styles.actions}
+                >
 
                     <StartSimulatorButton
                         disabled={
@@ -210,8 +316,11 @@ function SimulatorSettings() {
                             difficulty === null ||
                             questionMode === null
                         }
-                        onClick={handleStart}
+                        onClick={
+                            handleStart
+                        }
                     />
+
                 </div>
 
             </div>
