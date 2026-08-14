@@ -1,7 +1,10 @@
 import { useSelector } from "react-redux";
 import type { RootState } from "../../../store/store";
 import styles from "./SimulatorSkillsProgress.module.css";
-import { calculateSkillPercent, calculateSkillsProgress } from "../../../utils/simulatorUtils";
+import {
+    calculateSkillPercent,
+    calculateSkillsProgress,
+} from "../../../utils/simulatorUtils";
 
 function SimulatorSkillsProgress() {
 
@@ -57,16 +60,16 @@ function SimulatorSkillsProgress() {
                                 </span>
                             </div>
 
-                            <div
-                                className={styles.track}
-                            >
+                            <div className={styles.track}>
+
                                 <div
-                                    className={styles.progress}
+                                    className={styles.bar}
                                     style={{
                                         width:
                                             `${percent}%`,
                                     }}
                                 />
+
                             </div>
 
                         </div>
