@@ -24,15 +24,15 @@ function QuestionDetailsPage() {
     ] = useState(false);
 
     if (isLoading) {
-        return <div>Загрузка...</div>;
+        return <div className={styles.loader}>Загрузка...</div>;
     }
 
     if (error) {
-        return <div>Ошибка загрузки вопроса</div>;
+        return <div className={styles.error}>Ошибка загрузки вопроса</div>;
     }
 
     if (!question) {
-        return <div>Вопрос не найден</div>;
+        return <div className={styles.data}>Вопрос не найден</div>;
     }
 
     return (

@@ -22,6 +22,17 @@
     display: none;
 }
 
+.loader,
+.error,
+.data {
+    min-height: calc(100vh - 80px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: #555;
+}
+
 @media (max-width: 1024px) {
 
     .content {

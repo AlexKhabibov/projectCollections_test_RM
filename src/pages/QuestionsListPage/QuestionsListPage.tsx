@@ -36,15 +36,15 @@ export default function QuestionsListPage() {
     };
 
     if (isLoading) {
-        return <div>Загрузка...</div>;
+        return <div className={styles.loader}>Загрузка...</div>;
     }
 
     if (error) {
-        return <div>Ошибка загрузки</div>;
+        return <div className={styles.error}>Ошибка загрузки</div>;
     }
 
     if (!data) {
-        return <div>Нет данных</div>;
+        return <div className={styles.data}>Нет данных</div>;
     }
 
     return (

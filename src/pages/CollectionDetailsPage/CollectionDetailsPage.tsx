@@ -79,7 +79,7 @@ function CollectionDetailsPage() {
         isQuestionsLoading
     ) {
         return (
-            <div>
+            <div className={styles.loader}>
                 Загрузка...
             </div>
         );
@@ -90,7 +90,7 @@ function CollectionDetailsPage() {
         questionsError
     ) {
         return (
-            <div>
+            <div className={styles.error}>
                 Ошибка загрузки данных
             </div>
         );
@@ -101,7 +101,7 @@ function CollectionDetailsPage() {
         !questions
     ) {
         return (
-            <div>
+            <div className={styles.data}>
                 Данные не найдены
             </div>
         );
